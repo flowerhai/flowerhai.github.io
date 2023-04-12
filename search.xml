@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>dayi</title>
+      <link href="/2023/04/12/dayi/"/>
+      <url>/2023/04/12/dayi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="day1"><a class="markdownIt-Anchor" href="#day1">#</a> day1</h2><p>今天实现如下功能：</p><ul><li><p>mainwindow 添加菜单栏</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QMenuBar *bar = <span class="built_in">menuBar</span>();<span class="comment">//创建菜单栏</span></span><br><span class="line"><span class="comment">//中间各种操作</span></span><br><span class="line"><span class="built_in">setMenuBar</span>(bar);</span><br></pre></td></tr></table></figure></li><li><p>点击相应菜单栏中的每个按钮可以跳转到另外一个页面</p><p>使用 connect</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处需要在类中如下</span></span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">openNewWindow</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//实现如下</span></span><br><span class="line">QAction *action1 = <span class="keyword">new</span> <span class="built_in">QAction</span>(<span class="string">&quot;八股&quot;</span>, <span class="keyword">this</span>);</span><br><span class="line">bar-&gt;<span class="built_in">addAction</span>(action1);</span><br><span class="line"><span class="built_in">connect</span>(action1, <span class="built_in">SIGNAL</span>(<span class="built_in">triggered</span>()), <span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">openNewWindow</span>()));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainWindow::openNewWindow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QWidget *newWindow = <span class="keyword">new</span> QWidget;</span><br><span class="line">    newWindow-&gt;<span class="built_in">setWindowTitle</span>(<span class="string">&quot;New Window&quot;</span>);</span><br><span class="line">    <span class="function">QPixmap <span class="title">bkgnd</span><span class="params">(<span class="string">&quot;:/new/prefix1/10.png&quot;</span>)</span></span>;</span><br><span class="line">    bkgnd = bkgnd.<span class="built_in">scaled</span>(<span class="keyword">this</span>-&gt;<span class="built_in">size</span>(), Qt::IgnoreAspectRatio);</span><br><span class="line">    QPalette palette;</span><br><span class="line">    palette.<span class="built_in">setBrush</span>(QPalette::Background, bkgnd);</span><br><span class="line">    newWindow-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">    newWindow-&gt;<span class="built_in">show</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>背景图</p><p>此处需要首先在工程中添加 resource 文件，再向其中添加图片，否则就算路径正确也会读取不出来图片</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QPixmap <span class="title">bkgnd</span><span class="params">(<span class="string">&quot;:/new/prefix1/6.png&quot;</span>)</span></span>;</span><br><span class="line">bkgnd = bkgnd.<span class="built_in">scaled</span>(<span class="keyword">this</span>-&gt;<span class="built_in">size</span>(), Qt::IgnoreAspectRatio);</span><br><span class="line">QPalette palette;</span><br><span class="line">palette.<span class="built_in">setBrush</span>(QPalette::Background, bkgnd);</span><br><span class="line"><span class="keyword">this</span>-&gt;<span class="built_in">setPalette</span>(palette);</span><br></pre></td></tr></table></figure></li></ul><p>明日计划：</p><p>实现打开的页面中能够读取 txt，写入 txt, 以及答案匹配，实现基础问答形式。</p><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 秋招学习器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/04/11/hello-world/"/>
+      <url>/2023/04/11/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start">#</a> Quick Start</h2><h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post">#</a> Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server">#</a> Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files">#</a> Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites">#</a> Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
