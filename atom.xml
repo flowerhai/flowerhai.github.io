@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>恍惚迷离</title>
   
   
   <link href="https://flowerhai.github.io/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://flowerhai.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>恍惚迷离</name>
     
   </author>
   
