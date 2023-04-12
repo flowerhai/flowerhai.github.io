@@ -6,4 +6,4 @@ https://flowerhai.github.io/tags/index.html
 https://flowerhai.github.io/categories/index.html
 https://flowerhai.github.io/
 https://flowerhai.github.io/tags/%E7%A7%8B%E6%8B%9B%E5%AD%A6%E4%B9%A0%E5%99%A8/
-https://flowerhai.github.io/tags/%E5%88%B7%E9%A2%98day1/
+https://flowerhai.github.io/tags/lc/
