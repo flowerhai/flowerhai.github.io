@@ -178,7 +178,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #fff;
 }
 .bg-floor {
-  background: url("https://www.loliapi.com/acg/");
+  background: url("https://www.loliapi.com/acg");
   background-size: cover;
   transition: all 0.3s;
 }
