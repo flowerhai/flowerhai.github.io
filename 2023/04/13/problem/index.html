@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Hello World | 恍惚迷离</title>
+  <title>problem | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -531,14 +531,14 @@
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        Hello World
+        problem
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-11 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-13 |
         </span>
       
 
@@ -562,23 +562,32 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start">#</a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post">#</a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server">#</a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files">#</a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites">#</a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h4 id="在自定义widget的时候出现如下错误field-w-has-incomplete-type"><a class="markdownIt-Anchor" href="#在自定义widget的时候出现如下错误field-w-has-incomplete-type">#</a> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Widget</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Widget w;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">wwrite</span><span class="params">(QString s, QWidget *widget)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">savestabuyEditinfo</span><span class="params">(QLineEdit *lineEditPass, QString tex)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这里是因为头文件对类或者结构体进行了前向声明，后面使用了该类定义了对象，导致编译报错。</p>
+<p>原因在于前向声明类或者结构体，此时编译器还不知道定义，无法知道类内部成员，所以无法构造实例对象，因此前向声明的类或者结构体只能用来定义指针或者引用。</p>
+<h4 id="cannot-call-member-function-without-object-处理"><a class="markdownIt-Anchor" href="#cannot-call-member-function-without-object-处理">#</a> cannot call member function ‘ ‘ without object 处理</h4>
+<p>应该先初始化一个类哦这个</p>
+<p><strong>莫名其妙的注释掉的函数也会出现提示我未初始化，这个时候需要将整个项目重构</strong></p>
+<h4 id="no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><a class="markdownIt-Anchor" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in">#</a> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</h4>
+<p>奇怪，明明以及在 Widget 里 public slots 声明了，却仍然有问题</p>
+<h4 id="qiodevicewrite-qfile-dqtprojectaguaguimage"><a class="markdownIt-Anchor" href="#qiodevicewrite-qfile-dqtprojectaguaguimage">#</a> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</h4>
+<h4 id="es-device-not-open"><a class="markdownIt-Anchor" href="#es-device-not-open">#</a> es&quot;): device not open</h4>
+<p>服了，qt 读取 txt 并不用和 image 一样，还得加到工程看里</p>
+<p>信号槽的问题，一直检测不到</p>
+<p>文件读写的问题，一直写不上</p>
+<p>吐了吐了</p>
 
       </div>
       <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E7%A7%8B%E6%8B%9B%E5%AD%A6%E4%B9%A0%E5%99%A8/" class="">
+              秋招学习器
+            </a>
+          
+        </div>
         
       </div>
       
@@ -589,7 +598,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/11/hello-world/" target="_blank" title="Hello World">https://flowerhai.github.io/2023/04/11/hello-world/</a>
+    <a href="/2023/04/13/problem/" target="_blank" title="problem">https://flowerhai.github.io/2023/04/13/problem/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -607,30 +616,25 @@
 
 
 
+
+
   
-  <div class="post-nav-prev post-nav-item">
+  <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/12/dayi/" class="post-nav-link">
+    <a href="/2023/04/12/lc/" class="post-nav-link">
       <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">dayi</div>
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">刷题day1</div>
       </div>
-      
       <!-- <div class="content">
-        # day1
-今天实现如下功能：
-
-
-mainwindow 添加菜单栏
-123QMenuBar *bar = menuB
+        # 238. 除自身以外数组的乘积
+给你一个整数数组 nums，返回 数组 answer ，其中 answer [i] 
       </div> -->
     </a>
   </div>
-
-
 
 </div>
 
@@ -759,7 +763,7 @@ mainwindow 添加菜单栏
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-start"><span class="toc-text"> Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-new-post"><span class="toc-text"> Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#run-server"><span class="toc-text"> Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate-static-files"><span class="toc-text"> Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-remote-sites"><span class="toc-text"> Deploy to remote sites</span></a></li></ol></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%87%AA%E5%AE%9A%E4%B9%89widget%E7%9A%84%E6%97%B6%E5%80%99%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%94%99%E8%AF%AFfield-w-has-incomplete-type"><span class="toc-text"> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cannot-call-member-function-without-object-%E5%A4%84%E7%90%86"><span class="toc-text"> cannot call member function ‘ ‘ without object 处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><span class="toc-text"> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qiodevicewrite-qfile-dqtprojectaguaguimage"><span class="toc-text"> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#es-device-not-open"><span class="toc-text"> es&quot;): device not open</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>

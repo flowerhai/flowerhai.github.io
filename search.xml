@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>problem</title>
+      <link href="/2023/04/13/problem/"/>
+      <url>/2023/04/13/problem/</url>
+      
+        <content type="html"><![CDATA[<h4 id="在自定义widget的时候出现如下错误field-w-has-incomplete-type"><a class="markdownIt-Anchor" href="#在自定义widget的时候出现如下错误field-w-has-incomplete-type">#</a> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Widget</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Widget w;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">wwrite</span><span class="params">(QString s, QWidget *widget)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">savestabuyEditinfo</span><span class="params">(QLineEdit *lineEditPass, QString tex)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>这里是因为头文件对类或者结构体进行了前向声明，后面使用了该类定义了对象，导致编译报错。</p><p>原因在于前向声明类或者结构体，此时编译器还不知道定义，无法知道类内部成员，所以无法构造实例对象，因此前向声明的类或者结构体只能用来定义指针或者引用。</p><h4 id="cannot-call-member-function-without-object-处理"><a class="markdownIt-Anchor" href="#cannot-call-member-function-without-object-处理">#</a> cannot call member function ‘ ‘ without object 处理</h4><p>应该先初始化一个类哦这个</p><p><strong>莫名其妙的注释掉的函数也会出现提示我未初始化，这个时候需要将整个项目重构</strong></p><h4 id="no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><a class="markdownIt-Anchor" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in">#</a> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</h4><p>奇怪，明明以及在 Widget 里 public slots 声明了，却仍然有问题</p><h4 id="qiodevicewrite-qfile-dqtprojectaguaguimage"><a class="markdownIt-Anchor" href="#qiodevicewrite-qfile-dqtprojectaguaguimage">#</a> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</h4><h4 id="es-device-not-open"><a class="markdownIt-Anchor" href="#es-device-not-open">#</a> es&quot;): device not open</h4><p>服了，qt 读取 txt 并不用和 image 一样，还得加到工程看里</p><p>信号槽的问题，一直检测不到</p><p>文件读写的问题，一直写不上</p><p>吐了吐了</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 秋招学习器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>刷题day1</title>
       <link href="/2023/04/12/lc/"/>
       <url>/2023/04/12/lc/</url>
