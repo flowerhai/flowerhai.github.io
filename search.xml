@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>刷题day2</title>
+      <link href="/2023/04/13/day2/"/>
+      <url>/2023/04/13/day2/</url>
+      
+        <content type="html"><![CDATA[<h4 id="day2"><a class="markdownIt-Anchor" href="#day2">#</a> day2</h4><h4 id="236-二叉树的最近公共祖先"><a class="markdownIt-Anchor" href="#236-二叉树的最近公共祖先">#</a> <a href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* res;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> l = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> r = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((l &amp;&amp; r) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (l || r))) res = root;</span><br><span class="line">        <span class="keyword">return</span> l || r || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>dfs 喽，把握住什么是最近公共祖先就行了！</p><p>今天有点忏愧，有点摆了。</p><p>早上寝室断电，大雨也不好充，晚上又看了好久小说，今天就这样吧，刷一道题。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> lc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>problem</title>
       <link href="/2023/04/13/problem/"/>
       <url>/2023/04/13/problem/</url>
