@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>dayi | 恍惚迷离</title>
+  <title>qndxx | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        dayi
+        qndxx
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-12 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-13 |
         </span>
       
 
@@ -562,35 +562,16 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="day1"><a class="markdownIt-Anchor" href="#day1">#</a> day1</h2>
-<p>今天实现如下功能：</p>
-<ul>
-<li>
-<p>mainwindow 添加菜单栏</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QMenuBar *bar = <span class="built_in">menuBar</span>();<span class="comment">//创建菜单栏</span></span><br><span class="line"><span class="comment">//中间各种操作</span></span><br><span class="line"><span class="built_in">setMenuBar</span>(bar);</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>点击相应菜单栏中的每个按钮可以跳转到另外一个页面</p>
-<p>使用 connect</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处需要在类中如下</span></span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">openNewWindow</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//实现如下</span></span><br><span class="line">QAction *action1 = <span class="keyword">new</span> <span class="built_in">QAction</span>(<span class="string">&quot;八股&quot;</span>, <span class="keyword">this</span>);</span><br><span class="line">bar-&gt;<span class="built_in">addAction</span>(action1);</span><br><span class="line"><span class="built_in">connect</span>(action1, <span class="built_in">SIGNAL</span>(<span class="built_in">triggered</span>()), <span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">openNewWindow</span>()));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainWindow::openNewWindow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QWidget *newWindow = <span class="keyword">new</span> QWidget;</span><br><span class="line">    newWindow-&gt;<span class="built_in">setWindowTitle</span>(<span class="string">&quot;New Window&quot;</span>);</span><br><span class="line">    <span class="function">QPixmap <span class="title">bkgnd</span><span class="params">(<span class="string">&quot;:/new/prefix1/10.png&quot;</span>)</span></span>;</span><br><span class="line">    bkgnd = bkgnd.<span class="built_in">scaled</span>(<span class="keyword">this</span>-&gt;<span class="built_in">size</span>(), Qt::IgnoreAspectRatio);</span><br><span class="line">    QPalette palette;</span><br><span class="line">    palette.<span class="built_in">setBrush</span>(QPalette::Background, bkgnd);</span><br><span class="line">    newWindow-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">    newWindow-&gt;<span class="built_in">show</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>背景图</p>
-<p>此处需要首先在工程中添加 resource 文件，再向其中添加图片，否则就算路径正确也会读取不出来图片</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QPixmap <span class="title">bkgnd</span><span class="params">(<span class="string">&quot;:/new/prefix1/6.png&quot;</span>)</span></span>;</span><br><span class="line">bkgnd = bkgnd.<span class="built_in">scaled</span>(<span class="keyword">this</span>-&gt;<span class="built_in">size</span>(), Qt::IgnoreAspectRatio);</span><br><span class="line">QPalette palette;</span><br><span class="line">palette.<span class="built_in">setBrush</span>(QPalette::Background, bkgnd);</span><br><span class="line"><span class="keyword">this</span>-&gt;<span class="built_in">setPalette</span>(palette);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>明日计划：</p>
-<p>实现打开的页面中能够读取 txt，写入 txt, 以及答案匹配，实现基础问答形式。</p>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> anti_useragent <span class="keyword">import</span> UserAgent</span><br><span class="line"></span><br><span class="line">openId = <span class="string">&quot;&quot;</span></span><br><span class="line">current_path = os.getcwd()</span><br><span class="line">f = <span class="built_in">open</span>(current_path + <span class="string">&#x27;/&#x27;</span> + <span class="string">&#x27;log.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">makeHeader</span>(<span class="params">openid=openId</span>):</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;application/json, text/javascript, */*; q=0.01&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Accept-Encoding&#x27;</span>: <span class="string">&#x27;gzip, deflate&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;zh-CN,zh-Hans;q=0.9&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Connection&#x27;</span>: <span class="string">&#x27;close&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json;charset=UTF-8&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;JSESSIONID=&#x27;</span> + secrets.token_urlsafe(<span class="number">40</span>),</span><br><span class="line">        <span class="string">&#x27;Host&#x27;</span>: <span class="string">&#x27;www.jxqingtuan.cn&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Origin&#x27;</span>: <span class="string">&#x27;http://www.jxqingtuan.cn&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Referer&#x27;</span>: <span class="string">&#x27;http://www.jxqingtuan.cn/html/h5_index.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: UserAgent(platform=<span class="string">&quot;iphone&quot;</span>).wechat,</span><br><span class="line">        <span class="string">&#x27;X-Requested-With&#x27;</span>: <span class="string">&#x27;XMLHttpRequest&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">checkConfig</span>():</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(cardNo) == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;cardNo对应第五行数据，不可为空&quot;</span>)</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nid) == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;cardNo是团委组织ID，不可为空&quot;</span>)</span><br><span class="line">        exit()</span><br><span class="line">    <span class="comment"># info = json.dumps(getIDInfo())</span></span><br><span class="line">    res = getIDInfo()</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(res) != <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;团委组织id异常，您似乎获取错了&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getIDInfo</span>():</span><br><span class="line">    url = <span class="string">&quot;http://www.jxqingtuan.cn/pub/vol/config/organization?pid=&quot;</span> + nid</span><br><span class="line">    res = json.loads(requests.get(url, headers=makeHeader()).text)</span><br><span class="line">    <span class="keyword">if</span> res.get(<span class="string">&quot;status&quot;</span>) == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">return</span> res.get(<span class="string">&quot;result&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;查询组织导致未知错误：&quot;</span> + res.text)</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getCourse</span>():</span><br><span class="line">    url = <span class="string">&quot;http://www.jxqingtuan.cn/pub/vol/volClass/current&quot;</span></span><br><span class="line">    CourseJson = requests.get(url, headers=makeHeader()).json()</span><br><span class="line">    Course = CourseJson.get(<span class="string">&quot;result&quot;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;课程id：&quot;</span> + Course.get(<span class="string">&quot;id&quot;</span>))</span><br><span class="line">        f.write(<span class="string">&quot;课程id：&quot;</span> + Course.get(<span class="string">&quot;id&quot;</span>))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;课程名称：&quot;</span> + Course.get(<span class="string">&quot;title&quot;</span>))</span><br><span class="line">        f.write(<span class="string">&quot;课程名称：&quot;</span> + Course.get(<span class="string">&quot;title&quot;</span>))</span><br><span class="line">        <span class="keyword">return</span> Course.get(<span class="string">&quot;id&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;查询课程致未知错误&quot;</span>)</span><br><span class="line">        f.write(<span class="string">&quot;查询课程致未知错误&quot;</span>)</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getStudy</span>(<span class="params">course, nid, subOrg, cardNo</span>):</span><br><span class="line">    url = <span class="string">&quot;http://www.jxqingtuan.cn/pub/vol/volClass/join?accessToken=&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(subOrg) &gt; <span class="number">0</span>:</span><br><span class="line">        data = &#123;<span class="string">&quot;course&quot;</span>: course, <span class="string">&quot;subOrg&quot;</span>: subOrg, <span class="string">&quot;nid&quot;</span>: nid, <span class="string">&quot;cardNo&quot;</span>: cardNo&#125;</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        data = &#123;<span class="string">&quot;course&quot;</span>: course, <span class="string">&quot;subOrg&quot;</span>: <span class="literal">None</span>, <span class="string">&quot;nid&quot;</span>: nid, <span class="string">&quot;cardNo&quot;</span>: cardNo&#125;</span><br><span class="line">    <span class="built_in">print</span>(data)</span><br><span class="line">    res = json.loads(</span><br><span class="line">        (requests.post(url=url, data=json.dumps(data, ensure_ascii=<span class="literal">False</span>).encode(<span class="string">&#x27;utf-8&#x27;</span>), headers=makeHeader())).text)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line">    <span class="keyword">if</span> res.get(<span class="string">&quot;status&quot;</span>) == <span class="number">200</span>:</span><br><span class="line">        <span class="built_in">print</span>(cardNo + <span class="string">&quot;大学习成功！&quot;</span>)</span><br><span class="line">        f.write(cardNo + <span class="string">&quot;大学习成功！&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;提交大学习导致未知错误：&quot;</span> + res.text)</span><br><span class="line">        f.write(<span class="string">&quot;提交大学习导致未知错误：&quot;</span> + res.text)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">face = [<span class="string">&quot; &quot;</span>,<span class="string">&quot; &quot;</span>,<span class="string">&quot; &quot;</span>,<span class="string">&quot; &quot;</span>,<span class="string">&quot; &quot;</span>,<span class="string">&quot; &quot;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">    nid = <span class="string">&quot;N0013000110151019&quot;</span></span><br><span class="line">    subOrg = <span class="string">&quot;&quot;</span></span><br><span class="line">    cardNo = <span class="built_in">str</span>(face[i])</span><br><span class="line">    openId = <span class="string">&quot;&quot;</span></span><br><span class="line">    checkConfig()</span><br><span class="line">    getStudy(getCourse(), nid, subOrg, cardNo)   </span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>python 实现的完成青年大学习的脚本喽</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E7%A7%8B%E6%8B%9B%E5%AD%A6%E4%B9%A0%E5%99%A8/" class="">
-              秋招学习器
+            <a href="/tags/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%93%E5%8D%A1py/" class="">
+              青年大学习打卡py
             </a>
           
         </div>
@@ -604,7 +585,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/12/dayi/" target="_blank" title="dayi">https://flowerhai.github.io/2023/04/12/dayi/</a>
+    <a href="/2023/04/13/qndxx/" target="_blank" title="qndxx">https://flowerhai.github.io/2023/04/13/qndxx/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -622,40 +603,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/12/lc/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">刷题day1</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 238. 除自身以外数组的乘积
-给你一个整数数组 nums，返回 数组 answer ，其中 answer [i] 
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/11/hello-world/" class="post-nav-link">
+    <a href="/2023/04/13/ncuxyw/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Hello World</div>
+        <div class="title-text">NCU校园网自动登录</div>
       </div>
       <!-- <div class="content">
-        Welcome to Hexo! This is your very first post. Check documen
+        123456789101112131415Dim username,password,IEusername = &quo
       </div> -->
     </a>
   </div>
@@ -787,7 +749,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#day1"><span class="toc-text"> day1</span></a></li></ol> -->
+        <!--  -->
         <div class="toc"></div>
       </div>
     </div>

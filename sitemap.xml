@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://flowerhai.github.io/2023/04/13/qndxx/</loc>
+    
+    <lastmod>2023-04-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://flowerhai.github.io/2023/04/13/ncuxyw/</loc>
     
     <lastmod>2023-04-13</lastmod>
@@ -116,6 +125,13 @@
   
   <url>
     <loc>https://flowerhai.github.io/tags/NCU%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/</loc>
+    <lastmod>2023-04-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/tags/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%93%E5%8D%A1py/</loc>
     <lastmod>2023-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
