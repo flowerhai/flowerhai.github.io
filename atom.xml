@@ -6,7 +6,7 @@
   <link href="https://flowerhai.github.io/atom.xml" rel="self"/>
   
   <link href="https://flowerhai.github.io/"/>
-  <updated>2023-04-13T13:44:30.824Z</updated>
+  <updated>2023-04-13T14:06:10.536Z</updated>
   <id>https://flowerhai.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NCU校园网自动登录</title>
+    <link href="https://flowerhai.github.io/2023/04/13/ncuxyw/"/>
+    <id>https://flowerhai.github.io/2023/04/13/ncuxyw/</id>
+    <published>2023-04-13T14:03:54.000Z</published>
+    <updated>2023-04-13T14:06:10.536Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Dim</span> username,password,IE</span><br><span class="line">username = <span class="string">&quot;&quot;</span> <span class="keyword">REM</span>此处引号填入学号</span><br><span class="line">password = <span class="string">&quot;&quot;</span>  <span class="keyword">REM</span>此处引号填入密码</span><br><span class="line"><span class="keyword">Set</span> IE =<span class="built_in">CreateObject</span>(<span class="string">&quot;InternetExplorer.Application&quot;</span>)</span><br><span class="line">ie.FullScreen=<span class="number">0</span></span><br><span class="line">IE.Visible = <span class="literal">True</span></span><br><span class="line">IE.Navigate <span class="string">&quot;http://222.204.3.154/srun_portal_pc?ac_id=5&amp;srun_wait=1&amp;theme=basic1&quot;</span>  </span><br><span class="line"><span class="keyword">Do</span> <span class="keyword">while</span> IE.ReadyState&lt;&gt; <span class="number">4</span> <span class="keyword">or</span> IE.busy</span><br><span class="line">wscript.sleep <span class="number">2000</span> </span><br><span class="line"><span class="keyword">loop</span></span><br><span class="line">IE.document.querySelector(<span class="string">&quot;#username&quot;</span>).value=username  </span><br><span class="line">IE.document.querySelector(<span class="string">&quot;#password&quot;</span>).value=password</span><br><span class="line">ie.document.getElementsByName(<span class="string">&quot;domain&quot;</span>)(<span class="number">0</span>).children(<span class="number">1</span>).selected=trueREM     children <span class="keyword">REM</span>括号里的数字移动<span class="number">1</span>电信<span class="number">3</span>联通<span class="number">4</span></span><br><span class="line"><span class="keyword">Set</span> btn =ie.Document.getElementById(<span class="string">&quot;login&quot;</span>)</span><br><span class="line">btn.click <span class="keyword">REM</span>将将文件后缀名改为.vbs点击即可运行</span><br></pre></td></tr></table></figure><p>用简单 vbs 脚本实现南昌大学校园网自动登录，设置开机自启动后就行了，放桌面上点一下也是没问题的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight vbscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span cl</summary>
+      
+    
+    
+    
+    
+    <category term="NCU校园网自动登录" scheme="https://flowerhai.github.io/tags/NCU%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>刷题day2</title>
