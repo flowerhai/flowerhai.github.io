@@ -1,3 +1,4 @@
+https://flowerhai.github.io/2023/04/14/unix-fifo/
 https://flowerhai.github.io/2023/04/14/day3/
 https://flowerhai.github.io/2023/04/13/qndxx/
 https://flowerhai.github.io/2023/04/13/ncuxyw/
