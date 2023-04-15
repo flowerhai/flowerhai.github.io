@@ -6,7 +6,7 @@
   <link href="https://flowerhai.github.io/atom.xml" rel="self"/>
   
   <link href="https://flowerhai.github.io/"/>
-  <updated>2023-04-14T13:47:14.364Z</updated>
+  <updated>2023-04-15T09:33:05.039Z</updated>
   <id>https://flowerhai.github.io/</id>
   
   <author>
@@ -15,6 +15,77 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL数据库连接实现</title>
+    <link href="https://flowerhai.github.io/2023/04/15/mysql-pool1/"/>
+    <id>https://flowerhai.github.io/2023/04/15/mysql-pool1/</id>
+    <published>2023-04-15T09:31:37.000Z</published>
+    <updated>2023-04-15T09:33:05.039Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="mysql数据库连接实现"><a class="markdownIt-Anchor" href="#mysql数据库连接实现">#</a> MySQL 数据库连接实现</h4><h4 id="connecth"><a class="markdownIt-Anchor" href="#connecth">#</a> connect.h</h4><p>实现连接，更新，查询，可以后续添加很多</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mysql/mysql.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">connection</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">connection</span>(<span class="comment">/* args */</span>);</span><br><span class="line">    ~<span class="built_in">connection</span>();</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">connect</span><span class="params">(string ip,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">unsigned</span> <span class="type">short</span> port,</span></span></span><br><span class="line"><span class="params"><span class="function">                string user,</span></span></span><br><span class="line"><span class="params"><span class="function">                string hash_password,</span></span></span><br><span class="line"><span class="params"><span class="function">                string dbname</span></span></span><br><span class="line"><span class="params"><span class="function">        )</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">update</span><span class="params">(string sql)</span></span>;</span><br><span class="line">    <span class="function">MYSQL_RES* <span class="title">query</span><span class="params">(string sql)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">/* data */</span></span><br><span class="line">    MYSQL * _conn;<span class="comment">//表示MYSQL Server的一条连接</span></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>connect.cpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;public.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;connect.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mysql/mysql.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//g++ -o run  main.cpp connect.cpp -I /usr/include/mysql -lmysqlclient</span></span><br><span class="line">connection::<span class="built_in">connection</span>() &#123;</span><br><span class="line">    _conn = <span class="built_in">mysql_init</span>(<span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">connection::~<span class="built_in">connection</span>() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!_conn) <span class="built_in">mysql_close</span>(_conn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">connection::connect</span><span class="params">(string ip,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">unsigned</span> <span class="type">short</span> port,</span></span></span><br><span class="line"><span class="params"><span class="function">                string user,</span></span></span><br><span class="line"><span class="params"><span class="function">                string hash_password,</span></span></span><br><span class="line"><span class="params"><span class="function">                string dbname)</span> </span>&#123;</span><br><span class="line">    MYSQL *p = <span class="built_in">mysql_real_connect</span>(_conn, ip.<span class="built_in">c_str</span>(), user.<span class="built_in">c_str</span>(),</span><br><span class="line">    hash_password.<span class="built_in">c_str</span>(), dbname.<span class="built_in">c_str</span>(), port, <span class="literal">nullptr</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p != <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">connection::update</span><span class="params">(std::string sql)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mysql_query</span>(_conn, sql.<span class="built_in">c_str</span>())) &#123;</span><br><span class="line">         <span class="built_in">LOG</span>(<span class="string">&quot;更新失败:&quot;</span> + sql);</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">MYSQL_RES* <span class="title">connection::query</span><span class="params">(string sql)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mysql_query</span>(_conn, sql.<span class="built_in">c_str</span>())) &#123;</span><br><span class="line">        <span class="built_in">LOG</span>(<span class="string">&quot;查询失败:&quot;</span> + sql);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">mysql_use_result</span>(_conn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;mysql数据库连接实现&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#mysql数据库连接实现&quot;&gt;#&lt;/a&gt; MySQL 数据库连接实现&lt;/h4&gt;
+&lt;h4 id=&quot;connecth&quot;&gt;&lt;a class=&quot;markdownIt-Anch</summary>
+      
+    
+    
+    
+    
+    <category term="数据库连接池实现" scheme="https://flowerhai.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库连接池框架构建</title>
+    <link href="https://flowerhai.github.io/2023/04/15/mysql-pool/"/>
+    <id>https://flowerhai.github.io/2023/04/15/mysql-pool/</id>
+    <published>2023-04-15T09:22:24.000Z</published>
+    <updated>2023-04-15T09:33:06.147Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="数据库连接池框架构建"><a class="markdownIt-Anchor" href="#数据库连接池框架构建">#</a> 数据库连接池框架构建</h3><p>技术点：</p><p>MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、线程互斥、线程同步和 unique_lock、基于 CAS 的原子整形、智能指针 shared_ptr、lambda 表达式、生产者消费者线程模型</p><p>在高并发情况下，大量的 TCP 三次握手，MySQL Server 连接认证、关闭连接回收资源和 TCP 四次挥手耗费的性能时间很明显，增加连接词就是为了减少这一部分的性能损耗。</p><p><strong>实现功能：</strong></p><p><strong>初始连接量</strong></p><p><strong>最大连接量</strong></p><p><strong>最大空闲时间</strong></p><p><strong>连接超时时间</strong></p><p>主要实现上述四个功能</p><p><strong>设计思路：</strong></p><ul><li>连接池只需要一个实例，所以 ConnectionPool 以单例模式设计</li><li>从 ConnectionPool 中可以获得和 MySQL 连接的 Connection</li><li>空闲连接 Connection 全部维护在一个线程安全地 Connection 队列中，使用线程互斥锁保证队列的线程安全</li><li>如果 Connection 队列为空，需要再获取连接，此时动态创建连接，上限数量是 maxSize</li><li>队列中空闲连接时间超过 maxIdleTime 的就要被释放掉，只保留初始的 initSize 就可以了，这个功能交由独立的线程去做</li><li>如果 Connection 队列为空，而此时连接的数量已达上线 maxSize，那么等待 Connection TimeOut 时间如果还获取不到空闲的连接，那么获取连接失败，此处 Connection 队列获取空闲连接，可以使用带超时时间的 mutex 互斥锁来实现连接超时时间</li><li>用户获取的连接用 shared_ptr 智能指针来管理，用 lambda 表达式定制连接释放的功能</li><li>连接的生产和连接的消费采用生产者消费者线程模型设计，使用线程间的同步通信机制条件变量和互斥锁</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;数据库连接池框架构建&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#数据库连接池框架构建&quot;&gt;#&lt;/a&gt; 数据库连接池框架构建&lt;/h3&gt;
+&lt;p&gt;技术点：&lt;/p&gt;
+&lt;p&gt;MySQL 数据库编程、单例模式、queue 队列容器、C++11 多</summary>
+      
+    
+    
+    
+    
+    <category term="数据库连接池实现" scheme="https://flowerhai.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于数据库连接池遇到的一些问题</title>
+    <link href="https://flowerhai.github.io/2023/04/15/problem1/"/>
+    <id>https://flowerhai.github.io/2023/04/15/problem1/</id>
+    <published>2023-04-15T09:21:01.000Z</published>
+    <updated>2023-04-15T09:33:02.095Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="关于数据库连接池遇到的一些问题"><a class="markdownIt-Anchor" href="#关于数据库连接池遇到的一些问题">#</a> 关于数据库连接池遇到的一些问题</h3><p>首先，要记得绑 mysql 的库。</p><p>g++ -o run  main.cpp connect.cpp -I /usr/include/mysql -lmysqlclient</p><p>否则会出现一些问题，仅仅能导入是不行的。</p><p>其次是关于 mysql 的指令学习。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES;</span><br><span class="line">CREATE DATABASES;</span><br><span class="line">USE test_db;</span><br><span class="line">CREATE TABLE &lt;表名&gt; ([表定义选项])[表选项][分区选项];</span><br><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure><p>因为不熟悉 mysql 搞了好多低级错误，哭晕。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;关于数据库连接池遇到的一些问题&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#关于数据库连接池遇到的一些问题&quot;&gt;#&lt;/a&gt; 关于数据库连接池遇到的一些问题&lt;/h3&gt;
+&lt;p&gt;首先，要记得绑 mysql 的库。&lt;/p&gt;
+&lt;p&gt;g++ -o </summary>
+      
+    
+    
+    
+    
+    <category term="bug" scheme="https://flowerhai.github.io/tags/bug/"/>
+    
+  </entry>
   
   <entry>
     <title>unix_fifo</title>
@@ -129,11 +200,11 @@
   </entry>
   
   <entry>
-    <title>problem</title>
+    <title>调试中的小bug</title>
     <link href="https://flowerhai.github.io/2023/04/13/problem/"/>
     <id>https://flowerhai.github.io/2023/04/13/problem/</id>
     <published>2023-04-13T04:22:31.000Z</published>
-    <updated>2023-04-13T06:32:45.103Z</updated>
+    <updated>2023-04-15T09:33:00.159Z</updated>
     
     <content type="html"><![CDATA[<h4 id="在自定义widget的时候出现如下错误field-w-has-incomplete-type"><a class="markdownIt-Anchor" href="#在自定义widget的时候出现如下错误field-w-has-incomplete-type">#</a> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Widget</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Widget w;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">wwrite</span><span class="params">(QString s, QWidget *widget)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">savestabuyEditinfo</span><span class="params">(QLineEdit *lineEditPass, QString tex)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>这里是因为头文件对类或者结构体进行了前向声明，后面使用了该类定义了对象，导致编译报错。</p><p>原因在于前向声明类或者结构体，此时编译器还不知道定义，无法知道类内部成员，所以无法构造实例对象，因此前向声明的类或者结构体只能用来定义指针或者引用。</p><h4 id="cannot-call-member-function-without-object-处理"><a class="markdownIt-Anchor" href="#cannot-call-member-function-without-object-处理">#</a> cannot call member function ‘ ‘ without object 处理</h4><p>应该先初始化一个类哦这个</p><p><strong>莫名其妙的注释掉的函数也会出现提示我未初始化，这个时候需要将整个项目重构</strong></p><h4 id="no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><a class="markdownIt-Anchor" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in">#</a> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</h4><p>奇怪，明明以及在 Widget 里 public slots 声明了，却仍然有问题</p><h4 id="qiodevicewrite-qfile-dqtprojectaguaguimage"><a class="markdownIt-Anchor" href="#qiodevicewrite-qfile-dqtprojectaguaguimage">#</a> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</h4><h4 id="es-device-not-open"><a class="markdownIt-Anchor" href="#es-device-not-open">#</a> es&quot;): device not open</h4><p>服了，qt 读取 txt 并不用和 image 一样，还得加到工程看里</p><p>信号槽的问题，一直检测不到</p><p>文件读写的问题，一直写不上</p><p>吐了吐了</p>]]></content>
     
@@ -146,7 +217,7 @@
     
     
     
-    <category term="秋招学习器" scheme="https://flowerhai.github.io/tags/%E7%A7%8B%E6%8B%9B%E5%AD%A6%E4%B9%A0%E5%99%A8/"/>
+    <category term="bug" scheme="https://flowerhai.github.io/tags/bug/"/>
     
   </entry>
   

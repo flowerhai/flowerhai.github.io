@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>MySQL数据库连接实现</title>
+      <link href="/2023/04/15/mysql-pool1/"/>
+      <url>/2023/04/15/mysql-pool1/</url>
+      
+        <content type="html"><![CDATA[<h4 id="mysql数据库连接实现"><a class="markdownIt-Anchor" href="#mysql数据库连接实现">#</a> MySQL 数据库连接实现</h4><h4 id="connecth"><a class="markdownIt-Anchor" href="#connecth">#</a> connect.h</h4><p>实现连接，更新，查询，可以后续添加很多</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mysql/mysql.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">connection</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">connection</span>(<span class="comment">/* args */</span>);</span><br><span class="line">    ~<span class="built_in">connection</span>();</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">connect</span><span class="params">(string ip,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">unsigned</span> <span class="type">short</span> port,</span></span></span><br><span class="line"><span class="params"><span class="function">                string user,</span></span></span><br><span class="line"><span class="params"><span class="function">                string hash_password,</span></span></span><br><span class="line"><span class="params"><span class="function">                string dbname</span></span></span><br><span class="line"><span class="params"><span class="function">        )</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">update</span><span class="params">(string sql)</span></span>;</span><br><span class="line">    <span class="function">MYSQL_RES* <span class="title">query</span><span class="params">(string sql)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">/* data */</span></span><br><span class="line">    MYSQL * _conn;<span class="comment">//表示MYSQL Server的一条连接</span></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>connect.cpp</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;public.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;connect.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mysql/mysql.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//g++ -o run  main.cpp connect.cpp -I /usr/include/mysql -lmysqlclient</span></span><br><span class="line">connection::<span class="built_in">connection</span>() &#123;</span><br><span class="line">    _conn = <span class="built_in">mysql_init</span>(<span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">connection::~<span class="built_in">connection</span>() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!_conn) <span class="built_in">mysql_close</span>(_conn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">connection::connect</span><span class="params">(string ip,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">unsigned</span> <span class="type">short</span> port,</span></span></span><br><span class="line"><span class="params"><span class="function">                string user,</span></span></span><br><span class="line"><span class="params"><span class="function">                string hash_password,</span></span></span><br><span class="line"><span class="params"><span class="function">                string dbname)</span> </span>&#123;</span><br><span class="line">    MYSQL *p = <span class="built_in">mysql_real_connect</span>(_conn, ip.<span class="built_in">c_str</span>(), user.<span class="built_in">c_str</span>(),</span><br><span class="line">    hash_password.<span class="built_in">c_str</span>(), dbname.<span class="built_in">c_str</span>(), port, <span class="literal">nullptr</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p != <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">connection::update</span><span class="params">(std::string sql)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mysql_query</span>(_conn, sql.<span class="built_in">c_str</span>())) &#123;</span><br><span class="line">         <span class="built_in">LOG</span>(<span class="string">&quot;更新失败:&quot;</span> + sql);</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">MYSQL_RES* <span class="title">connection::query</span><span class="params">(string sql)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mysql_query</span>(_conn, sql.<span class="built_in">c_str</span>())) &#123;</span><br><span class="line">        <span class="built_in">LOG</span>(<span class="string">&quot;查询失败:&quot;</span> + sql);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">mysql_use_result</span>(_conn);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数据库连接池实现 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据库连接池框架构建</title>
+      <link href="/2023/04/15/mysql-pool/"/>
+      <url>/2023/04/15/mysql-pool/</url>
+      
+        <content type="html"><![CDATA[<h3 id="数据库连接池框架构建"><a class="markdownIt-Anchor" href="#数据库连接池框架构建">#</a> 数据库连接池框架构建</h3><p>技术点：</p><p>MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、线程互斥、线程同步和 unique_lock、基于 CAS 的原子整形、智能指针 shared_ptr、lambda 表达式、生产者消费者线程模型</p><p>在高并发情况下，大量的 TCP 三次握手，MySQL Server 连接认证、关闭连接回收资源和 TCP 四次挥手耗费的性能时间很明显，增加连接词就是为了减少这一部分的性能损耗。</p><p><strong>实现功能：</strong></p><p><strong>初始连接量</strong></p><p><strong>最大连接量</strong></p><p><strong>最大空闲时间</strong></p><p><strong>连接超时时间</strong></p><p>主要实现上述四个功能</p><p><strong>设计思路：</strong></p><ul><li>连接池只需要一个实例，所以 ConnectionPool 以单例模式设计</li><li>从 ConnectionPool 中可以获得和 MySQL 连接的 Connection</li><li>空闲连接 Connection 全部维护在一个线程安全地 Connection 队列中，使用线程互斥锁保证队列的线程安全</li><li>如果 Connection 队列为空，需要再获取连接，此时动态创建连接，上限数量是 maxSize</li><li>队列中空闲连接时间超过 maxIdleTime 的就要被释放掉，只保留初始的 initSize 就可以了，这个功能交由独立的线程去做</li><li>如果 Connection 队列为空，而此时连接的数量已达上线 maxSize，那么等待 Connection TimeOut 时间如果还获取不到空闲的连接，那么获取连接失败，此处 Connection 队列获取空闲连接，可以使用带超时时间的 mutex 互斥锁来实现连接超时时间</li><li>用户获取的连接用 shared_ptr 智能指针来管理，用 lambda 表达式定制连接释放的功能</li><li>连接的生产和连接的消费采用生产者消费者线程模型设计，使用线程间的同步通信机制条件变量和互斥锁</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数据库连接池实现 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于数据库连接池遇到的一些问题</title>
+      <link href="/2023/04/15/problem1/"/>
+      <url>/2023/04/15/problem1/</url>
+      
+        <content type="html"><![CDATA[<h3 id="关于数据库连接池遇到的一些问题"><a class="markdownIt-Anchor" href="#关于数据库连接池遇到的一些问题">#</a> 关于数据库连接池遇到的一些问题</h3><p>首先，要记得绑 mysql 的库。</p><p>g++ -o run  main.cpp connect.cpp -I /usr/include/mysql -lmysqlclient</p><p>否则会出现一些问题，仅仅能导入是不行的。</p><p>其次是关于 mysql 的指令学习。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES;</span><br><span class="line">CREATE DATABASES;</span><br><span class="line">USE test_db;</span><br><span class="line">CREATE TABLE &lt;表名&gt; ([表定义选项])[表选项][分区选项];</span><br><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure><p>因为不熟悉 mysql 搞了好多低级错误，哭晕。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> bug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>unix_fifo</title>
       <link href="/2023/04/14/unix-fifo/"/>
       <url>/2023/04/14/unix-fifo/</url>
@@ -99,7 +156,7 @@
     
     
     <entry>
-      <title>problem</title>
+      <title>调试中的小bug</title>
       <link href="/2023/04/13/problem/"/>
       <url>/2023/04/13/problem/</url>
       
@@ -109,7 +166,7 @@
       
         <tags>
             
-            <tag> 秋招学习器 </tag>
+            <tag> bug </tag>
             
         </tags>
       
