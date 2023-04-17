@@ -569,6 +569,17 @@
 <p>其次是关于 mysql 的指令学习。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES;</span><br><span class="line">CREATE DATABASES;</span><br><span class="line">USE test_db;</span><br><span class="line">CREATE TABLE &lt;表名&gt; ([表定义选项])[表选项][分区选项];</span><br><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
 <p>因为不熟悉 mysql 搞了好多低级错误，哭晕。</p>
+<h3 id="关于破bug"><a class="markdownIt-Anchor" href="#关于破bug">#</a> 关于破 bug</h3>
+<h4 id="segmentation-fault-core-dumped"><a class="markdownIt-Anchor" href="#segmentation-fault-core-dumped">#</a> Segmentation fault (core dumped)</h4>
+<p>在本问题在中是指针出问题了 qaq</p>
+<p>排查了半天</p>
+<p>通过查资料学到了 gdb 调试的一些方法来判断是什么问题</p>
+<h4 id="然后就是不知道为什么运行之后一直阻塞"><a class="markdownIt-Anchor" href="#然后就是不知道为什么运行之后一直阻塞">#</a> 然后就是不知道为什么运行之后一直阻塞</h4>
+<p>排查到这个地方</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (_connectqueue.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            cv.<span class="built_in">notify_all</span>();<span class="comment">//空了再通知生产者</span></span><br><span class="line">            <span class="keyword">return</span> sp;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>这可不行！<br>
+居然把返回值放到函数里面了我的错我的错</p>
+<p>排查半天，难受死！</p>
 
       </div>
       <div class="post-tags-categories">
@@ -778,7 +789,7 @@ MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、�
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text"> 关于数据库连接池遇到的一些问题</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text"> 关于数据库连接池遇到的一些问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%A0%B4bug"><span class="toc-text"> 关于破 bug</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#segmentation-fault-core-dumped"><span class="toc-text"> Segmentation fault (core dumped)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%84%B6%E5%90%8E%E5%B0%B1%E6%98%AF%E4%B8%8D%E7%9F%A5%E9%81%93%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%90%E8%A1%8C%E4%B9%8B%E5%90%8E%E4%B8%80%E7%9B%B4%E9%98%BB%E5%A1%9E"><span class="toc-text"> 然后就是不知道为什么运行之后一直阻塞</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -804,6 +815,48 @@ MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、�
       <!-- hash算法 -->
       
       <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/17/yace/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-17</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/17/yace/">数据库连接池压测</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/17/mysql-mysql-poo2/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-17</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/17/mysql-mysql-poo2/">MySQL数据库连接池实现</a>
+            </div>
+          </div>
         
           <div class="aside-list-item">
             
@@ -865,48 +918,6 @@ MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、�
                 
               </div>
               <a class="post-title" href="/2023/04/15/day4/">day4</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/04/15/mysql-pool1/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">04-15</span>
-                
-              </div>
-              <a class="post-title" href="/2023/04/15/mysql-pool1/">MySQL数据库连接实现</a>
-            </div>
-          </div>
-        
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/2023/04/15/mysql-pool/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">04-15</span>
-                
-              </div>
-              <a class="post-title" href="/2023/04/15/mysql-pool/">数据库连接池框架构建</a>
             </div>
           </div>
         

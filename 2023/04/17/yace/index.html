@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>调试中的小bug | 恍惚迷离</title>
+  <title>数据库连接池压测 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        调试中的小bug
+        数据库连接池压测
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-13 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-17 |
         </span>
       
 
@@ -562,29 +562,20 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h4 id="在自定义widget的时候出现如下错误field-w-has-incomplete-type"><a class="markdownIt-Anchor" href="#在自定义widget的时候出现如下错误field-w-has-incomplete-type">#</a> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Widget</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Widget w;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">wwrite</span><span class="params">(QString s, QWidget *widget)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">savestabuyEditinfo</span><span class="params">(QLineEdit *lineEditPass, QString tex)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里是因为头文件对类或者结构体进行了前向声明，后面使用了该类定义了对象，导致编译报错。</p>
-<p>原因在于前向声明类或者结构体，此时编译器还不知道定义，无法知道类内部成员，所以无法构造实例对象，因此前向声明的类或者结构体只能用来定义指针或者引用。</p>
-<h4 id="cannot-call-member-function-without-object-处理"><a class="markdownIt-Anchor" href="#cannot-call-member-function-without-object-处理">#</a> cannot call member function ‘ ‘ without object 处理</h4>
-<p>应该先初始化一个类哦这个</p>
-<p><strong>莫名其妙的注释掉的函数也会出现提示我未初始化，这个时候需要将整个项目重构</strong></p>
-<h4 id="no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><a class="markdownIt-Anchor" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in">#</a> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</h4>
-<p>奇怪，明明以及在 Widget 里 public slots 声明了，却仍然有问题</p>
-<h4 id="qiodevicewrite-qfile-dqtprojectaguaguimage"><a class="markdownIt-Anchor" href="#qiodevicewrite-qfile-dqtprojectaguaguimage">#</a> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</h4>
-<h4 id="es-device-not-open"><a class="markdownIt-Anchor" href="#es-device-not-open">#</a> es&quot;): device not open</h4>
-<p>服了，qt 读取 txt 并不用和 image 一样，还得加到工程看里</p>
-<p>信号槽的问题，一直检测不到</p>
-<p>文件读写的问题，一直写不上</p>
-<p>吐了吐了</p>
+        <h3 id="压测"><a class="markdownIt-Anchor" href="#压测">#</a> 压测：</h3>
+<ul>
+<li>50393us 数据库连接池 100</li>
+<li>424062us 普通连接 100</li>
+</ul>
+<p>可以看出使用线程池后效果拔群！</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/bug/" class="">
-              bug
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="">
+              数据库连接池实现
             </a>
           
         </div>
@@ -598,7 +589,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/13/problem/" target="_blank" title="调试中的小bug">https://flowerhai.github.io/2023/04/13/problem/</a>
+    <a href="/2023/04/17/yace/" target="_blank" title="数据库连接池压测">https://flowerhai.github.io/2023/04/17/yace/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -616,42 +607,24 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/13/day2/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">刷题day2</div>
-      </div>
-      
-      <!-- <div class="content">
-        # day2
-# 236. 二叉树的最近公共祖先
-12345678910111213141516class Soluti
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/12/lc/" class="post-nav-link">
+    <a href="/2023/04/17/mysql-mysql-poo2/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">刷题day1</div>
+        <div class="title-text">MySQL数据库连接池实现</div>
       </div>
       <!-- <div class="content">
-        # 238. 除自身以外数组的乘积
-给你一个整数数组 nums，返回 数组 answer ，其中 answer [i] 
+        # 数据库连接池
+# 数据库连接池：
+# 小 tips：
+关于外部获取连接池中的空闲连接，在此可以使用智能指针来完成内存
       </div> -->
     </a>
   </div>
@@ -783,7 +756,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%87%AA%E5%AE%9A%E4%B9%89widget%E7%9A%84%E6%97%B6%E5%80%99%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%94%99%E8%AF%AFfield-w-has-incomplete-type"><span class="toc-text"> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cannot-call-member-function-without-object-%E5%A4%84%E7%90%86"><span class="toc-text"> cannot call member function ‘ ‘ without object 处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><span class="toc-text"> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qiodevicewrite-qfile-dqtprojectaguaguimage"><span class="toc-text"> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#es-device-not-open"><span class="toc-text"> es&quot;): device not open</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E6%B5%8B"><span class="toc-text"> 压测：</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
