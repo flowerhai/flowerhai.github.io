@@ -1,3 +1,5 @@
+https://flowerhai.github.io/2023/04/18/thread-pool2/
+https://flowerhai.github.io/2023/04/18/thread-pool1/
 https://flowerhai.github.io/2023/04/15/problem1/
 https://flowerhai.github.io/2023/04/17/yace/
 https://flowerhai.github.io/2023/04/17/mysql-mysql-poo2/
@@ -28,3 +30,4 @@ https://flowerhai.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E
 https://flowerhai.github.io/tags/bug/
 https://flowerhai.github.io/tags/UNIX/
 https://flowerhai.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/
+https://flowerhai.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/
