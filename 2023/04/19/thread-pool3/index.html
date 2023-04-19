@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>关于数据库连接池遇到的一些问题 | 恍惚迷离</title>
+  <title>关于线程池的一些设计以及问题排查 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        关于数据库连接池遇到的一些问题
+        关于线程池的一些设计以及问题排查
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-15 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-19 |
         </span>
       
 
@@ -562,36 +562,48 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="关于数据库连接池遇到的一些问题"><a class="markdownIt-Anchor" href="#关于数据库连接池遇到的一些问题">#</a> 关于数据库连接池遇到的一些问题</h3>
-<p>首先，要记得绑 mysql 的库。</p>
-<p>g++ -o run  main.cpp connect.cpp -I /usr/include/mysql -lmysqlclient</p>
-<p>否则会出现一些问题，仅仅能导入是不行的。</p>
-<p>其次是关于 mysql 的指令学习。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES;</span><br><span class="line">CREATE DATABASES;</span><br><span class="line">USE test_db;</span><br><span class="line">CREATE TABLE &lt;表名&gt; ([表定义选项])[表选项][分区选项];</span><br><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
-<p>因为不熟悉 mysql 搞了好多低级错误，哭晕。</p>
-<h3 id="关于破bug"><a class="markdownIt-Anchor" href="#关于破bug">#</a> 关于破 bug</h3>
-<h4 id="segmentation-fault-core-dumped"><a class="markdownIt-Anchor" href="#segmentation-fault-core-dumped">#</a> Segmentation fault (core dumped)</h4>
-<p>在本问题在中是指针出问题了 qaq</p>
-<p>排查了半天</p>
-<p>通过查资料学到了 gdb 调试的一些方法来判断是什么问题</p>
-<h4 id="然后就是不知道为什么运行之后一直阻塞"><a class="markdownIt-Anchor" href="#然后就是不知道为什么运行之后一直阻塞">#</a> 然后就是不知道为什么运行之后一直阻塞</h4>
-<p>排查到这个地方</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (_connectqueue.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            cv.<span class="built_in">notify_all</span>();<span class="comment">//空了再通知生产者</span></span><br><span class="line">            <span class="keyword">return</span> sp;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>这可不行！<br>
-居然把返回值放到函数里面了我的错我的错</p>
-<p>排查半天，难受死！</p>
+        <h3 id="关于线程池的一些设计以及问题排查"><a class="markdownIt-Anchor" href="#关于线程池的一些设计以及问题排查">#</a> 关于线程池的一些设计以及问题排查</h3>
+<p>关于任务队列，为了实现资源的高效管理，选用 shared_ptr 智能指针</p>
+<p>使用 bind 函数实现类外定义的类能够访问本类所拥有的私有函数以及私有变量</p>
+<h4 id="在验证线程池的时候发现打印出来的线程id都一样于是排查哪里出了问题"><a class="markdownIt-Anchor" href="#在验证线程池的时候发现打印出来的线程id都一样于是排查哪里出了问题">#</a> 在验证线程池的时候发现打印出来的线程 ID 都一样，于是排查哪里出了问题</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">begin threadFunc tid 140654060929984</span><br><span class="line">end threadFunc tid 140654060929984</span><br><span class="line">begin threadFunc tid 140654060929984</span><br><span class="line">end threadFunc tid 140654060929984</span><br><span class="line">begin threadFunc tid 140654060929984</span><br><span class="line">end threadFunc tid 140654060929984</span><br><span class="line">begin threadFunc tid 140654060929984</span><br><span class="line">end threadFunc tid 140654060929984</span><br></pre></td></tr></table></figure>
+<p>所写线程池创建 ID</p>
+<p>原代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ThreadPool::start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建线程对象</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span> ; i &lt; initThreadSize_; i ++) &#123;</span><br><span class="line">        threads_.<span class="built_in">emplace_back</span>(<span class="keyword">new</span> <span class="built_in">Thread</span>(std::<span class="built_in">bind</span>(&amp;ThreadPool::threadFunc,<span class="keyword">this</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//启动所有线程</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span> ; i &lt; initThreadSize_; i ++) &#123;</span><br><span class="line">        threads_[i]-&gt;<span class="built_in">start</span>();<span class="comment">//执行线程函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Thread::start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(func_)</span></span>; </span><br><span class="line">    t.<span class="built_in">detach</span>();<span class="comment">//设置分离线程</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Thread::<span class="built_in">Thread</span>(ThreadFunc func)&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;begin threadFunc tid &quot;</span>&lt;&lt; std::this_thread::<span class="built_in">get_id</span>() &lt;&lt;std::endl;</span><br><span class="line">    std::cout&lt;&lt; <span class="string">&quot;end threadFunc tid &quot;</span>&lt;&lt;std::this_thread::<span class="built_in">get_id</span>() &lt;&lt;std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仔细排查发现应该是这样</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ThreadPool::threadFunc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;begin threadFunc tid &quot;</span>&lt;&lt; std::this_thread::<span class="built_in">get_id</span>() &lt;&lt;std::endl;</span><br><span class="line">    std::cout&lt;&lt; <span class="string">&quot;end threadFunc tid &quot;</span>&lt;&lt;std::this_thread::<span class="built_in">get_id</span>() &lt;&lt;std::endl&lt;&lt;std::endl;</span><br><span class="line">    <span class="built_in">sleep</span>(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Thread::start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(func_)</span></span>; </span><br><span class="line">    t.<span class="built_in">detach</span>();<span class="comment">//设置分离线程</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Thread::<span class="built_in">Thread</span>(ThreadFunc func)</span><br><span class="line">    :<span class="built_in">func_</span>(func)</span><br><span class="line">&#123;&#125;</span><br><span class="line">Thread:: ~<span class="built_in">Thread</span>()&#123;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>解决</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">begin threadFunc tid 140554644977216</span><br><span class="line">end threadFunc tid 140554644977216</span><br><span class="line"></span><br><span class="line">begin threadFunc tid 140554653369920</span><br><span class="line">begin threadFunc tid 140554653369920</span><br></pre></td></tr></table></figure>
+<p>但是明明线程池里有四个线程，为什么只运行了两个呢？</p>
+<p>查阅资料发现，是主线程运行时间太快了，因此让主线程睡一会儿～</p>
+<p>主线程加上 sleep (3) 后发现果然，成功！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">begin threadFunc tid <span class="number">140566920504896</span></span><br><span class="line">end threadFunc tid <span class="number">140566920504896</span></span><br><span class="line"></span><br><span class="line">begin threadFunc tid <span class="number">140566928897600</span></span><br><span class="line">end threadFunc tid <span class="number">140566928897600</span></span><br><span class="line"></span><br><span class="line">begin threadFunc tid <span class="number">140566937290304</span></span><br><span class="line">end threadFunc tid <span class="number">140566937290304</span></span><br><span class="line"></span><br><span class="line">begin threadFunc tid <span class="number">140566945683008</span></span><br><span class="line">end threadFunc tid <span class="number">140566945683008</span></span><br></pre></td></tr></table></figure>
+<h4 id="发现线程池中的线程用的是裸指针"><a class="markdownIt-Anchor" href="#发现线程池中的线程用的是裸指针">#</a> 发现线程池中的线程用的是裸指针</h4>
+<p>修改为 unique_ptr 后然后发现以下问题</p>
+<p ::new((void="" *)__p)="" _Up(std::forward&lt;_Args(__args)...);="">/usr/include/c++/11/ext/new_allocator.h:162:11: error: cannot convert ‘std::unique_ptr&lt;Thread, std::default_delete<Thread> &gt;’ to ‘Thread*’ in initialization<br>
+162 |        </p>
+<p>左值引用问题</p>
+<p>move 一下</p>
+<p>然后还是错误</p>
+<p>陷入沉思</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> ptr = std::<span class="built_in">make_unique</span>&lt;Thread&gt;(std::<span class="built_in">bind</span>(&amp;ThreadPool::threadFunc,<span class="keyword">this</span>));</span><br><span class="line">threads_.<span class="built_in">emplace_back</span>(std::<span class="built_in">move</span>(ptr));</span><br></pre></td></tr></table></figure>
+<p>逆天！</p>
+<p>气死我了！</p>
+<p>因为是远程连接 ECS 的原因，头文件没保存，</p>
+<p>心中一万只草泥🐎奔腾！</p>
+<p>所以修改成功！</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="">
-              数据库连接池实现
-            </a>
-          
             <a href="/tags/bug/" class="">
               bug
+            </a>
+          
+            <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="">
+              线程池实现
             </a>
           
         </div>
@@ -605,7 +617,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/15/problem1/" target="_blank" title="关于数据库连接池遇到的一些问题">https://flowerhai.github.io/2023/04/15/problem1/</a>
+    <a href="/2023/04/19/thread-pool3/" target="_blank" title="关于线程池的一些设计以及问题排查">https://flowerhai.github.io/2023/04/19/thread-pool3/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -623,45 +635,25 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/15/mysql-pool/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">数据库连接池框架构建</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 数据库连接池框架构建
-技术点：
-MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、线程互斥
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/14/unix-fifo/" class="post-nav-link">
+    <a href="/2023/04/19/acw1/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">unix_fifo</div>
+        <div class="title-text">树状数组</div>
       </div>
       <!-- <div class="content">
-        # 管道和 FIFO
-从图 4-3 到 4-4。如果子进程没有执行 close (fd [1])，会发生什么？
+        
+楼兰图腾
 
-
-当父
+在完成了分配任务之后，西部 314314 来到了楼兰古城的西部。
+相传很久以前这片土地上 (比楼兰古城还早
       </div> -->
     </a>
   </div>
@@ -793,7 +785,7 @@ MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、�
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text"> 关于数据库连接池遇到的一些问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%A0%B4bug"><span class="toc-text"> 关于破 bug</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#segmentation-fault-core-dumped"><span class="toc-text"> Segmentation fault (core dumped)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%84%B6%E5%90%8E%E5%B0%B1%E6%98%AF%E4%B8%8D%E7%9F%A5%E9%81%93%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%90%E8%A1%8C%E4%B9%8B%E5%90%8E%E4%B8%80%E7%9B%B4%E9%98%BB%E5%A1%9E"><span class="toc-text"> 然后就是不知道为什么运行之后一直阻塞</span></a></li></ol></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-text"> 关于线程池的一些设计以及问题排查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E9%AA%8C%E8%AF%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%8E%B0%E6%89%93%E5%8D%B0%E5%87%BA%E6%9D%A5%E7%9A%84%E7%BA%BF%E7%A8%8Bid%E9%83%BD%E4%B8%80%E6%A0%B7%E4%BA%8E%E6%98%AF%E6%8E%92%E6%9F%A5%E5%93%AA%E9%87%8C%E5%87%BA%E4%BA%86%E9%97%AE%E9%A2%98"><span class="toc-text"> 在验证线程池的时候发现打印出来的线程 ID 都一样，于是排查哪里出了问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%94%A8%E7%9A%84%E6%98%AF%E8%A3%B8%E6%8C%87%E9%92%88"><span class="toc-text"> 发现线程池中的线程用的是裸指针</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
