@@ -1,3 +1,5 @@
+https://flowerhai.github.io/2023/04/19/acw1/
+https://flowerhai.github.io/2023/04/19/day7/
 https://flowerhai.github.io/2023/04/18/day6/
 https://flowerhai.github.io/2023/04/17/acw/
 https://flowerhai.github.io/2023/04/18/thread-pool2/
@@ -32,3 +34,4 @@ https://flowerhai.github.io/tags/bug/
 https://flowerhai.github.io/tags/UNIX/
 https://flowerhai.github.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/
 https://flowerhai.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/
+https://flowerhai.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/
