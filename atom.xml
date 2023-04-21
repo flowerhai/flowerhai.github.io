@@ -6,7 +6,7 @@
   <link href="https://flowerhai.github.io/atom.xml" rel="self"/>
   
   <link href="https://flowerhai.github.io/"/>
-  <updated>2023-04-20T14:08:09.026Z</updated>
+  <updated>2023-04-21T14:26:28.200Z</updated>
   <id>https://flowerhai.github.io/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周五总结</title>
+    <link href="https://flowerhai.github.io/2023/04/21/hhh/"/>
+    <id>https://flowerhai.github.io/2023/04/21/hhh/</id>
+    <published>2023-04-21T14:25:51.000Z</published>
+    <updated>2023-04-21T14:26:28.200Z</updated>
+    
+    <content type="html"><![CDATA[<p>点进来了捏！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;点进来了捏！&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="逗你玩~" scheme="https://flowerhai.github.io/tags/%E9%80%97%E4%BD%A0%E7%8E%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>刷题day8</title>
+    <link href="https://flowerhai.github.io/2023/04/21/day8/"/>
+    <id>https://flowerhai.github.io/2023/04/21/day8/</id>
+    <published>2023-04-21T14:08:15.000Z</published>
+    <updated>2023-04-21T14:08:45.969Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="39-组合总和"><a class="markdownIt-Anchor" href="#39-组合总和">#</a> <a href="https://leetcode.cn/problems/combination-sum/">39. 组合总和</a></h4><p>难度中等 2459 收藏分享切换为英文接收动态反馈</p><p>给你一个 <strong>无重复元素</strong> 的整数数组  <code>candidates</code>  和一个目标整数  <code>target</code>  ，找出  <code>candidates</code>  中可以使数字和为目标数  <code>target</code>  的 所有 <strong>不同组合</strong> ，并以列表形式返回。你可以按 <strong>任意顺序</strong> 返回这些组合。</p><p><code>candidates</code>  中的 <strong>同一个</strong> 数字可以 <strong>无限制重复被选取</strong> 。如果至少一个数字的被选数量不同，则两种组合是不同的。</p><p>对于给定的输入，保证和为  <code>target</code>  的不同组合数少于  <code>150</code>  个。</p><p><strong>示例 1：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：candidates = [2,3,6,7], target = 7</span><br><span class="line">输出：[[2,2,3],[7]]</span><br><span class="line">解释：</span><br><span class="line">2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。</span><br><span class="line">7 也是一个候选， 7 = 7 。</span><br><span class="line">仅有这两种组合。</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: candidates = [2,3,5], target = 8</span><br><span class="line">输出: [[2,2,2,2],[2,3,3],[3,5]]</span><br></pre></td></tr></table></figure><p>这个题首先想到的就是直接 dfs 写出如下代码：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; r;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; candidates, <span class="type">int</span> target, <span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d==candidates.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) res.<span class="built_in">emplace_back</span>(r);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; candidates.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            r.<span class="built_in">emplace_back</span>(candidates[i]);</span><br><span class="line">            <span class="built_in">dfs</span>(candidates, target-candidates[i], d + <span class="number">1</span>);</span><br><span class="line">            r.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combinationSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; candidates, <span class="type">int</span> target) &#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">ft</span><span class="params">(candidates.size(),<span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="built_in">dfs</span>(candidates, target, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>但是呢这样还是不符合题意的，因为题目还要求我们去重。</p><p>那么该如何去做呢？</p><p>关于去重，首先我是想到了哈希表，然后仔细想想不大行，太复杂了，因此考虑一下顺序</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; r;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; candidates, <span class="type">int</span> target, <span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d==candidates.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(r);</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//不选当前元素</span></span><br><span class="line">        <span class="built_in">dfs</span>(candidates, target, d+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//选当前元素</span></span><br><span class="line">        <span class="keyword">if</span> (target - candidates[d] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            r.<span class="built_in">emplace_back</span>(candidates[d]);</span><br><span class="line">            <span class="built_in">dfs</span>(candidates, target-candidates[d], d);</span><br><span class="line">            r.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combinationSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; candidates, <span class="type">int</span> target) &#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">ft</span><span class="params">(candidates.size(),<span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="built_in">dfs</span>(candidates, target, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>太困了脑子不好使，今天只写一题</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;39-组合总和&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#39-组合总和&quot;&gt;#&lt;/a&gt; &lt;a href=&quot;https://leetcode.cn/problems/combination-sum/&quot;&gt;39. 组合总和&lt;/a&gt;&lt;/h4</summary>
+      
+    
+    
+    
+    
+    <category term="lc" scheme="https://flowerhai.github.io/tags/lc/"/>
+    
+  </entry>
   
   <entry>
     <title>线程池中添加任务实现以及功能验证</title>
@@ -442,51 +487,6 @@
     
     
     <category term="青年大学习打卡py" scheme="https://flowerhai.github.io/tags/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%93%E5%8D%A1py/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NCU校园网自动登录</title>
-    <link href="https://flowerhai.github.io/2023/04/13/ncuxyw/"/>
-    <id>https://flowerhai.github.io/2023/04/13/ncuxyw/</id>
-    <published>2023-04-13T14:03:54.000Z</published>
-    <updated>2023-04-13T14:06:10.536Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Dim</span> username,password,IE</span><br><span class="line">username = <span class="string">&quot;&quot;</span> <span class="keyword">REM</span>此处引号填入学号</span><br><span class="line">password = <span class="string">&quot;&quot;</span>  <span class="keyword">REM</span>此处引号填入密码</span><br><span class="line"><span class="keyword">Set</span> IE =<span class="built_in">CreateObject</span>(<span class="string">&quot;InternetExplorer.Application&quot;</span>)</span><br><span class="line">ie.FullScreen=<span class="number">0</span></span><br><span class="line">IE.Visible = <span class="literal">True</span></span><br><span class="line">IE.Navigate <span class="string">&quot;http://222.204.3.154/srun_portal_pc?ac_id=5&amp;srun_wait=1&amp;theme=basic1&quot;</span>  </span><br><span class="line"><span class="keyword">Do</span> <span class="keyword">while</span> IE.ReadyState&lt;&gt; <span class="number">4</span> <span class="keyword">or</span> IE.busy</span><br><span class="line">wscript.sleep <span class="number">2000</span> </span><br><span class="line"><span class="keyword">loop</span></span><br><span class="line">IE.document.querySelector(<span class="string">&quot;#username&quot;</span>).value=username  </span><br><span class="line">IE.document.querySelector(<span class="string">&quot;#password&quot;</span>).value=password</span><br><span class="line">ie.document.getElementsByName(<span class="string">&quot;domain&quot;</span>)(<span class="number">0</span>).children(<span class="number">1</span>).selected=trueREM     children <span class="keyword">REM</span>括号里的数字移动<span class="number">1</span>电信<span class="number">3</span>联通<span class="number">4</span></span><br><span class="line"><span class="keyword">Set</span> btn =ie.Document.getElementById(<span class="string">&quot;login&quot;</span>)</span><br><span class="line">btn.click <span class="keyword">REM</span>将将文件后缀名改为.vbs点击即可运行</span><br></pre></td></tr></table></figure><p>用简单 vbs 脚本实现南昌大学校园网自动登录，设置开机自启动后就行了，放桌面上点一下也是没问题的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight vbscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span cl</summary>
-      
-    
-    
-    
-    
-    <category term="NCU校园网自动登录" scheme="https://flowerhai.github.io/tags/NCU%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>刷题day2</title>
-    <link href="https://flowerhai.github.io/2023/04/13/day2/"/>
-    <id>https://flowerhai.github.io/2023/04/13/day2/</id>
-    <published>2023-04-13T13:43:15.000Z</published>
-    <updated>2023-04-15T13:39:14.823Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="day2"><a class="markdownIt-Anchor" href="#day2">#</a> day2</h4><h4 id="236-二叉树的最近公共祖先"><a class="markdownIt-Anchor" href="#236-二叉树的最近公共祖先">#</a> <a href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* res;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> l = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> r = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((l &amp;&amp; r) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (l || r))) res = root;</span><br><span class="line">        <span class="keyword">return</span> l || r || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>dfs 喽，把握住什么是最近公共祖先就行了！</p><p>今天有点忏愧，有点摆了。</p><p>早上寝室断电，大雨也不好充，晚上又看了好久小说，今天就这样吧，刷一道题。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h4 id=&quot;day2&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#day2&quot;&gt;#&lt;/a&gt; day2&lt;/h4&gt;
-&lt;h4 id=&quot;236-二叉树的最近公共祖先&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#236-二叉树的</summary>
-      
-    
-    
-    
-    
-    <category term="lc" scheme="https://flowerhai.github.io/tags/lc/"/>
     
   </entry>
   
