@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>关于数据库连接池遇到的一些问题 | 恍惚迷离</title>
+  <title>刷题day9 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        关于数据库连接池遇到的一些问题
+        刷题day9
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-15 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-22 |
         </span>
       
 
@@ -562,36 +562,48 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="关于数据库连接池遇到的一些问题"><a class="markdownIt-Anchor" href="#关于数据库连接池遇到的一些问题">#</a> 关于数据库连接池遇到的一些问题</h3>
-<p>首先，要记得绑 mysql 的库。</p>
-<p>g++ -o run  main.cpp connect.cpp -I /usr/include/mysql -lmysqlclient</p>
-<p>否则会出现一些问题，仅仅能导入是不行的。</p>
-<p>其次是关于 mysql 的指令学习。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES;</span><br><span class="line">CREATE DATABASES;</span><br><span class="line">USE test_db;</span><br><span class="line">CREATE TABLE &lt;表名&gt; ([表定义选项])[表选项][分区选项];</span><br><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
-<p>因为不熟悉 mysql 搞了好多低级错误，哭晕。</p>
-<h3 id="关于破bug"><a class="markdownIt-Anchor" href="#关于破bug">#</a> 关于破 bug</h3>
-<h4 id="segmentation-fault-core-dumped"><a class="markdownIt-Anchor" href="#segmentation-fault-core-dumped">#</a> Segmentation fault (core dumped)</h4>
-<p>在本问题在中是指针出问题了 qaq</p>
-<p>排查了半天</p>
-<p>通过查资料学到了 gdb 调试的一些方法来判断是什么问题</p>
-<h4 id="然后就是不知道为什么运行之后一直阻塞"><a class="markdownIt-Anchor" href="#然后就是不知道为什么运行之后一直阻塞">#</a> 然后就是不知道为什么运行之后一直阻塞</h4>
-<p>排查到这个地方</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (_connectqueue.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            cv.<span class="built_in">notify_all</span>();<span class="comment">//空了再通知生产者</span></span><br><span class="line">            <span class="keyword">return</span> sp;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>这可不行！<br>
-居然把返回值放到函数里面了我的错我的错</p>
-<p>排查半天，难受死！</p>
+        <h4 id="160-相交链表"><a class="markdownIt-Anchor" href="#160-相交链表">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">160. 相交链表</a></h4>
+<p>难度简单 2076 收藏分享切换为英文接收动态反馈</p>
+<p>给你两个单链表的头节点  <code>headA</code>  和  <code>headB</code>  ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回  <code>null</code>  。</p>
+<p>图示两个链表在节点  <code>c1</code>  开始相交 **：**</p>
+<p><a target="_blank" rel="noopener" href="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png"><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" class="lazyload placeholder" data-srcset="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></a></p>
+<p>题目数据 <strong>保证</strong> 整个链式结构中不存在环。</p>
+<p><strong>注意</strong>，函数返回结果后，链表必须 <strong>保持其原始结构</strong> 。</p>
+<p><strong>自定义评测：</strong></p>
+<p><strong>评测系统</strong> 的输入如下（你设计的程序 <strong>不适用</strong> 此输入）：</p>
+<ul>
+<li><code>intersectVal</code>  - 相交的起始节点的值。如果不存在相交节点，这一值为  <code>0</code></li>
+<li><code>listA</code>  - 第一个链表</li>
+<li><code>listB</code>  - 第二个链表</li>
+<li><code>skipA</code>  - 在  <code>listA</code>  中（从头节点开始）跳到交叉节点的节点数</li>
+<li><code>skipB</code>  - 在  <code>listB</code>  中（从头节点开始）跳到交叉节点的节点数</li>
+</ul>
+<p>评测系统将根据这些输入创建链式数据结构，并将两个头节点  <code>headA</code>  和  <code>headB</code>  传递给你的程序。如果程序能够正确返回相交节点，那么你的解决方案将被 <strong>视作正确答案</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png"><img src="https://assets.leetcode.com/uploads/2021/03/05/160_example_1_1.png" class="lazyload placeholder" data-srcset="https://assets.leetcode.com/uploads/2021/03/05/160_example_1_1.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3</span><br><span class="line">输出：Intersected at &#x27;8&#x27;</span><br><span class="line">解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。</span><br><span class="line">从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。</span><br><span class="line">在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。</span><br><span class="line">— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。</span><br></pre></td></tr></table></figure>
+<p>关于这个题，用双指针</p>
+<p>一个从 A 出发，一个从 B 出发</p>
+<p>一个到头后从另外一个起点出发，相遇的点就是交点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        ListNode *a = headA;</span><br><span class="line">        ListNode *b = headB;</span><br><span class="line">        <span class="comment">//if (a == nullptr || b == nullptr) return nullptr;</span></span><br><span class="line">        <span class="keyword">while</span> (a != b) &#123;</span><br><span class="line">            a = a ? a-&gt;next : headB;</span><br><span class="line">            b = b ? b-&gt;next : headA;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="543-二叉树的直径"><a class="markdownIt-Anchor" href="#543-二叉树的直径">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/diameter-of-binary-tree/">543. 二叉树的直径</a></h4>
+<p>难度简单 1305 收藏分享切换为英文接收动态反馈</p>
+<p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。</p>
+<p><strong>示例 :</strong><br>
+ 给定二叉树</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   3</span><br><span class="line"> / \     </span><br><span class="line">4   5    </span><br></pre></td></tr></table></figure>
+<p>返回 <strong>3</strong>, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。</p>
+<p>解法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span> ans;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">depth</span><span class="params">(TreeNode* rt)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rt == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 访问到空节点了，返回0</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> L = <span class="built_in">depth</span>(rt-&gt;left); <span class="comment">// 左儿子为根的子树的深度</span></span><br><span class="line">        <span class="type">int</span> R = <span class="built_in">depth</span>(rt-&gt;right); <span class="comment">// 右儿子为根的子树的深度</span></span><br><span class="line">        ans = <span class="built_in">max</span>(ans, L + R + <span class="number">1</span>); <span class="comment">// 计算d_node即L+R+1 并更新ans</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(L, R) + <span class="number">1</span>; <span class="comment">// 返回该节点为根的子树的深度</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        ans = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">depth</span>(root);</span><br><span class="line">        <span class="keyword">return</span> ans - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>今天下午网易笔试，做完脑子不好使了，今天就写这两题，还有三天连着面试，线程池稍微慢一点，这几天复习下面经，背下知识点。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="">
-              数据库连接池实现
-            </a>
-          
-            <a href="/tags/bug/" class="">
-              bug
+            <a href="/tags/lc/" class="">
+              lc
             </a>
           
         </div>
@@ -605,7 +617,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/15/problem1/" target="_blank" title="关于数据库连接池遇到的一些问题">https://flowerhai.github.io/2023/04/15/problem1/</a>
+    <a href="/2023/04/22/day9/" target="_blank" title="刷题day9">https://flowerhai.github.io/2023/04/22/day9/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -623,45 +635,24 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/15/mysql-pool/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">数据库连接池框架构建</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 数据库连接池框架构建
-技术点：
-MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、线程互斥
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/14/unix-fifo/" class="post-nav-link">
+    <a href="/2023/04/22/thread-pool5/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">unix_fifo</div>
+        <div class="title-text">信号量以及Any类型的实现</div>
       </div>
       <!-- <div class="content">
-        # 管道和 FIFO
-从图 4-3 到 4-4。如果子进程没有执行 close (fd [1])，会发生什么？
-
-
-当父
+        # 线程池实现任意类型的返回值
+实现 C++17 中的 Any 类
+任意的其他类型 template
+基类类型指向派生类
       </div> -->
     </a>
   </div>
@@ -793,7 +784,7 @@ MySQL 数据库编程、单例模式、queue 队列容器、C++11 多线程、�
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="toc-text"> 关于数据库连接池遇到的一些问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%A0%B4bug"><span class="toc-text"> 关于破 bug</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#segmentation-fault-core-dumped"><span class="toc-text"> Segmentation fault (core dumped)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%84%B6%E5%90%8E%E5%B0%B1%E6%98%AF%E4%B8%8D%E7%9F%A5%E9%81%93%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%90%E8%A1%8C%E4%B9%8B%E5%90%8E%E4%B8%80%E7%9B%B4%E9%98%BB%E5%A1%9E"><span class="toc-text"> 然后就是不知道为什么运行之后一直阻塞</span></a></li></ol></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8"><span class="toc-text"> 160. 相交链表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="toc-text"> 543. 二叉树的直径</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
