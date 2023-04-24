@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>mianshi | 恍惚迷离</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script defer src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" rel="stylesheet">
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script defer src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+    
+    <!-- 依赖于jquery和vue -->
+    
+        <script src="https://unpkg.com/jquery@3.5.1/dist/jquery.min.js"></script>
+    
+
+    
+        <script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="恍惚迷离" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+  
+  <!-- 预加载动画 -->
+  <!-- 页面预加载动画 -->
+
+  
+    <div class="preloader_2" id="loader">
+  <div class="loader"></div>
+</div>
+
+  
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+</script>
+
+  <body>
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (src) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://unpkg.com/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header  " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="/null" class="lazyload placeholder" data-srcset="/null" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="logo">
+      <h3 class="drawer-box-head_title">恍惚迷离</h3>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">Home</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/archives" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">Archives</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/tags" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">Tags</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">Categories</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/Curriculum-Vitae" class="drawer-menu-item-link">
+                  
+                  <span class="name">Curriculum-Vitae</span>
+                </a>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/flowerhai">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+      <a href="/" class="logo">恍惚迷离</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="Home">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">Home</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/archives" class="menu-item-link" title="Archives">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">Archives</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/tags" class="menu-item-link" title="Tags">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">Tags</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="Categories">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">Categories</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/Curriculum-Vitae" class="menu-item-link" title="Curriculum-Vitae">
+                  
+                  <span class="name">Curriculum-Vitae</span>
+                </a>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">Search</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="Please enter keywords"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/flowerhai" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script defer src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        mianshi
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2023-04-24 |
+        </span>
+      
+
+      
+
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>怎么这样捏，太紧张了，很多东西都没想起来</p>
+<p>自我介绍开场</p>
+<h4 id="c"><a class="markdownIt-Anchor" href="#c">#</a> C++</h4>
+<h4 id="智能指针熟悉吗介绍下智能指针"><a class="markdownIt-Anchor" href="#智能指针熟悉吗介绍下智能指针">#</a> 智能指针熟悉吗，介绍下智能指针</h4>
+<p>智能指针（Smart Pointer）是一种 C++ 中的类，它的主要作用是管理动态分配的内存资源，从而避免内存泄漏和野指针等常见的内存安全问题。</p>
+<p>智能指针通过重载指针操作符，提供与原生指针类似的使用方式，但其具有以下几个重要的特点：</p>
+<ol>
+<li>自动内存管理：智能指针会在其生命周期结束时自动释放其所管理的内存资源，从而避免了内存泄漏的风险。</li>
+<li>所有权转移：智能指针支持所有权转移，即可以将一个智能指针的所有权转移给另一个智能指针，从而避免了多个指针同时管理同一块内存的问题。</li>
+<li>引用计数：智能指针通常会维护一个引用计数器，用于记录有多少个智能指针共享同一块内存。当引用计数器减为 0 时，智能指针会自动释放其所管理的内存资源。</li>
+<li>类型安全：智能指针可以防止类型不匹配的错误，从而提高程序的稳定性和安全性。</li>
+</ol>
+<h4 id="智能指针是为了解决什么问题提出来的"><a class="markdownIt-Anchor" href="#智能指针是为了解决什么问题提出来的">#</a> 智能指针是为了解决什么问题提出来的</h4>
+<h4 id="为什么会有unique_ptr"><a class="markdownIt-Anchor" href="#为什么会有unique_ptr">#</a> 为什么会有 unique_ptr</h4>
+<p>unique_ptr 是一种独占式智能指针，它的主要特点是只能有一个指针拥有它所管理的内存资源。unique_ptr 的出现主要是为了解决动态内存分配和释放过程中的一些常见问题，具有以下几个优点：</p>
+<ol>
+<li>防止内存泄漏：unique_ptr 能够确保在其生命周期结束时自动释放所管理的内存资源，从而避免了内存泄漏的风险。</li>
+<li>防止多个指针同时访问同一块内存：由于 unique_ptr 是独占式的，即只能有一个指针拥有它所管理的内存资源，因此可以有效避免多个指针同时访问同一块内存的问题。</li>
+<li>支持移动语义：unique_ptr 支持移动语义，即可以将其所有权转移给另一个 unique_ptr 对象，从而避免了显式内存管理过程中的复制和赋值问题。</li>
+<li>更好的性能：unique_ptr 相比原生指针可以更好地支持现代 C++ 的一些高级特性，例如使用 RAII（Resource Acquisition Is Initialization）技术和模板元编程等。</li>
+</ol>
+<p>总之，unique_ptr 是 C<ins> 中一种非常有用的内存管理工具，它可以有效避免内存泄漏和野指针等常见问题。在编写 C</ins> 程序时，使用 unique_ptr 可以提高程序的稳定性和安全性，减少手动内存管理的工作量，值得开发人员深入了解和应用。</p>
+<h4 id="为什么会有shared_ptr"><a class="markdownIt-Anchor" href="#为什么会有shared_ptr">#</a> 为什么会有 shared_ptr</h4>
+<p>shared_ptr 是一种共享式智能指针，它可以实现多个指针共享同一块内存资源，具有以下优点：</p>
+<ol>
+<li>引用计数机制：shared_ptr 会维护一个引用计数器，用于记录有多少个 shared_ptr 共享同一块内存。当引用计数器减为 0 时，shared_ptr 会自动释放其所管理的内存资源，从而避免了内存泄漏的风险。</li>
+<li>所有权转移：shared_ptr 支持所有权转移，即可以将一个 shared_ptr 的所有权转移给另一个 shared_ptr，从而避免了多个指针同时管理同一块内存的问题。</li>
+<li>方便使用：shared_ptr 与原生指针类似，可以使用普通的指针操作符和普通的函数调用方式，非常方便易用。</li>
+<li>高效性能：shared_ptr 采用的是 “写时复制”（copy-on-write）机制，即只有在多个 shared_ptr 共享同一块内存资源时才进行复制，从而提高了内存和性能的效率。</li>
+<li>支持自定义删除器：shared_ptr 支持自定义删除器（deleter），可以通过自定义删除器来控制内存资源的释放方式，增加了灵活性和可扩展性。</li>
+</ol>
+<p>总之，shared_ptr 是 C<ins> 中一种非常有用的内存管理工具，它可以实现多个指针共享同一块内存资源，并且能够自动管理内存资源，避免了内存泄漏和野指针等常见问题。在编写 C</ins> 程序时，使用 shared_ptr 可以提高程序的稳定性和安全性，减少手动内存管理的工作量，值得开发人员深入了解和应用。</p>
+<h4 id="为什么会有weak_ptr"><a class="markdownIt-Anchor" href="#为什么会有weak_ptr">#</a> 为什么会有 weak_ptr</h4>
+<p>weak_ptr 是一种弱引用智能指针，它用于解决 shared_ptr 的循环引用问题。当两个或多个对象通过 shared_ptr 相互引用时，可能会形成一个环形引用，从而导致内存泄漏的问题。为了解决这个问题，C++11 引入了 weak_ptr，它具有以下优点：</p>
+<ol>
+<li>弱引用：weak_ptr 只是对所管理的对象的一个弱引用，它不会增加引用计数，也不会影响对象的生命周期。因此，当 shared_ptr 对象释放了它所管理的内存资源时，weak_ptr 并不会导致内存泄漏。</li>
+<li>防止循环引用：当两个或多个对象通过 shared_ptr 相互引用时，可以将其中的某些指针替换为 weak_ptr，从而避免形成循环引用，减少内存泄漏的风险。</li>
+<li>空指针检查：通过 lock () 函数可以检查所管理的对象是否存在，如果对象已经被释放，则返回一个空的 shared_ptr，从而避免了使用已经释放的内存资源的问题。</li>
+</ol>
+<p>总之，weak_ptr 是 C<ins> 中一种非常有用的内存管理工具，它可以有效避免 shared_ptr 的循环引用问题，并且能够检查所管理的对象是否存在，避免了使用已经释放的内存资源的问题。在编写 C</ins> 程序时，使用 weak_ptr 可以提高程序的稳定性和安全性，减少手动内存管理的工作量，值得开发人员深入了解和应用。</p>
+<h4 id="智能指针底层是如何实现的"><a class="markdownIt-Anchor" href="#智能指针底层是如何实现的">#</a> 智能指针底层是如何实现的</h4>
+<h4 id="除了计数还有其他的什么解决方法吗"><a class="markdownIt-Anchor" href="#除了计数还有其他的什么解决方法吗">#</a> 除了计数，还有其他的什么解决方法吗</h4>
+<p>除了引用计数，还有其他一些方法可以解决循环引用的问题，例如：</p>
+<ol>
+<li>弱回调：可以使用回调函数来避免循环引用。当对象之间需要相互引用时，可以将其中一个对象作为回调函数的参数传递给另一个对象，并在需要释放内存时，调用回调函数释放所管理的内存资源。这种方式可以避免引用计数的问题，但是需要手动管理回调函数的注册和调用，比较繁琐。</li>
+<li>其他智能指针：除了 shared_ptr 和 weak_ptr，还有其他一些智能指针可以用于管理内存资源，例如 unique_ptr 和 auto_ptr。这些指针不支持循环引用，因此可以用于避免循环引用的问题。但是需要注意，使用 unique_ptr 和 auto_ptr 时需要确保对象之间不存在循环引用。</li>
+<li>弱化对象之间的关系：可以通过重新设计对象之间的关系，将原本相互引用的关系弱化，从而避免循环引用的问题。例如，可以将对象之间的关系转化为单向依赖关系，或者使用事件机制来解耦对象之间的依赖关系。</li>
+</ol>
+<p>总之，除了引用计数之外，还有其他一些方法可以用于解决循环引用的问题。在设计和实现程序时，应该根据具体的需求和场景选择合适的方法，避免出现内存泄漏和野指针等问题。</p>
+<h4 id="介绍下循环引用问题以及如何用weak_ptr解决循环引用问题的"><a class="markdownIt-Anchor" href="#介绍下循环引用问题以及如何用weak_ptr解决循环引用问题的">#</a> 介绍下循环引用问题，以及如何用 weak_ptr 解决循环引用问题的</h4>
+<p>循环引用是指在两个或多个对象之间相互引用的情况下，可能会导致内存泄漏和野指针等问题。在 C++ 中，循环引用通常出现在使用 shared_ptr 管理内存资源的场景中。</p>
+<p>当两个或多个对象通过 shared_ptr 相互引用时，每个 shared_ptr 都会增加所管理的对象的引用计数。如果其中一个对象被释放时，它所管理的内存资源可能并不会被释放，因为另一个对象仍然持有对它的引用，从而导致内存泄漏。此外，当所有对象都释放后，如果某个 shared_ptr 继续持有对已经释放的内存资源的引用，就会导致野指针问题。</p>
+<p>为了解决循环引用问题，C++11 引入了 weak_ptr。weak_ptr 是一种弱引用智能指针，它不会增加引用计数，也不会影响对象的生命周期。当两个或多个对象通过 shared_ptr 相互引用时，可以将其中的某些指针替换为 weak_ptr，从而避免形成循环引用。当所有的 shared_ptr 对象释放了它们所管理的内存资源时，weak_ptr 并不会导致内存泄漏。此外，可以使用 lock () 函数来检查所管理的对象是否存在，从而避免了使用已经释放的内存资源的问题。</p>
+<p>具体来说，使用 weak_ptr 解决循环引用问题的步骤如下：</p>
+<ol>
+<li>将其中的某些 shared_ptr 指针替换为 weak_ptr，避免形成循环引用。</li>
+<li>在需要访问所管理的对象时，先使用 lock () 函数检查对象是否存在。如果对象已经被释放，则返回一个空的 shared_ptr；否则，返回一个新的 shared_ptr，可以安全地访问所管理的内存资源。</li>
+</ol>
+<p>总之，使用 weak_ptr 可以有效避免 shared_ptr 的循环引用问题，并且能够检查所管理的对象是否存在，避免了使用已经释放的内存资源的问题。在编写 C++ 程序时，使用 weak_ptr 可以提高程序的稳定性和安全性，减少手动内存管理的工作量。</p>
+<h4 id="你说到了死锁为什么多个shared_ptr互相引用会发生死锁"><a class="markdownIt-Anchor" href="#你说到了死锁为什么多个shared_ptr互相引用会发生死锁">#</a> 你说到了死锁，为什么多个 shared_ptr 互相引用会发生死锁</h4>
+<h4 id="什么是拷贝构造函数什么是赋值构造函数"><a class="markdownIt-Anchor" href="#什么是拷贝构造函数什么是赋值构造函数">#</a> 什么是拷贝构造函数，什么是赋值构造函数</h4>
+<p>拷贝构造函数和赋值构造函数都是 C++ 中的特殊函数，用于创建新对象或将一个对象的值复制到另一个对象。</p>
+<p>拷贝构造函数是一个特殊的构造函数，用于创建一个新对象，并将已有对象的值复制到新对象中。当用已有对象初始化一个新对象或者将一个对象作为参数传递给函数时，拷贝构造函数会被自动调用。拷贝构造函数的函数签名通常是类名 (const 类名 &amp; other)，其中 const 表示被复制的对象是只读的，&amp; 表示传递的是一个引用。</p>
+<p>赋值构造函数是另一个特殊的函数，用于将一个对象的值复制到另一个已经存在的对象中。当使用一个对象为另一个对象赋值时，赋值构造函数会被自动调用。赋值构造函数的函数签名通常是类名 &amp; operator=(const 类名 &amp; other)，其中 = 表示赋值操作，&amp; 表示返回的是一个引用。</p>
+<p>需要注意的是，拷贝构造函数和赋值构造函数是不同的函数，其函数签名也不同。拷贝构造函数创建新对象时，需要分配新的内存；而赋值构造函数则是将一个已有对象的值复制到另一个已经存在的对象中，不需要分配新的内存。</p>
+<p>在 C++ 中，如果没有定义拷贝构造函数和赋值构造函数，编译器会自动生成默认的拷贝构造函数和赋值构造函数。默认的拷贝构造函数和赋值构造函数只是将每个成员变量的值从一个对象复制到另一个对象，因此如果类中存在指针等需要手动管理的资源，就需要自定义拷贝构造函数和赋值构造函数来确保正确的资源管理。</p>
+<h4 id="这两个是为了解决一个什么问题"><a class="markdownIt-Anchor" href="#这两个是为了解决一个什么问题">#</a> 这两个是为了解决一个什么问题</h4>
+<h4 id="拷贝构造函数和赋值构造函数时干什么用的可以告诉我你都知道什么吗"><a class="markdownIt-Anchor" href="#拷贝构造函数和赋值构造函数时干什么用的可以告诉我你都知道什么吗">#</a> 拷贝构造函数和赋值构造函数时干什么用的，可以告诉我你都知道什么吗</h4>
+<h4 id="什么是浅拷贝和深拷贝"><a class="markdownIt-Anchor" href="#什么是浅拷贝和深拷贝">#</a> 什么是浅拷贝和深拷贝</h4>
+<h4 id="newdelete-mallocfree是干什么用的具体有什么区别"><a class="markdownIt-Anchor" href="#newdelete-mallocfree是干什么用的具体有什么区别">#</a> new/delete malloc/free 是干什么用的，具体有什么区别</h4>
+<p>new/delete 和 malloc/free 都是用于动态内存管理的 C++ 和 C 语言函数，用于在程序运行时分配和释放内存空间。</p>
+<p>new/delete 是 C++ 语言中的运算符，用于动态地分配和释放内存空间，并在内存中构造和销毁对象。new 返回一个指向已分配内存的指针，而 delete 则释放已分配的内存空间。</p>
+<p>malloc/free 是 C 语言中的函数，用于动态地分配和释放内存空间，但它们并不会自动构造和销毁对象。malloc 返回一个指向已分配内存的指针，而 free 则释放已分配的内存空间。</p>
+<p>虽然 new/delete 和 malloc/free 都用于动态内存管理，但它们之间存在一些重要的区别：</p>
+<ol>
+<li>语法：new/delete 是 C++ 运算符，malloc/free 是 C 语言函数，因此它们的语法不同。</li>
+<li>类型安全：new/delete 是类型安全的，可以自动调用对象的构造函数和析构函数，确保了类型安全。而 malloc/free 并不具备类型安全的特性，需要手动调用构造函数和析构函数。</li>
+<li>内存分配方式：new/delete 分配的内存是从自由存储区（heap）中分配的，而 malloc/free 分配的内存是从堆（heap）中分配的。</li>
+<li>内存分配大小：new/delete 在分配内存时，需要指定对象的类型，因此可以自动计算对象的大小。而 malloc/free 需要手动计算分配内存的大小，因此可能会产生错误。</li>
+<li>重载：new/delete 可以被重载，可以自定义内存分配和释放方式。而 malloc/free 是 C 语言函数，不能被重载。</li>
+</ol>
+<p>综上所述，虽然 new/delete 和 malloc/free 都是用于动态内存管理，但它们的语法、类型安全、内存分配方式、内存分配大小和重载等方面都存在一定的区别。在 C++ 中，建议使用 new/delete 来管理动态内存，以确保类型安全和内存分配的正确性。</p>
+<h4 id="如果new的一片内存用free会发生什么"><a class="markdownIt-Anchor" href="#如果new的一片内存用free会发生什么">#</a> 如果 new 的一片内存用 free，会发生什么</h4>
+<p>如果使用 free 释放由 new 分配的内存，会导致未定义的行为。因为 new 和 free 是不同的内存分配函数，它们使用不同的内存管理机制。new 操作符在分配内存时，会调用 C++ 运行库的 operator new () 函数，它使用了动态分配内存的底层机制，例如 malloc 等。而 free 函数只能释放由 malloc 等函数分配的内存。所以，如果使用 free 函数释放由 new 分配的内存，会导致未定义的行为，可能会发生内存泄漏或者其他的错误。</p>
+<p>在 C++ 中，建议使用 delete 操作符来释放由 new 分配的内存，而不是使用 free 函数。使用 delete 操作符可以确保内存分配和释放的正确性，同时也可以调用对象的析构函数来进行资源释放。</p>
+<h4 id="我们知道如果new一个数组的话会是new-a这种格式为什么delete的也要delete-a"><a class="markdownIt-Anchor" href="#我们知道如果new一个数组的话会是new-a这种格式为什么delete的也要delete-a">#</a> 我们知道如果 new 一个数组的话会是 new a [] 这种格式，为什么 delete 的也要 delete a []</h4>
+<h4 id="new-和-malloc分配的内存空间都在哪个地方"><a class="markdownIt-Anchor" href="#new-和-malloc分配的内存空间都在哪个地方">#</a> new 和 malloc 分配的内存空间都在哪个地方</h4>
+<p>在 C++ 中， <code>new</code>  和  <code>malloc</code>  都可以用来动态分配内存。但是它们在分配内存的方式和位置上有一些不同。</p>
+<p><code>new</code>  运算符分配内存的位置在 C++ 的自由存储区 (heap) 上，它会在运行时在堆上分配一段连续的内存区域来存储数据，并返回这段内存的首地址。使用  <code>new</code>  分配内存时，系统会自动调用构造函数来对分配的内存进行初始化。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cppCopy code</span><br><span class="line">int *ptr = new int;  // 分配一个整数的内存空间，并初始化为0</span><br></pre></td></tr></table></figure>
+<p><code>malloc</code>  函数分配内存的位置在 C 的堆 (heap) 上，它也会在运行时在堆上分配一段连续的内存区域来存储数据，并返回这段内存的首地址。与  <code>new</code>  不同的是， <code>malloc</code>  只是简单地分配了一块内存空间，并不会自动调用构造函数来初始化这块内存。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cppCopy code</span><br><span class="line">int *ptr = (int*)malloc(sizeof(int));  // 分配一个整数的内存空间，但是不会初始化</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，使用  <code>malloc</code>  分配内存时，必须使用  <code>free</code>  函数来释放内存。而使用  <code>new</code>  分配内存时，则需要使用  <code>delete</code>  运算符来释放内存。</p>
+<p>总之， <code>new</code>  和  <code>malloc</code>  的不同之处在于它们所在的存储区域不同、分配内存的方式和返回内存地址的类型不同，同时也涉及到了对象构造和析构等语义的差异。因此，在使用时需要根据实际需求来选择适合的内存分配方式。</p>
+<h4 id="分配一段内存都有什么方法说说你都知道哪些"><a class="markdownIt-Anchor" href="#分配一段内存都有什么方法说说你都知道哪些">#</a> 分配一段内存都有什么方法，说说你都知道哪些</h4>
+<p>在 C++ 中，常用的动态分配内存的方法主要有以下几种：</p>
+<ol>
+<li><code>new</code>  运算符：使用  <code>new</code>  运算符可以动态地分配指定类型的内存空间。例如，可以使用  <code>new int</code>  来分配一个  <code>int</code>  类型的内存空间，或者使用  <code>new int[10]</code>  来分配一个包含 10 个  <code>int</code>  类型元素的数组。</li>
+<li><code>malloc</code>  函数：使用  <code>malloc</code>  函数可以在堆上动态地分配指定大小的内存空间，它的函数原型为  <code>void *malloc(size_t size)</code> 。需要注意的是，使用  <code>malloc</code>  分配内存时，必须使用  <code>free</code>  函数来释放内存。</li>
+<li><code>calloc</code>  函数：使用  <code>calloc</code>  函数可以在堆上动态地分配指定数量、指定大小的内存空间，并且会将分配的内存空间清零，它的函数原型为  <code>void *calloc(size_t nmemb, size_t size)</code> 。</li>
+<li><code>realloc</code>  函数：使用  <code>realloc</code>  函数可以重新分配之前由  <code>malloc</code>  或  <code>calloc</code>  分配的内存空间，它的函数原型为  <code>void *realloc(void *ptr, size_t size)</code> 。需要注意的是，使用  <code>realloc</code>  函数时，必须将之前分配的内存空间的地址作为第一个参数传递给该函数，而且不能用于  <code>new</code>  分配的内存空间。</li>
+</ol>
+<p>除了上述方法，C++ 标准库中还提供了一些内存分配函数，例如  <code>std::malloc</code> 、 <code>std::calloc</code> 、 <code>std::realloc</code> 、 <code>std::aligned_alloc</code> 、 <code>std::new_handler</code>  等，这些函数可以方便地进行内存分配、重新分配、对齐等操作。</p>
+<h4 id="知道static吗详细介绍下static的功能"><a class="markdownIt-Anchor" href="#知道static吗详细介绍下static的功能">#</a> 知道 static 吗，详细介绍下 static 的功能</h4>
+<p>在 C++ 中， <code>static</code>  关键字可以用于以下三个方面：</p>
+<ol>
+<li>静态变量：使用  <code>static</code>  关键字声明的变量被称为静态变量，它们存储在静态存储区中，并且只会被初始化一次。在函数内部声明的静态变量在函数执行完毕后不会被销毁，而是会一直存在于程序的生命周期中。在类中声明的静态变量被称为类变量或静态成员变量，它们被所有类对象共享，并且不依赖于任何类对象而存在。</li>
+<li>静态函数：使用  <code>static</code>  关键字声明的函数被称为静态函数或类函数，它们与类的静态成员变量类似，不依赖于任何类对象而存在。因此，静态函数只能访问类的静态成员变量或其他静态函数，不能访问类的非静态成员变量或成员函数。</li>
+<li>静态类：使用  <code>static</code>  关键字声明的类被称为静态类，它们只包含静态成员变量和静态成员函数，不能创建任何对象。静态类通常用于实现一些辅助函数或工具类，例如数学库、字符串库等。</li>
+</ol>
+<p>除了上述功能之外， <code>static</code>  关键字还可以用于限制变量和函数的作用域，使其仅在当前文件或代码块中可见。在这种情况下， <code>static</code>  关键字相当于将变量或函数的链接类型改为内部链接。这种用法可以用于隐藏实现细节，防止变量和函数被其他文件或代码块访问，从而增强程序的安全性和可维护性。</p>
+<h4 id="知道const吗详细介绍下const的功能"><a class="markdownIt-Anchor" href="#知道const吗详细介绍下const的功能">#</a> 知道 const 吗，详细介绍下 const 的功能</h4>
+<p>在 C++ 中， <code>const</code>  关键字用于修饰变量、函数和类成员函数等，其功能如下：</p>
+<ol>
+<li>常量变量：使用  <code>const</code>  关键字声明的变量称为常量变量，其值在程序运行过程中不可修改。常量变量可以在声明时进行初始化，也可以在构造函数中进行初始化。</li>
+<li>常量函数：使用  <code>const</code>  关键字修饰的函数称为常量函数，其内部不能修改对象的状态或调用非常量成员函数。常量函数可以被常量对象和非常量对象调用，但在常量对象中只能调用常量成员函数。</li>
+<li>常量类成员函数：使用  <code>const</code>  关键字修饰的类成员函数称为常量类成员函数，其作用与常量函数类似，但只能在类的成员函数中使用。常量类成员函数不能修改类的成员变量，但可以访问类的非常量成员函数。</li>
+<li>常量对象：使用  <code>const</code>  关键字修饰的对象称为常量对象，其状态不能在程序运行过程中被修改。常量对象只能调用常量成员函数和常量类成员函数，不能调用非常量成员函数和非常量类成员函数。</li>
+</ol>
+<p>通过使用  <code>const</code>  关键字，可以增加程序的可读性、可靠性和安全性，减少代码中的错误和 bug。例如，常量变量可以防止在程序运行过程中意外修改变量的值，常量函数可以确保对象的状态不会被修改，常量类成员函数可以避免在类内部误用非常量成员函数等。</p>
+<h4 id="关于c内存管理机制详细介绍一下"><a class="markdownIt-Anchor" href="#关于c内存管理机制详细介绍一下">#</a> 关于 C++ 内存管理机制，详细介绍一下</h4>
+<h4 id="介绍下堆区和栈区他们有什么区别"><a class="markdownIt-Anchor" href="#介绍下堆区和栈区他们有什么区别">#</a> 介绍下堆区和栈区，他们有什么区别</h4>
+<p>C++ 的内存管理机制主要包括两个方面：栈内存管理和堆内存管理。</p>
+<ol>
+<li>栈内存管理</li>
+</ol>
+<p>在 C++ 中，函数调用时会在栈内存中为函数创建一个新的栈帧，用于存储函数的局部变量、函数参数、返回地址和临时变量等。栈内存是由操作系统分配和管理的，因此其大小和位置是固定的。栈内存管理具有以下特点：</p>
+<ul>
+<li>自动分配和释放：栈内存的分配和释放是自动的，程序员不需要显式地调用函数进行内存管理。</li>
+<li>后进先出：栈内存采用后进先出的方式进行管理，即最后进入栈的变量最先被释放。</li>
+<li>快速访问：栈内存的访问速度非常快，因为栈内存是连续的、顺序存储的，可以直接通过栈指针进行访问。</li>
+</ul>
+<ol>
+<li>堆内存管理</li>
+</ol>
+<p>堆内存是由程序员手动分配和释放的，其大小和位置不固定，可以动态调整。在 C++ 中，使用  <code>new</code>  运算符分配堆内存，使用  <code>delete</code>  运算符释放堆内存。堆内存管理具有以下特点：</p>
+<ul>
+<li>动态分配和释放：堆内存的分配和释放是由程序员手动控制的，需要使用  <code>new</code>  和  <code>delete</code>  运算符进行操作。</li>
+<li>不连续存储：堆内存是不连续存储的，其分配和释放涉及到内存的分配和释放算法，比较复杂。</li>
+<li>慢速访问：堆内存的访问速度比栈内存慢，因为堆内存是不连续存储的，访问需要通过指针进行间接访问。</li>
+</ul>
+<p>C++ 的内存管理机制是基于 RAII（Resource Acquisition Is Initialization）原则的，即资源获取即初始化。该原则要求程序员在使用资源（如堆内存、文件、锁等）时，通过对象的构造函数获取资源，在对象的析构函数中释放资源，从而避免资源泄漏和错误。例如，使用智能指针可以自动管理堆内存的分配和释放，避免手动控制  <code>new</code>  和  <code>delete</code>  运算符的问题。同时，C++ 标准库提供了多种容器和算法，可以更方便地管理内存和数据结构。</p>
+<h4 id="你说到栈区比堆区快为什么栈快"><a class="markdownIt-Anchor" href="#你说到栈区比堆区快为什么栈快">#</a> 你说到栈区比堆区快，为什么栈快</h4>
+<h4 id="你说到os对其做了许多优化os究竟做了什么优化为什么要这样优化呢"><a class="markdownIt-Anchor" href="#你说到os对其做了许多优化os究竟做了什么优化为什么要这样优化呢">#</a> 你说到 OS 对其做了许多优化，OS 究竟做了什么优化，为什么要这样优化呢</h4>
+<h4 id="我们知道在递归层数太深的时候会发生栈溢出为什么会发生栈溢出呢"><a class="markdownIt-Anchor" href="#我们知道在递归层数太深的时候会发生栈溢出为什么会发生栈溢出呢">#</a> 我们知道在递归层数太深的时候会发生栈溢出，为什么会发生栈溢出呢</h4>
+<p>栈溢出（stack overflow）是指在程序运行时，栈内存中的数据超出了栈的大小，导致无法继续正常执行程序的现象。</p>
+<p>在函数调用时，函数的参数、局部变量、返回地址等信息都会被压入栈中，每次函数调用都会在栈上分配一段内存，称为栈帧（stack frame），当函数执行结束后，栈帧就被销毁，栈顶指针回到上一层调用函数的位置，继续执行后续的代码。</p>
+<p>当递归层数太深时，栈空间被不断地分配和销毁，如果栈的空间不足以存储所有的栈帧，就会导致栈溢出。这通常是因为程序中使用了过多的递归调用，或者函数中分配了过多的局部变量或数组等占用了大量的栈空间。</p>
+<p>另外，有些编译器还可以检测到递归的循环调用，从而避免栈溢出的问题。例如 GCC 编译器的 - O2 优化级别会启用尾递归优化，将递归调用转化为循环调用，从而减少栈帧的使用。</p>
+<h4 id="你知道什么是压栈和入栈吗"><a class="markdownIt-Anchor" href="#你知道什么是压栈和入栈吗">#</a> 你知道什么是压栈和入栈吗</h4>
+<p>在内存管理中，栈（stack）是一种线性的数据结构，具有先进后出（Last-In-First-Out，LIFO）的特点。栈通常用来存储临时变量、函数调用返回地址、函数参数以及一些其他的上下文信息。</p>
+<p>压栈和入栈都是指将数据放入栈中的操作，但它们的含义略有不同：</p>
+<ul>
+<li>压栈（push）通常指将一个数据压入栈顶，即栈指针向下移动一个位置，指向新压入的数据。</li>
+<li>入栈（push）通常指将一组数据按照某种顺序依次压入栈中，其中包括多个数据元素和可能的一些控制信息。这个操作通常用于函数调用时将参数和返回地址压入栈中。</li>
+</ul>
+<p>举个例子，假设我们有一个栈，其中已经有两个元素 10 和 20，栈指针指向第三个空位。此时，我们执行以下操作：</p>
+<ul>
+<li>压栈 30，即将数据 30 放入栈顶，栈指针指向第四个位置。</li>
+<li>入栈函数调用信息，即将函数调用的参数和返回地址按照一定的顺序压入栈中，同时更新栈指针的位置。</li>
+</ul>
+<p>需要注意的是，栈的大小是有限的，当栈满了之后，就会发生栈溢出（stack overflow）的错误，这通常是因为递归调用过多或者占用了过多的栈空间导致的。因此，在编写程序时，需要谨慎使用栈，并保证栈空间的合理分配和管理。</p>
+<h4 id="你知道什么是栈争吗详细解释下"><a class="markdownIt-Anchor" href="#你知道什么是栈争吗详细解释下">#</a> 你知道什么是栈争吗，详细解释下</h4>
+<p>栈争（Stack Clash）是一种计算机安全漏洞，可以被黑客用来攻击目标系统并获取系统权限。该漏洞最初于 2017 年被发现，但其基本原理已经存在了很长时间。</p>
+<p>栈争漏洞的基本原理是，当程序的堆栈空间与另一个内存区域（例如堆或共享库）发生冲突时，黑客可以利用这个漏洞来覆盖栈中的数据，从而控制程序的执行流程。具体来说，黑客会通过精心构造的输入数据来使程序在堆栈和其他内存区域之间跳转，从而实现代码注入和控制流劫持。</p>
+<p>栈争漏洞通常发生在使用静态栈分配的程序中，这种程序在编译时会为每个线程分配固定大小的堆栈空间。黑客可以通过超出堆栈空间的边界来覆盖栈中的数据，从而实现攻击。</p>
+<p>为了防止栈争漏洞，开发人员可以采用一些措施，例如：</p>
+<ol>
+<li>使用动态栈分配：动态栈分配可以使程序在运行时动态地分配堆栈空间，从而减少堆栈与其他内存区域发生冲突的可能性。</li>
+<li>限制堆栈空间的大小：开发人员可以限制程序的堆栈空间大小，从而减少栈与其他内存区域发生冲突的可能性。</li>
+<li>栈随机化：开发人员可以采用栈随机化技术来使每个线程的堆栈空间的地址随机化，从而使攻击者难以确定正确的地址。</li>
+</ol>
+<p>总之，栈争漏洞是一种常见的安全漏洞，可以通过采用适当的措施来减少其发生的可能性。</p>
+<h4 id="什么变量分配在堆上什么变量分配在栈上"><a class="markdownIt-Anchor" href="#什么变量分配在堆上什么变量分配在栈上">#</a> 什么变量分配在堆上，什么变量分配在栈上</h4>
+<p>在计算机编程中，内存被划分为栈（stack）和堆（heap），它们都用于存储变量。</p>
+<p>栈（stack）：栈是一种线性数据结构，具有后进先出（LIFO）的特性。栈上的变量由编译器自动分配和释放内存。当程序执行一个函数时，该函数的参数、局部变量和返回地址被压入栈中。当函数返回时，这些变量被弹出栈。因此，栈上的变量的生命周期是由函数的调用和返回决定的。栈的大小通常是固定的，由操作系统或编译器定义。</p>
+<p>堆（heap）：堆是一种非线性数据结构，由程序员动态分配和释放内存。堆上的变量可以在程序的任何位置被访问，因此它们的生命周期可以由程序员控制。在堆上分配内存需要显式地调用分配函数（如 malloc () 或 new），在不需要变量时，需要显式地释放它们（如 free () 或 delete）。</p>
+<p>一般来说，较小的变量（如基本数据类型）通常分配在栈上，而较大的变量（如数组、对象等）通常分配在堆上。但是，这也取决于编译器和操作系统的实现方式，所以并非所有的编程语言和平台都遵循这种规则。</p>
+<h4 id="关于操作系统是如何实现堆和栈的堆和栈究竟是一个怎么样的结构"><a class="markdownIt-Anchor" href="#关于操作系统是如何实现堆和栈的堆和栈究竟是一个怎么样的结构">#</a> 关于操作系统是如何实现堆和栈的，堆和栈究竟是一个怎么样的结构</h4>
+<h4 id="c中一个很重要的特性是多态关于c中多态是如何实现的呢"><a class="markdownIt-Anchor" href="#c中一个很重要的特性是多态关于c中多态是如何实现的呢">#</a> C<ins> 中一个很重要的特性是多态，关于 C</ins> 中多态是如何实现的呢？</h4>
+<h4 id="讲到了虚函数然后问虚函数是如何实现的呢"><a class="markdownIt-Anchor" href="#讲到了虚函数然后问虚函数是如何实现的呢">#</a> 讲到了虚函数，然后问虚函数是如何实现的呢？</h4>
+<p>在 C<ins> 中，多态是通过虚函数（virtual function）实现的。虚函数是在基类中声明的一种特殊的成员函数，它可以被派生类重写以实现特定的行为。通过虚函数，C</ins> 能够实现运行时多态性（runtime polymorphism）。</p>
+<p>当一个类中包含至少一个虚函数时，编译器会为该类生成一个虚函数表（virtual table，也称为 vtable），用于存储类的虚函数地址。当一个对象被创建时，它会包含一个指向虚函数表的指针。当调用一个虚函数时，C++ 会根据该对象的指针找到虚函数表，并调用相应的函数。</p>
+<p>通过使用虚函数，C++ 可以实现动态绑定（dynamic binding）或晚绑定（late binding）的特性，即在运行时确定调用哪个函数。这样可以实现在运行时根据对象的实际类型调用相应的函数，而不是根据变量类型调用函数，从而实现多态性。</p>
+<p>下面是一个使用虚函数实现多态的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cppCopy codeclass Animal &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void makeSound() &#123;</span><br><span class="line">        cout &lt;&lt; &quot;This is an animal sound.&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Cat : public Animal &#123;</span><br><span class="line">public:</span><br><span class="line">    void makeSound() &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Meow!&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Dog : public Animal &#123;</span><br><span class="line">public:</span><br><span class="line">    void makeSound() &#123;</span><br><span class="line">        cout &lt;&lt; &quot;Woof!&quot; &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Animal *ptr;</span><br><span class="line">    Cat cat;</span><br><span class="line">    Dog dog;</span><br><span class="line">    ptr = &amp;cat;</span><br><span class="line">    ptr-&gt;makeSound(); // 输出：Meow!</span><br><span class="line">    ptr = &amp;dog;</span><br><span class="line">    ptr-&gt;makeSound(); // 输出：Woof!</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，Animal 类包含一个虚函数 makeSound ()，Cat 类和 Dog 类都重写了这个函数。在 main 函数中，定义了一个 Animal 类型的指针 ptr，并分别让它指向 Cat 对象和 Dog 对象。当调用 ptr 的 makeSound () 函数时，C++ 会根据 ptr 指向的对象的实际类型调用相应的函数，输出相应的结果。这就是多态的表现。</p>
+<h4 id="c如何找到虚表的如何确定每一个子类对应的虚表就是这个虚表呢"><a class="markdownIt-Anchor" href="#c如何找到虚表的如何确定每一个子类对应的虚表就是这个虚表呢">#</a> C++ 如何找到虚表的，如何确定每一个子类对应的虚表就是这个虚表呢</h4>
+<p>在 C++ 中，每个包含虚函数的类都会有一个虚函数表（vtable），这个表中存储了虚函数的地址。每个对象都有一个指向其对应类的虚函数表的指针（通常被称为虚表指针或 vptr），通过这个指针可以动态地调用虚函数。</p>
+<p>在编译时，编译器为每个包含虚函数的类生成一个虚表，虚表中存储了该类中所有虚函数的地址。当派生类继承了基类的虚函数时，派生类也会包含基类的虚表，而且在该虚表的末尾添加自己的虚函数地址。这样，派生类就可以重写基类的虚函数，并添加自己的虚函数。</p>
+<p>在运行时，当调用一个虚函数时，C++ 会根据对象的虚表指针找到对应的虚表，然后根据虚函数在虚表中的位置，调用相应的虚函数。</p>
+<p>在实际编程中，可以使用指针操作虚表。例如，可以将一个指向虚函数的指针与一个指向对象的虚表指针相加，从而获取对象中某个虚函数的地址。这个技巧在某些情况下可以提高程序的效率。</p>
+<p>需要注意的是，不同的编译器可能会对虚表的实现方式有所不同，因此在使用指针操作虚表时需要注意不同编译器的差异。</p>
+<h4 id="什么是纯虚函数纯虚函数是如何实现的"><a class="markdownIt-Anchor" href="#什么是纯虚函数纯虚函数是如何实现的">#</a> 什么是纯虚函数，纯虚函数是如何实现的</h4>
+<p>纯虚函数是在 C++ 中的一种特殊的虚函数，它没有函数体，只有函数原型，而且必须被子类重写。纯虚函数的定义方式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cppCopy code</span><br><span class="line">virtual return_type function_name(parameters) = 0;</span><br></pre></td></tr></table></figure>
+<p>其中， <code>= 0</code>  表示这是一个纯虚函数。</p>
+<p>纯虚函数的作用是为了定义一个接口，强制子类实现该接口中的方法，从而实现多态性。例如，我们可以定义一个抽象类，其中包含一个纯虚函数，子类必须实现这个函数才能被实例化。下面是一个示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">cppCopy codeclass Shape &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void draw() = 0;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Circle : public Shape &#123;</span><br><span class="line">public:</span><br><span class="line">    void draw() &#123;</span><br><span class="line">        // 实现画圆的代码</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Rectangle : public Shape &#123;</span><br><span class="line">public:</span><br><span class="line">    void draw() &#123;</span><br><span class="line">        // 实现画矩形的代码</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Shape *ptr;</span><br><span class="line">    Circle circle;</span><br><span class="line">    Rectangle rectangle;</span><br><span class="line">    ptr = &amp;circle;</span><br><span class="line">    ptr-&gt;draw(); // 调用Circle的draw函数</span><br><span class="line">    ptr = &amp;rectangle;</span><br><span class="line">    ptr-&gt;draw(); // 调用Rectangle的draw函数</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，Shape 类包含一个纯虚函数 draw ()，表示它是一个抽象类，不能被实例化。Circle 类和 Rectangle 类继承自 Shape 类，并重写了 draw () 函数。在 main 函数中，使用 Shape 类型的指针 ptr 分别指向 Circle 对象和 Rectangle 对象，并调用它们的 draw () 函数。由于 draw () 是一个虚函数，并且在 Shape 中被声明为纯虚函数，因此在运行时会根据 ptr 指向的对象的实际类型调用相应的函数，从而实现多态性。</p>
+<p>纯虚函数是通过将虚函数表中的函数指针设为 NULL 来实现的。由于纯虚函数没有函数体，因此编译器不会为它生成函数的代码，而是在虚函数表中将对应的函数指针设为 NULL。这就表示该函数没有实现，必须由子类重写并实现。当派生类实现了纯虚函数后，虚函数表中对应的函数指针会被更新为子类中的函数地址，从而实现动态绑定。</p>
+<h4 id="为什么纯虚函数不能初始化"><a class="markdownIt-Anchor" href="#为什么纯虚函数不能初始化">#</a> 为什么纯虚函数不能初始化</h4>
+<h4 id="定义了虚函数如何在子类中访问父类的虚函数方法"><a class="markdownIt-Anchor" href="#定义了虚函数如何在子类中访问父类的虚函数方法">#</a> 定义了虚函数，如何在子类中访问父类的虚函数方法</h4>
+<p>在 C++ 中，如果子类定义了一个和父类同名的虚函数，子类的这个函数会覆盖父类的函数，使得父类的函数在子类对象中无法直接访问。</p>
+<p>但是，在子类中可以通过使用作用域限定符来显式地调用父类的虚函数，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cppCopy codeclass Base &#123;</span><br><span class="line">public:</span><br><span class="line">    virtual void foo() &#123;</span><br><span class="line">        // 父类中的虚函数实现</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Derived : public Base &#123;</span><br><span class="line">public:</span><br><span class="line">    void foo() &#123;</span><br><span class="line">        // 子类中的虚函数实现</span><br><span class="line">        Base::foo(); // 调用父类中的虚函数</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，Derived 类继承自 Base 类，并覆盖了 Base 类中的虚函数 foo ()。在 Derived 类中，我们可以使用作用域限定符 <code>Base::</code>  来调用父类中的 foo () 函数。</p>
+<p>使用作用域限定符可以在子类中显式地调用父类的虚函数，从而保留父类的实现，并添加子类的特定功能。需要注意的是，如果父类的虚函数是纯虚函数，子类必须重写该函数，否则编译器会报错。</p>
+<h4 id="你说的这个多态是编译器多态还是运行时多态"><a class="markdownIt-Anchor" href="#你说的这个多态是编译器多态还是运行时多态">#</a> 你说的这个多态是编译器多态还是运行时多态？</h4>
+<p>在 C++ 中，多态分为两种类型：编译时多态和运行时多态。</p>
+<p>在编译时多态中，函数的调用在编译期就已经确定了，具体调用哪个函数由函数的静态类型（即声明时的类型）决定。这种多态性也称为静态多态性，它是通过函数重载和模板实现的。</p>
+<p>而在运行时多态中，函数的调用是在运行时确定的，具体调用哪个函数由函数的实际类型（即运行时对象的类型）决定。这种多态性也称为动态多态性，它是通过虚函数和继承实现的。</p>
+<p>所以，我之前提到的多态是指运行时多态，即通过虚函数和继承实现的多态。在运行时多态中，函数的调用是在运行时才确定的，具体调用哪个函数取决于对象的实际类型，而不是声明时的类型。</p>
+<h4 id="你知道什么是编译器多态以及运行时多态吗"><a class="markdownIt-Anchor" href="#你知道什么是编译器多态以及运行时多态吗">#</a> 你知道什么是编译器多态以及运行时多态吗？</h4>
+<h4 id="动态库和静态库有什么区别为什么有动态库和静态库关于动态库和静态库你都知道什么"><a class="markdownIt-Anchor" href="#动态库和静态库有什么区别为什么有动态库和静态库关于动态库和静态库你都知道什么">#</a> 动态库和静态库有什么区别，为什么有动态库和静态库，关于动态库和静态库你都知道什么</h4>
+<p>动态库和静态库都是编译后的可执行文件所依赖的库，它们的主要区别在于链接方式不同。</p>
+<p>静态库是在编译时将库的代码链接到可执行文件中，因此可执行文件中包含了完整的库代码。静态库的好处是使用简单，只需要将库的头文件和库文件一起编译即可，不需要在运行时再去加载库。但是，静态库会使得可执行文件变得比较大，而且如果多个可执行文件都使用同一个静态库，这些可执行文件会重复包含静态库的代码，导致浪费空间。</p>
+<p>动态库则是在运行时动态加载并链接到可执行文件中，因此可执行文件中只包含了对库函数的引用，而不包含完整的库代码。动态库的好处是可以在运行时动态加载，节省空间，也方便库的更新和维护。但是，动态库的使用相对复杂，需要在编译时指定库的位置，并且需要在运行时保证库文件的可用性。</p>
+<p>关于动态库和静态库，我还知道以下几点：</p>
+<ol>
+<li>静态库的文件扩展名通常为.a（Unix/Linux）或.lib（Windows），<a target="_blank" rel="noopener" href="http://xn--siqsrq5g3tb3wu3ycdsap5gqzh71i2q4cq5x3i0c.so">而动态库的文件扩展名通常为.so</a>（Unix/Linux）或.dll（Windows）。</li>
+<li>静态库和动态库都可以包含函数、变量和类等。但是，如果库中包含了全局变量，那么在动态库中可能会出现符号冲突问题。</li>
+<li>动态库需要在运行时加载，所以可能会影响程序的性能。此外，由于动态库的引用是在运行时解析的，所以动态库存在版本兼容性问题，需要进行版本管理。</li>
+<li>静态库和动态库的选择取决于具体的需求和场景。通常情况下，如果需要多个可执行文件共享同一库，使用动态库更为合适；如果只需要在一个可执行文件中使用库，使用静态库更为合适。</li>
+</ol>
+<h4 id="为什么析构函数要定义成虚函数详细解释一下"><a class="markdownIt-Anchor" href="#为什么析构函数要定义成虚函数详细解释一下">#</a> 为什么析构函数要定义成虚函数详细解释一下</h4>
+<p>C++ 中析构函数的作用是在对象生命周期结束时进行资源的清理和释放，它与构造函数相对应。如果一个类有虚函数，那么它的析构函数通常也应该被定义成虚函数。</p>
+<p>理由如下：</p>
+<ol>
+<li>多态调用问题：如果一个基类指针指向派生类对象，那么通过这个指针调用 delete 操作时，只会调用到基类的析构函数，而不会调用到派生类的析构函数。这就导致派生类中可能存在的资源泄漏问题。如果将基类的析构函数定义成虚函数，那么在调用 delete 操作时，就会自动调用到派生类的析构函数，从而确保资源被正确释放。</li>
+<li>防止内存泄漏问题：当一个对象从动态分配的内存中释放时，如果析构函数不是虚函数，可能只有该对象的部分内存会被释放，而不是整个对象的内存。这种情况下，就会出现内存泄漏的问题。</li>
+<li>防止对象切割问题：如果派生类对象以值传递给一个函数，而函数参数类型是基类指针或引用类型，那么传递进去的对象就会发生 “对象切割”，即只有基类部分会被复制到函数的参数中，而派生类部分会被丢失。如果基类的析构函数不是虚函数，那么在函数结束时只会调用基类的析构函数，而不会调用派生类的析构函数，导致派生类对象的资源无法释放。</li>
+</ol>
+<p>综上所述，如果一个类可能会被继承或者被作为基类，那么应该将其析构函数定义为虚函数，以确保在对象被销毁时能够正确地释放资源。</p>
+<h4 id="只定义析构函数会自动生成哪些构造函数"><a class="markdownIt-Anchor" href="#只定义析构函数会自动生成哪些构造函数">#</a> 只定义析构函数，会自动生成哪些构造函数</h4>
+<p>在 C++ 中，如果只定义一个析构函数，编译器会自动生成默认的构造函数、拷贝构造函数和拷贝赋值运算符。</p>
+<p>具体来说，如果一个类只定义了析构函数，没有定义任何构造函数，则编译器会自动生成默认构造函数。默认构造函数没有参数，并且不执行任何操作，仅仅是为对象分配空间。</p>
+<p>如果一个类只定义了析构函数和拷贝构造函数，则编译器会自动生成默认拷贝赋值运算符。默认拷贝构造函数用于在对象被复制时执行浅复制，即仅仅复制对象的成员变量的值，而不会复制对象的动态资源。默认拷贝赋值运算符用于在对象被赋值时执行浅复制，即将右侧对象的成员变量的值复制给左侧对象的成员变量。</p>
+<p>需要注意的是，如果一个类需要执行深复制或者需要自定义构造函数，那么就需要手动定义这些函数，否则使用默认函数可能会导致程序错误或者内存泄漏。</p>
+<h4 id="解释下向上转型和向下转型以及c中的四种强制类型转换为什么要有这四种强制类型转换你平时都用过哪些"><a class="markdownIt-Anchor" href="#解释下向上转型和向下转型以及c中的四种强制类型转换为什么要有这四种强制类型转换你平时都用过哪些">#</a> 解释下向上转型和向下转型，以及 C++ 中的四种强制类型转换，为什么要有这四种强制类型转换，你平时都用过哪些</h4>
+<ol>
+<li>向上转型（upcasting）：指的是将一个派生类指针或引用赋值给基类指针或引用的过程，即从派生类到基类的转换。这种转换是安全的，因为基类指针或引用只能访问基类中的成员，不会访问派生类中新增的成员或重载的成员函数。</li>
+<li>向下转型（downcasting）：指的是将一个基类指针或引用转换为派生类指针或引用的过程，即从基类到派生类的转换。这种转换是危险的，因为基类指针或引用可能并不指向一个派生类对象，如果这样的转换失败，则会导致程序崩溃或者未定义行为。</li>
+<li>C++ 中的四种强制类型转换分别为：static_cast、dynamic_cast、const_cast 和 reinterpret_cast。
+<ul>
+<li>static_cast：用于基本数据类型之间的转换，以及指针或引用之间的转换。这种转换是在编译时完成的，对于向上转型和向下转型都可以使用。但是，对于向下转型，如果类型转换不合法，则会在运行时产生未定义行为，因此需要谨慎使用。</li>
+<li>dynamic_cast：用于将基类指针或引用转换为派生类指针或引用。这种转换是在运行时完成的，会进行类型检查，如果类型转换不合法，则返回空指针或抛出 std::bad_cast 异常。dynamic_cast 只能用于有虚函数的类之间的转换，因为它依赖于运行时类型信息。</li>
+<li>const_cast：用于移除对象的 const 属性或将对象的 volatile 属性移除。这种转换主要用于遗留代码和与 C 语言代码的互操作。</li>
+<li>reinterpret_cast：用于不同类型之间的强制转换，它可以将任何类型的指针或引用转换为任何其他类型的指针或引用。这种转换是非常危险的，因为它完全依赖于编译器的实现，可能会导致未定义行为或崩溃。</li>
+</ul>
+</li>
+<li>强制类型转换的主要目的是为了解决类型不匹配的问题。这四种转换方式提供了不同的转换方式，使程序员可以根据需要选择适当的方式。需要注意的是，强制类型转换应该尽可能地避免使用，因为它们可能会导致安全问题和未定义行为。在实际开发中，应该尽量使用更加安全的类型转换方式，例如模板函数、函数重载、继承等。</li>
+</ol>
+<h3 id="做题吧"><a class="markdownIt-Anchor" href="#做题吧">#</a> 做题吧</h3>
+<h4 id="写一个线程安全且高效的懒汉单例模式"><a class="markdownIt-Anchor" href="#写一个线程安全且高效的懒汉单例模式">#</a> 写一个线程安全且高效的懒汉单例模式</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Singleton* <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">static</span> Singleton instance;</span><br><span class="line">        <span class="keyword">return</span> &amp;instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">Singleton</span>() &#123;&#125; <span class="comment">// 私有化构造函数，保证只能在内部创建实例</span></span><br><span class="line">    <span class="built_in">Singleton</span>(<span class="type">const</span> Singleton&amp;) = <span class="keyword">delete</span>; <span class="comment">// 禁止拷贝构造函数</span></span><br><span class="line">    Singleton&amp; <span class="keyword">operator</span>=(<span class="type">const</span> Singleton&amp;) = <span class="keyword">delete</span>; <span class="comment">// 禁止赋值运算符</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E9%9D%A2%E8%AF%95/" class="">
+              面试
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>恍惚迷离</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2023/04/24/mianshi/" target="_blank" title="mianshi">https://flowerhai.github.io/2023/04/24/mianshi/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2023/04/24/day11/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">刷题day11</div>
+      </div>
+      <!-- <div class="content">
+        # 53. 最大子数组和
+给你一个整数数组  nums  ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素）
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+    
+      <div class='text'>
+        
+          <h2>花落肩头，恍惚迷离</h2>
+        
+        
+          <p>七月七日晴</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">恍惚迷离</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://flowerhai.github.io/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1559743577"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#c"><span class="toc-text"> C++</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E7%86%9F%E6%82%89%E5%90%97%E4%BB%8B%E7%BB%8D%E4%B8%8B%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-text"> 智能指针熟悉吗，介绍下智能指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E6%98%AF%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%8F%90%E5%87%BA%E6%9D%A5%E7%9A%84"><span class="toc-text"> 智能指针是为了解决什么问题提出来的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89unique_ptr"><span class="toc-text"> 为什么会有 unique_ptr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89shared_ptr"><span class="toc-text"> 为什么会有 shared_ptr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E6%9C%89weak_ptr"><span class="toc-text"> 为什么会有 weak_ptr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E5%BA%95%E5%B1%82%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-text"> 智能指针底层是如何实现的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%99%A4%E4%BA%86%E8%AE%A1%E6%95%B0%E8%BF%98%E6%9C%89%E5%85%B6%E4%BB%96%E7%9A%84%E4%BB%80%E4%B9%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E5%90%97"><span class="toc-text"> 除了计数，还有其他的什么解决方法吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%8B%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E7%94%A8weak_ptr%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98%E7%9A%84"><span class="toc-text"> 介绍下循环引用问题，以及如何用 weak_ptr 解决循环引用问题的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E8%AF%B4%E5%88%B0%E4%BA%86%E6%AD%BB%E9%94%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%9A%E4%B8%AAshared_ptr%E4%BA%92%E7%9B%B8%E5%BC%95%E7%94%A8%E4%BC%9A%E5%8F%91%E7%94%9F%E6%AD%BB%E9%94%81"><span class="toc-text"> 你说到了死锁，为什么多个 shared_ptr 互相引用会发生死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%BB%80%E4%B9%88%E6%98%AF%E8%B5%8B%E5%80%BC%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text"> 什么是拷贝构造函数，什么是赋值构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%98%AF%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E4%B8%80%E4%B8%AA%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-text"> 这两个是为了解决一个什么问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%97%B6%E5%B9%B2%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84%E5%8F%AF%E4%BB%A5%E5%91%8A%E8%AF%89%E6%88%91%E4%BD%A0%E9%83%BD%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E5%90%97"><span class="toc-text"> 拷贝构造函数和赋值构造函数时干什么用的，可以告诉我你都知道什么吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text"> 什么是浅拷贝和深拷贝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#newdelete-mallocfree%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84%E5%85%B7%E4%BD%93%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text"> new&#x2F;delete malloc&#x2F;free 是干什么用的，具体有什么区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9Cnew%E7%9A%84%E4%B8%80%E7%89%87%E5%86%85%E5%AD%98%E7%94%A8free%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88"><span class="toc-text"> 如果 new 的一片内存用 free，会发生什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E7%9F%A5%E9%81%93%E5%A6%82%E6%9E%9Cnew%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E8%AF%9D%E4%BC%9A%E6%98%AFnew-a%E8%BF%99%E7%A7%8D%E6%A0%BC%E5%BC%8F%E4%B8%BA%E4%BB%80%E4%B9%88delete%E7%9A%84%E4%B9%9F%E8%A6%81delete-a"><span class="toc-text"> 我们知道如果 new 一个数组的话会是 new a [] 这种格式，为什么 delete 的也要 delete a []</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new-%E5%92%8C-malloc%E5%88%86%E9%85%8D%E7%9A%84%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E9%83%BD%E5%9C%A8%E5%93%AA%E4%B8%AA%E5%9C%B0%E6%96%B9"><span class="toc-text"> new 和 malloc 分配的内存空间都在哪个地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E4%B8%80%E6%AE%B5%E5%86%85%E5%AD%98%E9%83%BD%E6%9C%89%E4%BB%80%E4%B9%88%E6%96%B9%E6%B3%95%E8%AF%B4%E8%AF%B4%E4%BD%A0%E9%83%BD%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B"><span class="toc-text"> 分配一段内存都有什么方法，说说你都知道哪些</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E9%81%93static%E5%90%97%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%8Bstatic%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text"> 知道 static 吗，详细介绍下 static 的功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E9%81%93const%E5%90%97%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%8Bconst%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text"> 知道 const 吗，详细介绍下 const 的功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ec%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B"><span class="toc-text"> 关于 C++ 内存管理机制，详细介绍一下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%8B%E5%A0%86%E5%8C%BA%E5%92%8C%E6%A0%88%E5%8C%BA%E4%BB%96%E4%BB%AC%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-text"> 介绍下堆区和栈区，他们有什么区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E8%AF%B4%E5%88%B0%E6%A0%88%E5%8C%BA%E6%AF%94%E5%A0%86%E5%8C%BA%E5%BF%AB%E4%B8%BA%E4%BB%80%E4%B9%88%E6%A0%88%E5%BF%AB"><span class="toc-text"> 你说到栈区比堆区快，为什么栈快</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E8%AF%B4%E5%88%B0os%E5%AF%B9%E5%85%B6%E5%81%9A%E4%BA%86%E8%AE%B8%E5%A4%9A%E4%BC%98%E5%8C%96os%E7%A9%B6%E7%AB%9F%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E6%A0%B7%E4%BC%98%E5%8C%96%E5%91%A2"><span class="toc-text"> 你说到 OS 对其做了许多优化，OS 究竟做了什么优化，为什么要这样优化呢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E7%9F%A5%E9%81%93%E5%9C%A8%E9%80%92%E5%BD%92%E5%B1%82%E6%95%B0%E5%A4%AA%E6%B7%B1%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9F%E6%A0%88%E6%BA%A2%E5%87%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%8F%91%E7%94%9F%E6%A0%88%E6%BA%A2%E5%87%BA%E5%91%A2"><span class="toc-text"> 我们知道在递归层数太深的时候会发生栈溢出，为什么会发生栈溢出呢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E5%8E%8B%E6%A0%88%E5%92%8C%E5%85%A5%E6%A0%88%E5%90%97"><span class="toc-text"> 你知道什么是压栈和入栈吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%88%E4%BA%89%E5%90%97%E8%AF%A6%E7%BB%86%E8%A7%A3%E9%87%8A%E4%B8%8B"><span class="toc-text"> 你知道什么是栈争吗，详细解释下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E5%8F%98%E9%87%8F%E5%88%86%E9%85%8D%E5%9C%A8%E5%A0%86%E4%B8%8A%E4%BB%80%E4%B9%88%E5%8F%98%E9%87%8F%E5%88%86%E9%85%8D%E5%9C%A8%E6%A0%88%E4%B8%8A"><span class="toc-text"> 什么变量分配在堆上，什么变量分配在栈上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%A0%86%E5%92%8C%E6%A0%88%E7%A9%B6%E7%AB%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text"> 关于操作系统是如何实现堆和栈的，堆和栈究竟是一个怎么样的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%BE%88%E9%87%8D%E8%A6%81%E7%9A%84%E7%89%B9%E6%80%A7%E6%98%AF%E5%A4%9A%E6%80%81%E5%85%B3%E4%BA%8Ec%E4%B8%AD%E5%A4%9A%E6%80%81%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%91%A2"><span class="toc-text"> C 中一个很重要的特性是多态，关于 C 中多态是如何实现的呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B2%E5%88%B0%E4%BA%86%E8%99%9A%E5%87%BD%E6%95%B0%E7%84%B6%E5%90%8E%E9%97%AE%E8%99%9A%E5%87%BD%E6%95%B0%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%91%A2"><span class="toc-text"> 讲到了虚函数，然后问虚函数是如何实现的呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E8%99%9A%E8%A1%A8%E7%9A%84%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%AD%90%E7%B1%BB%E5%AF%B9%E5%BA%94%E7%9A%84%E8%99%9A%E8%A1%A8%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%AA%E8%99%9A%E8%A1%A8%E5%91%A2"><span class="toc-text"> C++ 如何找到虚表的，如何确定每一个子类对应的虚表就是这个虚表呢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-text"> 什么是纯虚函数，纯虚函数是如何实现的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E4%B8%8D%E8%83%BD%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text"> 为什么纯虚函数不能初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%BA%86%E8%99%9A%E5%87%BD%E6%95%B0%E5%A6%82%E4%BD%95%E5%9C%A8%E5%AD%90%E7%B1%BB%E4%B8%AD%E8%AE%BF%E9%97%AE%E7%88%B6%E7%B1%BB%E7%9A%84%E8%99%9A%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95"><span class="toc-text"> 定义了虚函数，如何在子类中访问父类的虚函数方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E8%AF%B4%E7%9A%84%E8%BF%99%E4%B8%AA%E5%A4%9A%E6%80%81%E6%98%AF%E7%BC%96%E8%AF%91%E5%99%A8%E5%A4%9A%E6%80%81%E8%BF%98%E6%98%AF%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A4%9A%E6%80%81"><span class="toc-text"> 你说的这个多态是编译器多态还是运行时多态？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%96%E8%AF%91%E5%99%A8%E5%A4%9A%E6%80%81%E4%BB%A5%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%97%B6%E5%A4%9A%E6%80%81%E5%90%97"><span class="toc-text"> 你知道什么是编译器多态以及运行时多态吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93%E5%85%B3%E4%BA%8E%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93%E4%BD%A0%E9%83%BD%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88"><span class="toc-text"> 动态库和静态库有什么区别，为什么有动态库和静态库，关于动态库和静态库你都知道什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E8%A6%81%E5%AE%9A%E4%B9%89%E6%88%90%E8%99%9A%E5%87%BD%E6%95%B0%E8%AF%A6%E7%BB%86%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B"><span class="toc-text"> 为什么析构函数要定义成虚函数详细解释一下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%AE%9A%E4%B9%89%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E4%BC%9A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%93%AA%E4%BA%9B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text"> 只定义析构函数，会自动生成哪些构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E4%B8%8B%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B%E5%92%8C%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B%E4%BB%A5%E5%8F%8Ac%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E8%BF%99%E5%9B%9B%E7%A7%8D%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%BD%A0%E5%B9%B3%E6%97%B6%E9%83%BD%E7%94%A8%E8%BF%87%E5%93%AA%E4%BA%9B"><span class="toc-text"> 解释下向上转型和向下转型，以及 C++ 中的四种强制类型转换，为什么要有这四种强制类型转换，你平时都用过哪些</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E9%A2%98%E5%90%A7"><span class="toc-text"> 做题吧</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E4%B8%94%E9%AB%98%E6%95%88%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-text"> 写一个线程安全且高效的懒汉单例模式</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/24/mianshi/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-24</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/24/mianshi/">mianshi</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/24/day11/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-24</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/24/day11/">刷题day11</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/23/day10/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-23</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/23/day10/">刷题day10</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/22/day9/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-22</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/22/day9/">刷题day9</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
+              <a href="/2023/04/22/thread-pool5/" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">04-22</span>
+                
+              </div>
+              <a class="post-title" href="/2023/04/22/thread-pool5/">信号量以及Any类型的实现</a>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+    
+  </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://www.loliapi.com/acg/';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = '' || 'rgba(66, 185, 133, 0.8)';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
+  
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/flowerhai">flowerhai</a></p>
+
+          </div>
+        
+      
+        
+          
+            <!-- 不蒜子统计 -->
+            <!-- 不蒜子统计 -->
+<span id="busuanzi_container_site_pv">
+      <i class="fas fa-eye" aria-hidden="true"></i>Total visits：<span id="busuanzi_value_site_pv"></span> times
+</span>
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+      <i class="fas fa-users" aria-hidden="true"></i>Number of visitors：<span id="busuanzi_value_site_uv"></span> people
+</span>
+
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <!-- 背景彩带 -->
+    
+      <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<!-- <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.18.2/tocbot.css">
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -70,
+    // headingsOffset: -($(window).height() * 0.4 - 45),
+    headingsOffset: -($(window).height() * 0.4 - 70),
+    // positionFixedSelector: '.toc-main',
+    // positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    orderedList: true,
+    collapseDepth: 20,
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 150) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('side_toc')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  /* .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  } */
+</style>
+ 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 渲染远程json加载的图片标签(getPhotoOnline)里的内容 -->
+<script>
+  function loadPhotoOnlineJS() {
+    if ($(".post-detail").find(".getJsonPhoto-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/getPhotoOnline/index.js');
+  };
+  $(function () {
+    loadPhotoOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getPhotoJson == "undefined") {
+      loadPhotoOnlineJS();
+    }
+  })
+</script>
+
+<!-- 渲染远程json加载的talk标签(getTalkOnline)里的内容 -->
+<script>
+  function loadTalkOnlineJS() {
+    if ($(".post-detail").find(".getJsonTalk-api").length == 0) {
+      return;
+    } 
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/waterfall.js/1.0.2/waterfall.min.js'); // 瀑布流插件，https://raphamorim.io/waterfall.js/
+    loadScript('/js/getTalkOnline/index.js');
+  };
+  $(function () {
+    loadTalkOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getTalkJson == "undefined") {
+      loadTalkOnlineJS();
+    }
+  })
+</script>
+
+<!-- 渲染远程json加载的site-card标签(getSiteOnline)里的内容 -->
+<script>
+  function loadSiteOnlineJS() {
+    if ($(".post-detail").find(".getJsonSite-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/getSiteOnline/index.js');
+  };
+  $(function () {
+    loadSiteOnlineJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof getSiteJson == "undefined") {
+      loadSiteOnlineJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://unpkg.com/v-plugs-ayu/lib/ayu.css">
+  <script src="https://unpkg.com/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = 'copy';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "已复制",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://unpkg.com/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = 'github-dark';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', 'flowerhai/flowerhai.github.io')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+  
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+    <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+    <script src="/js/cursor/explosion.min.js"></script>
+  
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" data-pjax></script>
+
+
+<!-- 轮播图标签 -->
+<script>
+  var bambooSwiperTag = {};
+  function load_swiper() {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    loadCSS("https://unpkg.com/swiper@6/swiper-bundle.min.css")
+    loadScript("https://unpkg.com/swiper@6/swiper-bundle.min.js").then(() => {
+      pjax_swiper();
+    });
+  }
+
+  load_swiper();
+
+  function pjax_swiper() {
+    bambooSwiperTag.swiper = new Swiper('.post-swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      centeredSlides: true,
+      loop: true,
+      autoplay: true ? {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      } : false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on:{
+        init: function(){
+          swiperAnimateCache(this); //隐藏动画元素 
+          swiperAnimate(this); //初始化完成开始动画
+        }, 
+        slideChangeTransitionEnd: function(){ 
+          swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+          //this.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); 动画只展现一次，去除ani类名
+        } 
+      }
+    });
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    if (!document.querySelectorAll(".post-swiper-container")[0]) return;
+    if (typeof bambooSwiperTag.swiper === "undefined") {
+      load_swiper();
+    } else {
+      pjax_swiper();
+    }
+  });
+</script>
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>

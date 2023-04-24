@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://flowerhai.github.io/2023/04/24/mianshi/</loc>
+    
+    <lastmod>2023-04-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://flowerhai.github.io/2023/04/24/day11/</loc>
     
     <lastmod>2023-04-24</lastmod>
@@ -388,6 +397,13 @@
   
   <url>
     <loc>https://flowerhai.github.io/tags/%E9%80%97%E4%BD%A0%E7%8E%A9/</loc>
+    <lastmod>2023-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/tags/%E9%9D%A2%E8%AF%95/</loc>
     <lastmod>2023-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
