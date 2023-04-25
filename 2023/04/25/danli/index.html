@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>刷题day2 | 恍惚迷离</title>
+  <title>实现线程安全的懒汉单例模式 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        刷题day2
+        实现线程安全的懒汉单例模式
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-13 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-25 |
         </span>
       
 
@@ -562,20 +562,25 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h4 id="day2"><a class="markdownIt-Anchor" href="#day2">#</a> day2</h4>
-<h4 id="236-二叉树的最近公共祖先"><a class="markdownIt-Anchor" href="#236-二叉树的最近公共祖先">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    TreeNode* res;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">bool</span> l = <span class="built_in">dfs</span>(root-&gt;left, p, q);</span><br><span class="line">        <span class="type">bool</span> r = <span class="built_in">dfs</span>(root-&gt;right, p, q);</span><br><span class="line">        <span class="keyword">if</span> ((l &amp;&amp; r) || ((root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val) &amp;&amp; (l || r))) res = root;</span><br><span class="line">        <span class="keyword">return</span> l || r || (root-&gt;val == p-&gt;val || root-&gt;val == q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root, p, q);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>dfs 喽，把握住什么是最近公共祖先就行了！</p>
-<p>今天有点忏愧，有点摆了。</p>
-<p>早上寝室断电，大雨也不好充，晚上又看了好久小说，今天就这样吧，刷一道题。</p>
+        <h3 id="实现线程安全的懒汉单例模式并定义一个函数获取单例地址"><a class="markdownIt-Anchor" href="#实现线程安全的懒汉单例模式并定义一个函数获取单例地址">#</a> 实现线程安全的懒汉单例模式并定义一个函数获取单例地址</h3>
+<p>昨天面试居然没实现出来，痛定思痛，今天好好写一遍。</p>
+<p>创建这个单例类需要使用静态变量，利用了静态变量的一些性质，静态变量在整个代码运行周期内只会定义一次。</p>
+<p><strong>对于 static 静态局部变量的初始化，编译器会自动对它的初始化进行加锁和解锁控制，使静态局部变量的初始化成为线程安全的操作，不用担心多个线程都会初始化静态局部变量</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Single</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Single *<span class="title">get_single</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">static</span> Single single_only;</span><br><span class="line">        <span class="keyword">return</span> &amp;single_only;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">get_dizhi</span><span class="params">(Single *a)</span> </span>&#123;</span><br><span class="line">        cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">Single</span>() &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;create victory&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Single</span>(<span class="type">const</span> Single&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    Single&amp; <span class="keyword">operator</span> = (<span class="type">const</span> Single&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">create_thread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Single *ah = Single::<span class="built_in">get_single</span>();</span><br><span class="line">    ah-&gt;<span class="built_in">get_dizhi</span>(ah);</span><br><span class="line">    <span class="built_in">sleep</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t1</span><span class="params">(create_thread)</span></span>;</span><br><span class="line">    t1.<span class="built_in">join</span>();</span><br><span class="line">    <span class="function">std::thread <span class="title">t2</span><span class="params">(create_thread)</span></span>;</span><br><span class="line">    t2.<span class="built_in">join</span>();</span><br><span class="line">    <span class="function">std::thread <span class="title">t3</span><span class="params">(create_thread)</span></span>;</span><br><span class="line">    t3.<span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码运行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create victory</span><br><span class="line">0x560ecd8d9152</span><br><span class="line">0x560ecd8d9152</span><br><span class="line">0x560ecd8d9152</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/lc/" class="">
-              lc
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="">
+              设计模式
+            </a>
+          
+            <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="">
+              线程安全的懒汉单例模式
             </a>
           
         </div>
@@ -589,7 +594,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/13/day2/" target="_blank" title="刷题day2">https://flowerhai.github.io/2023/04/13/day2/</a>
+    <a href="/2023/04/25/danli/" target="_blank" title="实现线程安全的懒汉单例模式">https://flowerhai.github.io/2023/04/25/danli/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -607,24 +612,6 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/13/ncuxyw/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">NCU校园网自动登录</div>
-      </div>
-      
-      <!-- <div class="content">
-        123456789101112131415Dim username,password,IEusername = &quo
-      </div> -->
-    </a>
-  </div>
-
 
 
   
@@ -633,14 +620,17 @@
       background-position: center center;">
       <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/13/problem/" class="post-nav-link">
+    <a href="/2023/04/24/mianshi/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">调试中的小bug</div>
+        <div class="title-text">某厂面试(被薄纱)</div>
       </div>
       <!-- <div class="content">
-        # 在自定义 Widget 的时候出现如下错误 field w has incomplete type
-12345678
+        怎么这样捏，太紧张了，很多东西都没想起来
+自我介绍开场
+# C++
+# 智能指针熟悉吗，介绍下智能指针
+智能指针（Sma
       </div> -->
     </a>
   </div>
@@ -772,7 +762,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#day2"><span class="toc-text"> day2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="toc-text"> 236. 二叉树的最近公共祖先</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%B9%B6%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96%E5%8D%95%E4%BE%8B%E5%9C%B0%E5%9D%80"><span class="toc-text"> 实现线程安全的懒汉单例模式并定义一个函数获取单例地址</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
