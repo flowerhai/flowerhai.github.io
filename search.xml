@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>二维vector初始化</title>
+      <link href="/2023/04/27/some-tips/ve/"/>
+      <url>/2023/04/27/some-tips/ve/</url>
+      
+        <content type="html"><![CDATA[<p>二维 vector 初始化</p><p>今天写题的时候遇到一种情况，二维 vector 初始化。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">res</span>(l, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(r, <span class="number">0</span>));</span><br></pre></td></tr></table></figure><p>在已知维度的前提下，这种初始化方式就挺不错。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 小tips </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>生产者消费者练习题</title>
       <link href="/2023/04/27/some-tips/con-pro/"/>
       <url>/2023/04/27/some-tips/con-pro/</url>
