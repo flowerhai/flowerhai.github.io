@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>树状数组 | 恍惚迷离</title>
+  <title>并查集 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -531,14 +531,14 @@
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        树状数组
+        并查集
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-19 |
+          <i class="fas fa-calendar"></i> Published in：2023-04-17 |
         </span>
       
 
@@ -562,40 +562,70 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <ol start="241">
-<li>楼兰图腾</li>
+        <ol start="1250">
+<li><strong>格子游戏</strong></li>
 </ol>
-<p>在完成了分配任务之后，西部 314314 来到了楼兰古城的西部。</p>
-<p>相传很久以前这片土地上 (比楼兰古城还早) 生活着两个部落，一个部落崇拜尖刀 ( <code>V</code> )，一个部落崇拜铁锹 ( <code>∧</code> )，他们分别用  <code>V</code>  和  <code>∧</code>  的形状来代表各自部落的图腾。</p>
-<p>西部 314314 在楼兰古城的下面发现了一幅巨大的壁画，壁画上被标记出了 n  个点，经测量发现这 n 个点的水平位置和竖直位置是两两不同的。</p>
-<p>西部 314314 认为这幅壁画所包含的信息与这 n  个点的相对位置有关，因此不妨设坐标分别为 (1,y1),(2,y2),…,(n,yn)(1, 1),(2, 2),…,( ,  )，其中 y1∼yn 1∼   是 11 到 n  的一个排列。</p>
-<p>西部 314314 打算研究这幅壁画中包含着多少个图腾。</p>
-<p>如果三个点 (i,yi),(j,yj),(k,yk)( ,  ),( ,  ),( ,  ) 满足 1≤i&lt;j&lt;k≤n1≤ &lt; &lt; ≤  且 yi&gt;yj,yj<yk  >  ,  &lt;  ，则称这三个点构成  <code>V</code>  图腾；</p>
-<p>如果三个点 (i,yi),(j,yj),(k,yk)( ,  ),( ,  ),( ,  ) 满足 1≤i&lt;j&lt;k≤n1≤ &lt; &lt; ≤  且 yi&lt;yj,yj&gt;yk  &lt;  ,  &gt;  ，则称这三个点构成  <code>∧</code>  图腾；</p>
-<p>西部 314314 想知道，这 n  个点中两个部落图腾的数目。</p>
-<p>因此，你需要编写一个程序来求出  <code>V</code>  的个数和  <code>∧</code>  的个数。</p>
+<p>Alice 和 Bob 玩了一个古老的游戏：首先画一个 n×n�×� 的点阵（下图 n=3�=3 ）。</p>
+<p>接着，他们两个轮流在相邻的点之间画上红边和蓝边：</p>
+<p><img src="https://cdn.acwing.com/media/article/image/2019/12/11/19_9edbcf521b-1.png" class="lazyload placeholder" data-srcset="https://cdn.acwing.com/media/article/image/2019/12/11/19_9edbcf521b-1.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="1.png"></p>
+<p>直到围成一个封闭的圈（面积不必为 11）为止，“封圈” 的那个人就是赢家。因为棋盘实在是太大了，他们的游戏实在是太长了！</p>
+<p>他们甚至在游戏中都不知道谁赢得了游戏。</p>
+<p>于是请你写一个程序，帮助他们计算他们是否结束了游戏？</p>
 <h4 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式">#</a> 输入格式</h4>
-<p>第一行一个数 n 。</p>
-<p>第二行是 n  个数，分别代表 y1，y2,…,yn 1， 2,…,  。</p>
+<p>输入数据第一行为两个整数 n 和 m。n 表示点阵的大小，m 表示一共画了 m 条线。</p>
+<p>以后 m 行，每行首先有两个数字 (x,y)，代表了画线的起点坐标，接着用空格隔开一个字符，假如字符是 D，则是向下连一条边，如果是 R 就是向右连一条边。</p>
+<p>输入数据不会有重复的边且保证正确。</p>
 <h4 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式">#</a> 输出格式</h4>
-<p>两个数，中间用空格隔开，依次为  <code>V</code>  的个数和  <code>∧</code>  的个数。</p>
+<p>输出一行：在第几步的时候结束。</p>
+<p>假如 m 步之后也没有结束，则输出一行 “draw”。</p>
 <h4 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围">#</a> 数据范围</h4>
-<p>对于所有数据，n≤200000 ≤200000，且输出答案不会超过 int64   64。<br>
-y1∼yn 1∼   是 11 到 n  的一个排列。</p>
+<p>1≤n≤2001≤≤200，<br>
+1≤m≤240001≤≤24000</p>
 <h4 id="输入样例"><a class="markdownIt-Anchor" href="#输入样例">#</a> 输入样例：</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1 5 3 2 4</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3 5</span><br><span class="line">1 1 D</span><br><span class="line">1 1 R</span><br><span class="line">1 2 D</span><br><span class="line">2 1 R</span><br><span class="line">2 2 D</span><br></pre></td></tr></table></figure>
 <h4 id="输出样例"><a class="markdownIt-Anchor" href="#输出样例">#</a> 输出样例：</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 4</span><br></pre></td></tr></table></figure>
-<p>此题用树状数组，对于每一个点找出其左边比该点值大的，右边亦如此，两个数相乘，最后得到的数就是该点中 V 的图腾个数，n 正好相反。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">200010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> tr[N];</span><br><span class="line"><span class="type">int</span> Greater[N], lower[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = x; i &lt;= n; i += <span class="built_in">lowbit</span>(i)) tr[i] += c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = x; i; i -= <span class="built_in">lowbit</span>(i)) res += tr[i];</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) &#123;</span><br><span class="line">        <span class="type">int</span> y = a[i];</span><br><span class="line">        Greater[i] = <span class="built_in">sum</span>(n) - <span class="built_in">sum</span>(y);</span><br><span class="line">        lower[i] = <span class="built_in">sum</span>(y - <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">add</span>(y, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(tr, <span class="number">0</span>, <span class="keyword">sizeof</span> tr);</span><br><span class="line">    LL res1 = <span class="number">0</span>, res2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = n; i; i -- ) &#123;</span><br><span class="line">        <span class="type">int</span> y = a[i];</span><br><span class="line">        res1 += Greater[i] * (LL)(<span class="built_in">sum</span>(n) - <span class="built_in">sum</span>(y));</span><br><span class="line">        res2 += lower[i] * (LL)(<span class="built_in">sum</span>(y - <span class="number">1</span>));</span><br><span class="line">        <span class="built_in">add</span>(y, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>, res1, res2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<p>这个题目的思路是这样的：</p>
+<p>就是用并查集的思路去做，这个题让我们判断是否成环，我们可以思考一下，怎么才能出现环呢？</p>
+<p>那就是当要添加进去的两个点，都在一个集合里！</p>
+<p>这样就会出现环，因此我们只需要将每次添加进去的点存在并查集里，然后对每个即将添加进去的两个点判断一下是否在一个并查集里即可，如果在成环且返回，如果不在，将两个点添加到一个并查集即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">40010</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span>  <span class="title">get</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*n + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a[x] != x) a[x] = <span class="built_in">find</span>(a[x]);</span><br><span class="line">    <span class="keyword">return</span> a[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n * n; i ++) a[i] = i;<span class="comment">//初始化并查集</span></span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i ++ ) &#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        <span class="type">char</span> c;</span><br><span class="line">        cin&gt;&gt;x&gt;&gt;y&gt;&gt;c;</span><br><span class="line">        x --, y--;</span><br><span class="line">        <span class="type">int</span> b = <span class="built_in">get</span>(x, y);</span><br><span class="line">        <span class="type">int</span> d;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">&#x27;D&#x27;</span>) d = <span class="built_in">get</span>(x+<span class="number">1</span>, y);</span><br><span class="line">        <span class="keyword">else</span> d = <span class="built_in">get</span>(x,y+<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> pb = <span class="built_in">find</span>(b);</span><br><span class="line">        <span class="type">int</span> pd = <span class="built_in">find</span>(d);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (pb == pd) &#123;</span><br><span class="line">            res = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        a[pb] = pd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!res) cout&lt;&lt;<span class="string">&quot;draw&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">else</span> cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="1252">
+<li>搭配购买</li>
+</ol>
+<p>Joe 觉得云朵很美，决定去山上的商店买一些云朵。</p>
+<p>商店里有 n 朵云，云朵被编号为 1,2,…,n1,2,…,，并且每朵云都有一个价值。</p>
+<p>但是商店老板跟他说，一些云朵要搭配来买才好，所以买一朵云则与这朵云有搭配的云都要买。</p>
+<p>但是 Joe 的钱有限，所以他希望买的价值越多越好。</p>
+<h4 id="输入格式-2"><a class="markdownIt-Anchor" href="#输入格式-2">#</a> 输入格式</h4>
+<p>第 11 行包含三个整数 n，m，w，表示有 n 朵云，m 个搭配，Joe 有 w 的钱。</p>
+<p>第 2∼n+12∼+1 行，每行两个整数 ci，di 表示 i 朵云的价钱和价值。</p>
+<p>第 n+2∼n+1+m +2∼ +1+  行，每行两个整数 ui，vi  ，  ，表示买 ui   就必须买 vi  ，同理，如果买 vi   就必须买 ui  。</p>
+<h4 id="输出格式-2"><a class="markdownIt-Anchor" href="#输出格式-2">#</a> 输出格式</h4>
+<p>一行，表示可以获得的最大价值。</p>
+<h4 id="数据范围-2"><a class="markdownIt-Anchor" href="#数据范围-2">#</a> 数据范围</h4>
+<p>1≤n≤100001≤ ≤10000,<br>
+0≤m≤50000≤ ≤5000,<br>
+1≤w≤100001≤ ≤10000,<br>
+1≤ci≤50001≤  ≤5000,<br>
+1≤di≤1001≤  ≤100,<br>
+1≤ui,vi≤n1≤  ,  ≤</p>
+<h4 id="输入样例-2"><a class="markdownIt-Anchor" href="#输入样例-2">#</a> 输入样例：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">5 3 10</span><br><span class="line">3 10</span><br><span class="line">3 10</span><br><span class="line">3 10</span><br><span class="line">5 100</span><br><span class="line">10 1</span><br><span class="line">1 3</span><br><span class="line">3 2</span><br><span class="line">4 2</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例-2"><a class="markdownIt-Anchor" href="#输出样例-2">#</a> 输出样例：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>这个题啊，思路也不难。</p>
+<p>首先我们先读入数据，然后看看新加入的两朵云是否在一个并查集里面，如果在的话，暂且不管，如果不在的话，添加以下，价格价值也需要更新。</p>
+<p>随后遍历所有的云，仅当 p [i]==i 时，选该云，化为一个 01 背包问题。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, q;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">10010</span>;</span><br><span class="line"><span class="type">int</span> w[N], v[N], p[N], f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p[x] != x) p[x] = <span class="built_in">find</span>(p[x]);</span><br><span class="line">    <span class="keyword">return</span> p[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m&gt;&gt;q;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">        cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">        p[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (m --) &#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">        <span class="type">int</span> pa = <span class="built_in">find</span>(x), pb = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span>(pa != pb) &#123;</span><br><span class="line">            v[pb] += v[pa];</span><br><span class="line">            w[pb] += w[pa];</span><br><span class="line">            p[pa] = pb;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p[i] == i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = q; j &gt;= v[i]; j --) &#123;</span><br><span class="line">                f[j] = <span class="built_in">max</span>(f[j], f[j-v[i]] + w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[q]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" class="">
-              树状数组
+            <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="">
+              并查集
             </a>
           
         </div>
@@ -609,7 +639,7 @@ y1∼yn 1∼   是 11 到 n  的一个排列。</p>
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/19/acw1/" target="_blank" title="树状数组">https://flowerhai.github.io/2023/04/19/acw1/</a>
+    <a href="/2023/04/17/shuati/acw/" target="_blank" title="并查集">https://flowerhai.github.io/2023/04/17/shuati/acw/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -631,18 +661,19 @@ y1∼yn 1∼   是 11 到 n  的一个排列。</p>
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
     </div>
-    <a href="/2023/04/19/thread-pool3/" class="post-nav-link">
+    <a href="/2023/04/17/mysql-mysql-poo2/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">关于线程池的一些设计以及问题排查</div>
+        <div class="title-text">MySQL数据库连接池实现</div>
       </div>
       
       <!-- <div class="content">
-        # 关于线程池的一些设计以及问题排查
-关于任务队列，为了实现资源的高效管理，选用 shared_ptr 智能指针
-使用 
+        # 数据库连接池
+# 数据库连接池：
+# 小 tips：
+关于外部获取连接池中的空闲连接，在此可以使用智能指针来完成内存
       </div> -->
     </a>
   </div>
@@ -653,17 +684,16 @@ y1∼yn 1∼   是 11 到 n  的一个排列。</p>
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/19/day7/" class="post-nav-link">
+    <a href="/2023/04/17/day5/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">刷题day7</div>
+        <div class="title-text">刷题day5</div>
       </div>
       <!-- <div class="content">
-        # 15. 三数之和
-难度中等 5885 收藏分享切换为英文接收动态反馈
-给你一个整数数组  nums  ，判断是否存在
+        # 124. 二叉树中的最大路径和
+二叉树中的 路径 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。同一个节
       </div> -->
     </a>
   </div>
@@ -795,7 +825,7 @@ y1∼yn 1∼   是 11 到 n  的一个排列。</p>
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输出样例：</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输出样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-2"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-2"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4-2"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B-2"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B-2"><span class="toc-text"> 输出样例：</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -849,7 +879,7 @@ y1∼yn 1∼   是 11 到 n  的一个排列。</p>
             
 
             <div class="post-img-box">
-              <a href="/2023/04/27/day13/" class="post-img " style="background-size: cover; 
+              <a href="/2023/04/27/shuati/day13/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
@@ -860,7 +890,7 @@ y1∼yn 1∼   是 11 到 n  的一个排列。</p>
                   <span class="post-date">04-27</span>
                 
               </div>
-              <a class="post-title" href="/2023/04/27/day13/">刷题day13</a>
+              <a class="post-title" href="/2023/04/27/shuati/day13/">刷题day13</a>
             </div>
           </div>
         
