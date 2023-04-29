@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://flowerhai.github.io/2023/04/29/muduo/muduo1/</loc>
+    
+    <lastmod>2023-04-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/2023/04/29/smart-pointers/ptr/</loc>
+    
+    <lastmod>2023-04-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://flowerhai.github.io/2023/04/29/shuati/day14/</loc>
     
     <lastmod>2023-04-29</lastmod>
@@ -486,6 +504,20 @@
   
   <url>
     <loc>https://flowerhai.github.io/tags/%E5%B0%8Ftips/</loc>
+    <lastmod>2023-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2023-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/tags/muduo%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2023-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
