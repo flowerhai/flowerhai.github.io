@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>刷题day7 | 恍惚迷离</title>
+  <title>C++基础 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        刷题day7
+        C++基础
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-19 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-04 |
         </span>
       
 
@@ -562,55 +562,66 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h4 id="15-三数之和"><a class="markdownIt-Anchor" href="#15-三数之和">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">15. 三数之和</a></h4>
-<p>难度中等 5885 收藏分享切换为英文接收动态反馈</p>
-<p>给你一个整数数组  <code>nums</code>  ，判断是否存在三元组  <code>[nums[i], nums[j], nums[k]]</code>  满足  <code>i != j</code> 、 <code>i != k</code>  且  <code>j != k</code>  ，同时还满足  <code>nums[i] + nums[j] + nums[k] == 0</code>  。请</p>
-<p>你返回所有和为  <code>0</code>  且不重复的三元组。</p>
-<p>** 注意：** 答案中不可以包含重复的三元组。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-1,0,1,2,-1,-4]</span><br><span class="line">输出：[[-1,-1,2],[-1,0,1]]</span><br><span class="line">解释：</span><br><span class="line">nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。</span><br><span class="line">nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。</span><br><span class="line">nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。</span><br><span class="line">不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。</span><br><span class="line">注意，输出的顺序和三元组的顺序并不重要。</span><br></pre></td></tr></table></figure>
-<p>三树之和，经典老题了。</p>
-<p>先将数组排序，随后用双指针，从头到尾，slow 的话从 i+1 开始，fast 从末尾开始。</p>
-<p>如果 nums [i] + nums [slow] + nums [fast] &lt; 0</p>
-<p>将 slow 右移</p>
-<p>如果上面那个值大于 0</p>
-<p>将 fast 左移</p>
-<p>每次移动避开相同的值</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">threeSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>()<span class="number">-2</span>; i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span> ) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i<span class="number">-1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="type">int</span> slow = i + <span class="number">1</span>, fast = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span> (slow &lt; fast) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((nums[slow]+nums[fast]+nums[i]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    slow ++;</span><br><span class="line">                    <span class="comment">//while (nums[slow] == nums[slow-1] &amp;&amp; slow &lt; fast) slow ++;</span></span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> ((nums[slow]+nums[fast]+nums[i]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    fast --;</span><br><span class="line">                    <span class="comment">//while (nums[fast] == nums[fast+1] &amp;&amp; slow &lt; fast) fast --;</span></span><br><span class="line">                    </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(&#123;nums[i], nums[slow], nums[fast]&#125;);</span><br><span class="line">                    slow ++;</span><br><span class="line">                    <span class="keyword">while</span> (nums[slow] == nums[slow<span class="number">-1</span>] &amp;&amp; slow &lt; fast) slow ++;</span><br><span class="line">                    fast --;</span><br><span class="line">                    <span class="keyword">while</span> (nums[fast] == nums[fast+<span class="number">1</span>] &amp;&amp; slow &lt; fast) fast --;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//res.erase(unique(res.begin(), res.end()), res.end());</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="206-反转链表"><a class="markdownIt-Anchor" href="#206-反转链表">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/">206. 反转链表</a></h4>
-<p>难度简单 3105 收藏分享切换为英文接收动态反馈</p>
-<p>给你单链表的头节点  <code>head</code>  ，请你反转链表，并返回反转后的链表。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg" class="lazyload placeholder" data-srcset="https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5]</span><br><span class="line">输出：[5,4,3,2,1]</span><br></pre></td></tr></table></figure>
-<p>此题 easy 题，用一个头节点即可轻松完成翻转</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        ListNode* q = <span class="literal">nullptr</span>;</span><br><span class="line">        ListNode* h = head;</span><br><span class="line">        <span class="keyword">while</span> (h) &#123;</span><br><span class="line">            ListNode* ne = h-&gt;next;</span><br><span class="line">            h-&gt;next = q;</span><br><span class="line">            q = h;</span><br><span class="line">            h = ne;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> q;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="538-把二叉搜索树转换为累加树"><a class="markdownIt-Anchor" href="#538-把二叉搜索树转换为累加树">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-bst-to-greater-tree/">538. 把二叉搜索树转换为累加树</a></h4>
-<p>难度中等 880 收藏分享切换为英文接收动态反馈</p>
-<p>给出二叉 <strong>搜索</strong> 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点  <code>node</code>  的新值等于原树中大于或等于  <code>node.val</code>  的值之和。</p>
-<p>提醒一下，二叉搜索树满足下列约束条件：</p>
-<ul>
-<li>节点的左子树仅包含键 <strong>小于</strong> 节点键的节点。</li>
-<li>节点的右子树仅包含键 <strong>大于</strong> 节点键的节点。</li>
-<li>左右子树也必须是二叉搜索树。</li>
-</ul>
-<p>** 注意：** 本题和 1038: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/">https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/</a> 相同</p>
-<p><strong>示例 1：</strong></p>
-<p><strong><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/05/03/tree.png" class="lazyload placeholder" data-srcset="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/05/03/tree.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]</span><br><span class="line">输出：[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]</span><br></pre></td></tr></table></figure>
-<p>反向中序遍历</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">convertBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="built_in">convertBST</span>(root-&gt;right);</span><br><span class="line">            sum += root-&gt;val;</span><br><span class="line">            root-&gt;val = sum;</span><br><span class="line">            <span class="built_in">convertBST</span>(root-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ol start="241">
-<li></li>
+        <h4 id="内联函数和普通函数的区别"><a class="markdownIt-Anchor" href="#内联函数和普通函数的区别">#</a> 内联函数和普通函数的区别</h4>
+<p>省去函数调用开销</p>
+<h4 id="c为什么支持函数重载c语言不支持"><a class="markdownIt-Anchor" href="#c为什么支持函数重载c语言不支持">#</a> C++ 为什么支持函数重载，C 语言不支持</h4>
+<p>C++ 产生函数符号的时候，是由函数名 + 参数列表类型组成</p>
+<p>C 代码是由函数名来决定的</p>
+<h4 id="函数重载需要注意什么"><a class="markdownIt-Anchor" href="#函数重载需要注意什么">#</a> 函数重载需要注意什么</h4>
+<h4 id="c和c语言代码之间如何调用"><a class="markdownIt-Anchor" href="#c和c语言代码之间如何调用">#</a> C++ 和 C 语言代码之间如何调用</h4>
+<p><strong>extern &quot;C&quot; 的主要作用就是为了能够正确实现 C<ins> 代码调用其他 C 语言代码。加上 extern &quot;C&quot; 后，会指示编译器这部分代码按 C 语言（而不是 C</ins>）的方式进行编译。由于 C++ 支持函数重载，因此编译器编译函数的过程中会将函数的参数类型也加到编译后的代码中，而不仅仅是函数名；而 C 语言并不支持函数重载，因此编译 C 语言代码的函数时不会带上函数的参数类型，一般只包括函数名。</strong></p>
+<p>这个功能十分有用处，因为在 C<ins> 出现以前，很多代码都是 C 语言写的，而且很底层的库也是 C 语言写的，** 为了更好的支持原来的 C 代码和已经写好的 C 语言库，需要在 C</ins> 中尽可能的支持 C，而 extern &quot;C&quot; 就是其中的一个策略。**</p>
+<p><strong>这个功能主要用在下面的情况：</strong></p>
+<ol>
+<li><strong>C++ 代码调用 C 语言代码</strong></li>
+<li><strong>在 C++ 的头文件中使用</strong></li>
+<li><strong>在多个人协同开发时，可能有的人比较擅长 C 语言，而有的人擅长 C++，这样的情况下也会有用到</strong></li>
 </ol>
+<p>看一个简单的例子：</p>
+<p>有 moduleA、moduleB 两个模块，B 调用 A 中的代码，其中 A 是用 C 语言实现的，而 B 是利用 C++ 实现的，下面给出一种实现方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//moduleA头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __MODULE_A_H <span class="comment">//对于模块A来说，这个宏是为了防止头文件的重复引用</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __MODULE_A_H</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fun</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//moduleA实现文件moduleA.C //模块A的实现部分并没有改变</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;moduleA&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fun</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//moduleB头文件</span></span><br><span class="line"><span class="meta">#idndef __MODULE_B_H <span class="comment">//很明显这一部分也是为了防止重复引用</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __MODULE_B_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus <span class="comment">//而这一部分就是告诉编译器，如果定义了__cplusplus(即如果是cpp文件， extern &quot;C&quot;&#123; //因为cpp文件默认定义了该宏),则采用C语言方式进行编译</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;moduleA.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">… <span class="comment">//其他代码</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//moduleB实现文件 moduleB.cpp //B模块的实现也没有改变，只是头文件的设计变化了</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;moduleB.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">　　cout&lt;&lt;<span class="built_in">fun</span>(<span class="number">2</span>,<span class="number">3</span>)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>补充介绍：</p>
+<p>由于 C、C<ins> 编译器对函数的编译处理是不完全相同的，尤其对于 C</ins> 来说，支持函数的重载，编译后的函数一般是以函数名和形参类型来命名的。</p>
+<p>例如函数<strong> void fun (int, int)，编译后的可能是_fun_int_int (不同编译器可能不同，但都采用了类似的机制，用函数名和参数类型来命名编译后的函数名)；而 C 语言没有类似的重载机制，一般是利用函数名来指明编译后的函数名的，对应上面的函数可能会是_fun 这样的名字。</strong></p>
+<p>看下面的一个面试题：为什么标准头文件都有类似的结构？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __INCvxWorksh <span class="comment">/*防止该头文件被重复引用*/</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __INCvxWorksh</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus             <span class="comment">//告诉编译器，这部分代码按C语言的格式进行编译，而不是C++的</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"> </span><br><span class="line"><span class="comment">/*…*/</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/*end of __INCvxWorksh*/</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>extern &quot;C&quot; 包含双重含义</strong>，从字面上可以知道，首先，被它修饰的目标是 &quot;extern&quot; 的；其次，被它修饰的目标代码是 &quot;C&quot; 的。</p>
+<ul>
+<li>被 extern &quot;C&quot; 限定的函数或变量是 extern 类型的</li>
+</ul>
+<p>extern 是 C/C++ 语言中表明函数和全局变量的作用范围的关键字，该关键字告诉编译器，其申明的函数和变量可以在本模块或其他模块中使用。</p>
+<p><strong>记住</strong>，语句：<strong>extern int a; 仅仅是一个变量的声明，其并不是在定义变量 a，也并未为 a 分配空间。变量 a 在所有模块中作为一种全局变量只能被定义一次，否则会出错。</strong></p>
+<p>通常来说 **，在模块的头文件中对本模块提供给其他模块引用的函数和全局变量以关键字 extern 生命。** 例如，如果模块 B 要引用模块 A 中定义的全局变量和函数时只需包含模块 A 的头文件即可。这样模块 B 中调用模块 A 中的函数时，在编译阶段，模块 B 虽然找不到该函数，但并不会报错；它会在链接阶段从模块 A 编译生成的目标代码中找到该函数。</p>
+<p><strong>extern 对应的关键字是 static，static 表明变量或者函数只能在本模块中使用，因此，被 static 修饰的变量或者函数不可能被 extern C 修饰。</strong></p>
+<ul>
+<li><strong>被 extern &quot;C&quot; 修饰的变量和函数是按照 C 语言方式进行编译和链接的：这点很重要！！！！</strong></li>
+</ul>
+<p>上面也提到过，由于 C<ins> 支持函数重载，而 C 语言不支持，因此函数被 C</ins> 编译后在<strong>符号库</strong>中的名字是与 C 语言不同的；C++ 编译后的函数需要加上参数的类型才能唯一标定重载后的函数，而加上 extern &quot;C&quot; 后，是为了向编译器指明这段代码按照 C 语言的方式进行编译</p>
+<p>未加 extern &quot;C&quot; 声明时的链接方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//模块A头文件 moduleA.h</span><br><span class="line">#idndef _MODULE_A_H</span><br><span class="line">#define _MODULE_A_H</span><br><span class="line"> </span><br><span class="line">int foo(int x, int y);</span><br><span class="line">#endif　</span><br></pre></td></tr></table></figure>
+<p>在模块 B 中调用该函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//模块B实现文件 moduleB.cpp</span><br><span class="line">#include&quot;moduleA.h&quot;</span><br><span class="line">foo(2,3);　</span><br></pre></td></tr></table></figure>
+<p>实际上，<strong>在链接阶段，链接器会从模块 A 生成的目标文件 moduleA.obj 中找_foo_int_int 这样的符号，显然这是不可能找到的，因为 foo () 函数被编译成了_foo 的符号，因此会出现链接错误。</strong></p>
+<p><strong>extern &quot;C&quot; 的使用要点总结</strong></p>
+<p>1，可以是如下的单一语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern &quot;C&quot; double sqrt(double);</span><br></pre></td></tr></table></figure>
+<p>2，可以是复合语句，相当于复合语句中的声明都加了 extern “C”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extern &quot;C&quot;</span><br><span class="line">&#123;</span><br><span class="line">      double sqrt(double);</span><br><span class="line">      int min(int, int);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3，可以包含头文件，相当于头文件中的声明都加了 extern “C”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">extern &quot;C&quot;</span><br><span class="line">&#123;</span><br><span class="line">    ＃include &lt;cmath&gt;</span><br><span class="line">&#125;　</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不可以将 extern “C” 添加在函数内部</li>
+<li>如果函数有多个声明，可以都加 extern “C”, 也可以只出现在第一次声明中，后面的声明会接受第一个链接指示符的规则。</li>
+<li>除 extern “C”, 还有 extern “FORTRAN” 等。</li>
+</ul>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/lc/" class="">
-              lc
+            <a href="/tags/C/" class="">
+              C++
             </a>
           
         </div>
@@ -624,7 +635,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/19/shuati/day7/" target="_blank" title="刷题day7">https://flowerhai.github.io/2023/04/19/shuati/day7/</a>
+    <a href="/2023/05/04/c/" target="_blank" title="C++基础">https://flowerhai.github.io/2023/05/04/c/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -642,44 +653,23 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/19/shuati/acw1/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">树状数组</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-楼兰图腾
-
-在完成了分配任务之后，西部 314314 来到了楼兰古城的西部。
-相传很久以前这片土地上 (比楼兰古城还早
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/18/shuati/day6/" class="post-nav-link">
+    <a href="/2023/05/04/shuati/day18/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">刷题day6</div>
+        <div class="title-text">day18</div>
       </div>
       <!-- <div class="content">
-        # 75. 颜色分类
-给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的
+        # 剑指 Offer 38. 字符串的排列
+输入一个字符串，打印出该字符串中字符的所有排列。
+你可以以任意顺序返回这个字
       </div> -->
     </a>
   </div>
@@ -811,7 +801,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text"> 15. 三数之和</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text"> 206. 反转链表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#538-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91"><span class="toc-text"> 538. 把二叉搜索树转换为累加树</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%E5%92%8C%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text"> 内联函数和普通函数的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%AF%E6%8C%81%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BDc%E8%AF%AD%E8%A8%80%E4%B8%8D%E6%94%AF%E6%8C%81"><span class="toc-text"> C++ 为什么支持函数重载，C 语言不支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88"><span class="toc-text"> 函数重载需要注意什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c%E5%92%8Cc%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E4%B9%8B%E9%97%B4%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8"><span class="toc-text"> C++ 和 C 语言代码之间如何调用</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
