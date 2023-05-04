@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>实现线程安全的懒汉单例模式 | 恍惚迷离</title>
+  <title>day18 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        实现线程安全的懒汉单例模式
+        day18
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-25 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-04 |
         </span>
       
 
@@ -562,25 +562,50 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="实现线程安全的懒汉单例模式并定义一个函数获取单例地址"><a class="markdownIt-Anchor" href="#实现线程安全的懒汉单例模式并定义一个函数获取单例地址">#</a> 实现线程安全的懒汉单例模式并定义一个函数获取单例地址</h3>
-<p>昨天面试居然没实现出来，痛定思痛，今天好好写一遍。</p>
-<p>创建这个单例类需要使用静态变量，利用了静态变量的一些性质，静态变量在整个代码运行周期内只会定义一次。</p>
-<p><strong>对于 static 静态局部变量的初始化，编译器会自动对它的初始化进行加锁和解锁控制，使静态局部变量的初始化成为线程安全的操作，不用担心多个线程都会初始化静态局部变量</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Single</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Single *<span class="title">get_single</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">static</span> Single single_only;</span><br><span class="line">        <span class="keyword">return</span> &amp;single_only;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">get_dizhi</span><span class="params">(Single *a)</span> </span>&#123;</span><br><span class="line">        cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">Single</span>() &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;create victory&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Single</span>(<span class="type">const</span> Single&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    Single&amp; <span class="keyword">operator</span> = (<span class="type">const</span> Single&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">create_thread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Single *ah = Single::<span class="built_in">get_single</span>();</span><br><span class="line">    ah-&gt;<span class="built_in">get_dizhi</span>(ah);</span><br><span class="line">    <span class="built_in">sleep</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t1</span><span class="params">(create_thread)</span></span>;</span><br><span class="line">    t1.<span class="built_in">join</span>();</span><br><span class="line">    <span class="function">std::thread <span class="title">t2</span><span class="params">(create_thread)</span></span>;</span><br><span class="line">    t2.<span class="built_in">join</span>();</span><br><span class="line">    <span class="function">std::thread <span class="title">t3</span><span class="params">(create_thread)</span></span>;</span><br><span class="line">    t3.<span class="built_in">join</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码运行结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create victory</span><br><span class="line">0x560ecd8d9152</span><br><span class="line">0x560ecd8d9152</span><br><span class="line">0x560ecd8d9152</span><br></pre></td></tr></table></figure>
+        <h4 id="剑指-offer-38-字符串的排列"><a class="markdownIt-Anchor" href="#剑指-offer-38-字符串的排列">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/zi-fu-chuan-de-pai-lie-lcof/">剑指 Offer 38. 字符串的排列</a></h4>
+<p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
+<p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abc&quot;</span><br><span class="line">输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]</span><br></pre></td></tr></table></figure>
+<p>开个数组记录一下不重复，开一个哈希表避免结果里有重复元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;string&gt; res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; jud;</span><br><span class="line">    unordered_map &lt;string, <span class="type">int</span>&gt; m;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(string s,  <span class="type">int</span> d, <span class="type">int</span> n, string r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d == n &amp;&amp; m.<span class="built_in">count</span>(r) == <span class="number">0</span>) &#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(r);</span><br><span class="line">            m[r] == <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (jud[i]) &#123;</span><br><span class="line">                r.<span class="built_in">push_back</span>(s[i]);</span><br><span class="line">                jud[i] = <span class="number">0</span>;</span><br><span class="line">                <span class="built_in">dfs</span>(s, d + <span class="number">1</span>, n, r);</span><br><span class="line">                r.<span class="built_in">pop_back</span>();</span><br><span class="line">                jud[i] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">permutation</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        jud.<span class="built_in">resize</span>(<span class="number">8</span>,<span class="number">1</span>);</span><br><span class="line">        string r;</span><br><span class="line">        <span class="built_in">dfs</span>(s, <span class="number">0</span>, s.<span class="built_in">size</span>(), r);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="剑指-offer-43-1~n-整数中-1-出现的次数"><a class="markdownIt-Anchor" href="#剑指-offer-43-1~n-整数中-1-出现的次数">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/">剑指 Offer 43. 1～n 整数中 1 出现的次数</a></h4>
+<p>输入一个整数  <code>n</code>  ，求 1～n 这 n 个整数的十进制表示中 1 出现的次数。</p>
+<p>例如，输入 12，1～12 这些整数中包含 1 的数字有 1、10、11 和 12，1 一共出现了 5 次。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 12</span><br><span class="line">输出：5</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> mulk = <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; n &gt;= mulk; ++k) &#123;</span><br><span class="line">            ans += (n / (mulk * <span class="number">10</span>)) * mulk + <span class="built_in">min</span>(<span class="built_in">max</span>(n % (mulk * <span class="number">10</span>) - mulk + <span class="number">1</span>, <span class="number">0LL</span>), mulk);</span><br><span class="line">            mulk *= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="541-反转字符串-ii"><a class="markdownIt-Anchor" href="#541-反转字符串-ii">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string-ii/">541. 反转字符串 II</a></h4>
+<p>给定一个字符串  <code>s</code>  和一个整数  <code>k</code> ，从字符串开头算起，每计数至  <code>2k</code>  个字符，就反转这  <code>2k</code>  字符中的前  <code>k</code>  个字符。</p>
+<ul>
+<li>如果剩余字符少于  <code>k</code>  个，则将剩余字符全部反转。</li>
+<li>如果剩余字符小于  <code>2k</code>  但大于或等于  <code>k</code>  个，则反转前  <code>k</code>  个字符，其余字符保持原样。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abcdefg&quot;, k = 2</span><br><span class="line">输出：&quot;bacdfeg&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string reverseStr(string s, int k) &#123;</span><br><span class="line">        int n = s.length();</span><br><span class="line">        for (int i = 0; i &lt; n; i += 2 * k) &#123;</span><br><span class="line">            reverse(s.begin() + i, s.begin() + min(i + k, n));</span><br><span class="line">        &#125;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="剑指-offer-05-替换空格"><a class="markdownIt-Anchor" href="#剑指-offer-05-替换空格">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ti-huan-kong-ge-lcof/">剑指 Offer 05. 替换空格</a></h4>
+<p>请实现一个函数，把字符串  <code>s</code>  中的每个空格替换成 &quot;%20&quot;。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;We are happy.&quot;</span><br><span class="line">输出：&quot;We%20are%20happy.&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">replaceSpace</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        string res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == <span class="string">&#x27; &#x27;</span>) res += <span class="string">&quot;%20&quot;</span>;</span><br><span class="line">            <span class="keyword">else</span> res += s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="151-反转字符串中的单词"><a class="markdownIt-Anchor" href="#151-反转字符串中的单词">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-words-in-a-string/">151. 反转字符串中的单词</a></h4>
+<p>给你一个字符串  <code>s</code>  ，请你反转字符串中 <strong>单词</strong> 的顺序。</p>
+<p><strong>单词</strong> 是由非空格字符组成的字符串。 <code>s</code>  中使用至少一个空格将字符串中的 <strong>单词</strong> 分隔开。</p>
+<p>返回 <strong>单词</strong> 顺序颠倒且 <strong>单词</strong> 之间用单个空格连接的结果字符串。</p>
+<p>** 注意：** 输入字符串  <code>s</code>  中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;the sky is blue&quot;</span><br><span class="line">输出：&quot;blue is sky the&quot;</span><br></pre></td></tr></table></figure>
+<p>好几种写法，用了下双端队列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">reverseWords</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = s.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right &amp;&amp; s[left] == <span class="string">&#x27; &#x27;</span>) ++left;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right &amp;&amp; s[right] == <span class="string">&#x27; &#x27;</span>) --right;</span><br><span class="line">        deque&lt;string&gt; d;</span><br><span class="line">        string word;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            <span class="type">char</span> c = s[left];</span><br><span class="line">            <span class="keyword">if</span> (word.<span class="built_in">size</span>() &amp;&amp; c == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 将单词 push 到队列的头部</span></span><br><span class="line">                d.<span class="built_in">push_front</span>(<span class="built_in">move</span>(word));</span><br><span class="line">                word = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (c != <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">                word += c;</span><br><span class="line">            &#125;</span><br><span class="line">            ++left;</span><br><span class="line">        &#125;</span><br><span class="line">        d.<span class="built_in">push_front</span>(<span class="built_in">move</span>(word));</span><br><span class="line">        </span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">while</span> (!d.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            ans += d.<span class="built_in">front</span>();</span><br><span class="line">            d.<span class="built_in">pop_front</span>();</span><br><span class="line">            <span class="keyword">if</span> (!d.<span class="built_in">empty</span>()) ans += <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="">
-              设计模式
-            </a>
-          
-            <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="">
-              线程安全的懒汉单例模式
+            <a href="/tags/lc/" class="">
+              lc
             </a>
           
         </div>
@@ -594,7 +619,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/25/some-tips/danli/" target="_blank" title="实现线程安全的懒汉单例模式">https://flowerhai.github.io/2023/04/25/some-tips/danli/</a>
+    <a href="/2023/05/04/shuati/day18/" target="_blank" title="day18">https://flowerhai.github.io/2023/05/04/shuati/day18/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -612,44 +637,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/25/shuati/day12/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">刷题day12</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 剑指 Offer 57. 和为 s 的两个数字
-输入一个递增排序的数组和一个数字 s，在数组中查找两个数，使得它们的
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/24/mianshi/mianshi/" class="post-nav-link">
+    <a href="/2023/05/04/qmi/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">某厂面试(被薄纱)</div>
+        <div class="title-text">快速幂</div>
       </div>
       <!-- <div class="content">
-        怎么这样捏，太紧张了，很多东西都没想起来
-自我介绍开场
-# C++
-# 智能指针熟悉吗，介绍下智能指针
-智能指针（Sma
+        \875. 快速幂
+给定 n  组 ai,bi,pi  ,  ,  ，对于每组数据，求出 abiimodpi    mo
       </div> -->
     </a>
   </div>
@@ -781,7 +784,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%B9%B6%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96%E5%8D%95%E4%BE%8B%E5%9C%B0%E5%9D%80"><span class="toc-text"> 实现线程安全的懒汉单例模式并定义一个函数获取单例地址</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-38-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97"><span class="toc-text"> 剑指 Offer 38. 字符串的排列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-43-1~n-%E6%95%B4%E6%95%B0%E4%B8%AD-1-%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0"><span class="toc-text"> 剑指 Offer 43. 1～n 整数中 1 出现的次数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#541-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-ii"><span class="toc-text"> 541. 反转字符串 II</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-05-%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC"><span class="toc-text"> 剑指 Offer 05. 替换空格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#151-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D"><span class="toc-text"> 151. 反转字符串中的单词</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
