@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>快速幂</title>
+      <link href="/2023/05/04/qmi/"/>
+      <url>/2023/05/04/qmi/</url>
+      
+        <content type="html"><![CDATA[<p>\875. 快速幂</p><p>给定 n  组 ai,bi,pi  ,  ,  ，对于每组数据，求出 abiimodpi    mod   的值。</p><h4 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式">#</a> 输入格式</h4><p>第一行包含整数 n 。</p><p>接下来 n  行，每行包含三个整数 ai,bi,pi  ,  ,  。</p><h4 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式">#</a> 输出格式</h4><p>对于每组数据，输出一个结果，表示 abiimodpi    mod   的值。</p><p>每个结果占一行。</p><h4 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围">#</a> 数据范围</h4><p>1≤n≤1000001≤ ≤100000,<br>1≤ai,bi,pi≤2×1091≤  , ≤2×109</p><h4 id="输入样例"><a class="markdownIt-Anchor" href="#输入样例">#</a> 输入样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3 2 5</span><br><span class="line">4 3 9</span><br></pre></td></tr></table></figure><h4 id="输出样例"><a class="markdownIt-Anchor" href="#输出样例">#</a> 输出样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">1</span><br></pre></td></tr></table></figure><p>快速幂，类似于二进制优化</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">qmi</span><span class="params">(<span class="type">int</span> m, <span class="type">int</span> k, <span class="type">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> res = <span class="number">1</span> % p, t = m;</span><br><span class="line">    <span class="keyword">while</span> (k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &amp; <span class="number">1</span>) res = (<span class="type">long</span> <span class="type">long</span>)res * t % p;</span><br><span class="line">        t = (<span class="type">long</span> <span class="type">long</span>) t * t % p;</span><br><span class="line">        k &gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">while</span> (n --) &#123;</span><br><span class="line">        <span class="type">int</span> x, y, z;</span><br><span class="line">        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">        <span class="built_in">qmi</span>(x, y, z);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 快速幂 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>刷题day17</title>
       <link href="/2023/05/03/shuati/day17/"/>
       <url>/2023/05/03/shuati/day17/</url>

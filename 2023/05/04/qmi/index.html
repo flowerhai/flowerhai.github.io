@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>信号量以及Any类型的实现 | 恍惚迷离</title>
+  <title>快速幂 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic4.zhimg.com/80/v2-83ea273b88e119d9615aed0d89aad4ab_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        信号量以及Any类型的实现
+        快速幂
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-22 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-04 |
         </span>
       
 
@@ -562,24 +562,31 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="线程池实现任意类型的返回值"><a class="markdownIt-Anchor" href="#线程池实现任意类型的返回值">#</a> 线程池实现任意类型的返回值</h3>
-<p>实现 C++17 中的 Any 类</p>
-<p>任意的其他类型 template</p>
-<p>基类类型指向派生类类型</p>
-<p>实现如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Any</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Any</span>() = <span class="keyword">default</span>;</span><br><span class="line">    ~<span class="built_in">Any</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">Any</span>(<span class="type">const</span> Any&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    Any&amp; <span class="keyword">operator</span>=(<span class="type">const</span> Any&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">    <span class="built_in">Any</span>(Any&amp;&amp;) = <span class="keyword">default</span>; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span></span><br><span class="line"><span class="function">    <span class="title">Any</span><span class="params">(T data)</span> : base_(std::make_unique&lt;Derive&lt;T&gt;&gt;(data)) &#123;</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span></span><br><span class="line"><span class="function">    T <span class="title">cast_</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Derive&lt;T&gt; *pd = <span class="keyword">dynamic_cast</span>&lt;Derive&lt;T&gt;&gt;(base_.<span class="built_in">get</span>());</span><br><span class="line">        <span class="keyword">if</span> (pd == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="string">&quot;type is unmatch&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pd-&gt;data;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="comment">//基类类型</span></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">virtual</span> ~<span class="built_in">Base</span>() = <span class="keyword">default</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Derive</span> : <span class="keyword">public</span> Base &#123;</span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            <span class="built_in">Derive</span>(T data) : <span class="built_in">data_</span>(data) &#123;&#125;</span><br><span class="line">            T data_;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::unique_ptr&lt;Base&gt; base_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="信号量实现"><a class="markdownIt-Anchor" href="#信号量实现">#</a> 信号量实现</h3>
-<p>因为线程池中的不同线程可能运行时间并不相同，因此实现线程池中的线程通信是十分有必要的。</p>
-<p>在此不适应 C++20 中的，直接使用互斥锁和条件变量实现一个</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">semaphore</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">semaphore</span>(<span class="type">int</span> Limit = <span class="number">0</span>) </span><br><span class="line">        : <span class="built_in">resLimit_</span>(Limit) </span><br><span class="line">    &#123;&#125;</span><br><span class="line">    ~<span class="built_in">semaphore</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="comment">//获取一个信号资源</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">wait</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">        cond_.<span class="built_in">wait</span>(lock, [&amp;]()-&gt;<span class="type">bool</span> &#123;<span class="keyword">return</span> resLimit_ &gt; <span class="number">0</span>;&#125;);</span><br><span class="line">        resLimit_ --;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//增加一个信号资源</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">post</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">        resLimit_ ++;</span><br><span class="line">        cond_.<span class="built_in">notify_all</span>();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> resLimit_;</span><br><span class="line">    std::mutex mtx_;</span><br><span class="line">    std::condition_variable cond_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p>\875. 快速幂</p>
+<p>给定 n  组 ai,bi,pi  ,  ,  ，对于每组数据，求出 abiimodpi    mod   的值。</p>
+<h4 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式">#</a> 输入格式</h4>
+<p>第一行包含整数 n 。</p>
+<p>接下来 n  行，每行包含三个整数 ai,bi,pi  ,  ,  。</p>
+<h4 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式">#</a> 输出格式</h4>
+<p>对于每组数据，输出一个结果，表示 abiimodpi    mod   的值。</p>
+<p>每个结果占一行。</p>
+<h4 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围">#</a> 数据范围</h4>
+<p>1≤n≤1000001≤ ≤100000,<br>
+1≤ai,bi,pi≤2×1091≤  , ≤2×109</p>
+<h4 id="输入样例"><a class="markdownIt-Anchor" href="#输入样例">#</a> 输入样例：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3 2 5</span><br><span class="line">4 3 9</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例"><a class="markdownIt-Anchor" href="#输出样例">#</a> 输出样例：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>快速幂，类似于二进制优化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">qmi</span><span class="params">(<span class="type">int</span> m, <span class="type">int</span> k, <span class="type">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> res = <span class="number">1</span> % p, t = m;</span><br><span class="line">    <span class="keyword">while</span> (k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &amp; <span class="number">1</span>) res = (<span class="type">long</span> <span class="type">long</span>)res * t % p;</span><br><span class="line">        t = (<span class="type">long</span> <span class="type">long</span>) t * t % p;</span><br><span class="line">        k &gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">while</span> (n --) &#123;</span><br><span class="line">        <span class="type">int</span> x, y, z;</span><br><span class="line">        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">        <span class="built_in">qmi</span>(x, y, z);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="">
-              线程池实现
+            <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" class="">
+              快速幂
             </a>
           
         </div>
@@ -593,7 +600,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/22/thread-pool/thread-pool5/" target="_blank" title="信号量以及Any类型的实现">https://flowerhai.github.io/2023/04/22/thread-pool/thread-pool5/</a>
+    <a href="/2023/05/04/qmi/" target="_blank" title="快速幂">https://flowerhai.github.io/2023/05/04/qmi/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -611,42 +618,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/22/shuati/day9/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">刷题day9</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 160. 相交链表
-难度简单 2076 收藏分享切换为英文接收动态反馈
-给你两个单链表的头节点  headA  和 
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/21/hhh/" class="post-nav-link">
+    <a href="/2023/05/03/shuati/day17/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">周五总结</div>
+        <div class="title-text">刷题day17</div>
       </div>
       <!-- <div class="content">
-        点进来了捏！
-
+        # 剑指 Offer 60. n 个骰子的点数
+把 n 个骰子扔在地上，所有骰子朝上一面的点数之和为 s。输入 n，打印
       </div> -->
     </a>
   </div>
@@ -778,7 +765,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-text"> 线程池实现任意类型的返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%AE%9E%E7%8E%B0"><span class="toc-text"> 信号量实现</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输出样例：</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
