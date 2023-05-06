@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>archives | 恍惚迷离</title>
+  <title>CS144 Lab Checkpoint 0:networking warmup | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -510,280 +510,574 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('https://pic1.zhimg.com/80/v2-1414b3a4b205e19060db18a20d08723a_1440w.jpg?source=1940ef5c')">
-  <div class="archive-header-title">
-    archive
-  </div>
-  <div class="archive-header-desc">
-  
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
+        
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    archive
-  </div>
-  <div class="video-header-desc">
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        CS144 Lab Checkpoint 0:networking warmup
+      </span>
+    </div>
+    
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2023-05-06 |
+        </span>
+      
+
+      
+
+      
+    
   </div>
-  <div class="mask-box"></div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
-<!-- hash算法 -->
 
 
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
+
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h1 id="cs144-lab-checkpoint-0-networking-warmup"><a class="markdownIt-Anchor" href="#cs144-lab-checkpoint-0-networking-warmup">#</a> CS144 Lab Checkpoint 0: networking warmup</h1>
+<p>visit  <a target="_blank" rel="noopener" href="http://cs144.keithw.org/hello">http://cs144.keithw.org/hello</a></p>
+<p>the result is Hello, CS144!</p>
+<h4 id="on-ecs"><a class="markdownIt-Anchor" href="#on-ecs">#</a> on ECS</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet cs144.keithw.org http</span><br><span class="line"></span><br><span class="line">Trying 104.196.238.229...</span><br><span class="line">Connected to cs144.keithw.org.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /hello HTTP/1.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="listening-and-connecting"><a class="markdownIt-Anchor" href="#listening-and-connecting">#</a> Listening and connecting</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netcat -v -l -p 9090</span><br><span class="line">telnet localhost 9090</span><br></pre></td></tr></table></figure>
+<h3 id="writing-a-network-program-using-an-os-stream-socket"><a class="markdownIt-Anchor" href="#writing-a-network-program-using-an-os-stream-socket">#</a> Writing a network program using an OS stream socket</h3>
+<p>我真蠢，真的，配了一天环境。</p>
+<h4 id="writing-webget"><a class="markdownIt-Anchor" href="#writing-webget">#</a> Writing webget</h4>
+<p>这个还是比较简单的，轻松就可以拿下</p>
+<p>是让我们实现 get_url 这个函数，就是向指定地址发送一个 http 请求，然后做出响应即可。</p>
+<p>注意讲义的要求就可以完成。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_URL</span><span class="params">(<span class="type">const</span> string &amp;host, <span class="type">const</span> string &amp;path)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Your code here.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// You will need to connect to the &quot;http&quot; service on</span></span><br><span class="line">    <span class="comment">// the computer whose name is in the &quot;host&quot; string,</span></span><br><span class="line">    <span class="comment">// then request the URL path given in the &quot;path&quot; string.</span></span><br><span class="line">    TCPSocket socket;</span><br><span class="line">    socket.<span class="built_in">connect</span>(<span class="built_in">Address</span>(host, <span class="string">&quot;http&quot;</span>));</span><br><span class="line">    socket.<span class="built_in">write</span>(<span class="string">&quot;GET &quot;</span>+path+<span class="string">&quot; HTTP/1.1\r\nHost: &quot;</span>+host+<span class="string">&quot;\r\n\r\n&quot;</span>);</span><br><span class="line">    socket.<span class="built_in">shutdown</span>(SHUT_WR);</span><br><span class="line">    <span class="keyword">while</span>(!socket.<span class="built_in">eof</span>())&#123;</span><br><span class="line">        cout&lt;&lt;socket.<span class="built_in">read</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    socket.<span class="built_in">close</span>();</span><br><span class="line">    <span class="comment">// Then you&#x27;ll need to print out everything the server sends back,</span></span><br><span class="line">    <span class="comment">// (not just one call to read() -- everything) until you reach</span></span><br><span class="line">    <span class="comment">// the &quot;eof&quot; (end of file).</span></span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Function called: get_URL(&quot;</span> &lt;&lt; host &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; path &lt;&lt; <span class="string">&quot;).\n&quot;</span>;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Warning: get_URL() has not been implemented yet.\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Date: Sat, 06 May 2023 03:25:15 GMT</span><br><span class="line">Server: Apache</span><br><span class="line">Last-Modified: Thu, 13 Dec 2018 15:45:29 GMT</span><br><span class="line">ETag: &quot;e-57ce93446cb64&quot;</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Content-Length: 14</span><br><span class="line">Content-Type: text/plain</span><br><span class="line"></span><br><span class="line">Hello, CS144!</span><br></pre></td></tr></table></figure>
+<p>运行测试程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Test project /root/lianxi/CS144/sponge/build</span><br><span class="line">    Start 27: t_webget</span><br><span class="line">1/1 Test #27: t_webget .........................   Passed    0.54 sec</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">100% </span><span class="language-bash">tests passed, 0 tests failed out of 1</span></span><br><span class="line"></span><br><span class="line">Total Test time (real) =   0.55 sec</span><br><span class="line"><span class="meta prompt_">[100%</span><span class="language-bash">] Built target check_webget</span></span><br></pre></td></tr></table></figure>
+<h4 id="an-in-memory-reliable-byte-stream"><a class="markdownIt-Anchor" href="#an-in-memory-reliable-byte-stream">#</a> An in-memory reliable byte stream</h4>
+<p>这个也还行，就是中间修改完一直忘记重新 make 了，一直 66.7%, 不知道脑子在抽风什么。</p>
+<p>我这个人 remake 得了</p>
+<p>对 ByteStream 定义如下私有变量</p>
+<p>缓冲区就选 deque，因为这是双端的，实验其实要求就是一端读，一端写，正好 deque 符合啊</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// Your code here -- add private members as necessary.</span></span><br><span class="line">    std::deque&lt;<span class="type">char</span>&gt; buffer= &#123;&#125;;<span class="comment">//缓冲区</span></span><br><span class="line">    <span class="type">size_t</span> Capacity_ ;<span class="comment">//容量</span></span><br><span class="line">    <span class="type">size_t</span> Read_Cnt_ = <span class="number">0</span>;<span class="comment">//读计数</span></span><br><span class="line">    <span class="type">size_t</span> Write_Cnt_ = <span class="number">0</span>;<span class="comment">//写计数</span></span><br><span class="line">    <span class="type">bool</span> Input_End_flag_= <span class="literal">false</span>;<span class="comment">//输入终止标识</span></span><br><span class="line">    <span class="type">bool</span> _error = <span class="literal">false</span>;  <span class="comment">//!&lt; Flag indicating that the stream suffered an error.</span></span><br></pre></td></tr></table></figure>
+<p>然后就是写</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ByteStream::write</span><span class="params">(<span class="type">const</span> string &amp;data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// DUMMY_CODE(data);</span></span><br><span class="line">    <span class="comment">// return &#123;&#125;;</span></span><br><span class="line">    <span class="type">size_t</span> len = <span class="built_in">min</span>(data.<span class="built_in">size</span>(), Capacity_ - buffer.<span class="built_in">size</span>());</span><br><span class="line">    Write_Cnt_ += len;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; len; i ++) &#123;</span><br><span class="line">        buffer.<span class="built_in">emplace_back</span>(data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面的一看便知，lab0 还是蛮 easy 的，只要把环境调试好，别搞太多幺蛾子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">ByteStream::peek_output</span><span class="params">(<span class="type">const</span> <span class="type">size_t</span> len)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="comment">// DUMMY_CODE(len);</span></span><br><span class="line">    <span class="comment">// return &#123;&#125;;</span></span><br><span class="line">    <span class="type">size_t</span> length = <span class="built_in">min</span>(len, buffer.<span class="built_in">size</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">string</span>(buffer.<span class="built_in">begin</span>(), buffer.<span class="built_in">begin</span>() + length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//! \param[in] len bytes will be removed from the output side of the buffer</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ByteStream::pop_output</span><span class="params">(<span class="type">const</span> <span class="type">size_t</span> len)</span> </span>&#123;</span><br><span class="line">    <span class="type">size_t</span> length = <span class="built_in">min</span>(len, buffer.<span class="built_in">size</span>());</span><br><span class="line">    Read_Cnt_ += length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; length; i ++) buffer.<span class="built_in">pop_front</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ByteStream::end_input</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Input_End_flag_ = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ByteStream::input_ended</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> Input_End_flag_; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ByteStream::buffer_size</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> buffer.<span class="built_in">size</span>(); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ByteStream::buffer_empty</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> buffer.<span class="built_in">size</span>() == <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ByteStream::eof</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">buffer_empty</span>() &amp;&amp; <span class="built_in">input_ended</span>(); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ByteStream::bytes_written</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> Write_Cnt_; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ByteStream::bytes_read</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> Read_Cnt_; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">ByteStream::remaining_capacity</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> Capacity_ - <span class="built_in">buffer_size</span>(); &#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Test project /root/lianxi/CS144/sponge/build</span><br><span class="line">    Start 22: t_byte_stream_construction</span><br><span class="line">1/9 Test #22: t_byte_stream_construction .......   Passed    0.00 sec</span><br><span class="line">    Start 23: t_byte_stream_one_write</span><br><span class="line">2/9 Test #23: t_byte_stream_one_write ..........   Passed    0.00 sec</span><br><span class="line">    Start 24: t_byte_stream_two_writes</span><br><span class="line">3/9 Test #24: t_byte_stream_two_writes .........   Passed    0.00 sec</span><br><span class="line">    Start 25: t_byte_stream_capacity</span><br><span class="line">4/9 Test #25: t_byte_stream_capacity ...........   Passed    0.00 sec</span><br><span class="line">    Start 26: t_byte_stream_many_writes</span><br><span class="line">5/9 Test #26: t_byte_stream_many_writes ........   Passed    0.01 sec</span><br><span class="line">    Start 27: t_webget</span><br><span class="line">6/9 Test #27: t_webget .........................   Passed    0.89 sec</span><br><span class="line">    Start 47: t_address_dt</span><br><span class="line">7/9 Test #47: t_address_dt .....................   Passed    0.01 sec</span><br><span class="line">    Start 48: t_parser_dt</span><br><span class="line">8/9 Test #48: t_parser_dt ......................   Passed    0.01 sec</span><br><span class="line">    Start 49: t_socket_dt</span><br><span class="line">9/9 Test #49: t_socket_dt ......................   Passed    0.01 sec</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">100% </span><span class="language-bash">tests passed, 0 tests failed out of 9</span></span><br><span class="line"></span><br><span class="line">Total Test time (real) =   0.95 sec</span><br><span class="line"><span class="meta prompt_">[100%</span><span class="language-bash">] Built target check_lab0</span></span><br></pre></td></tr></table></figure>
+<p>lab0 还是比较 easy，只要把环境配置好，然后注意下 Git 以及 Cmake。</p>
+<p>其余问题不大。</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/CS144/" class="">
+              CS144
+            </a>
+          
+            <a href="/tags/TCP/" class="">
+              TCP
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>恍惚迷离</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2023/05/06/cs144/cs144lab0/" target="_blank" title="CS144 Lab Checkpoint 0:networking warmup">https://flowerhai.github.io/2023/05/06/cs144/cs144lab0/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2023/05/06/shuati/day20/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">刷题day20</div>
+      </div>
+      <!-- <div class="content">
+        # 131. 分割回文串
+给你一个字符串  s ，请你将  s  分割成一些子串，使每个子串都是 回文串 。返回  s 
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <aside id='l_side'>
+  
+    
+      <section class="widget side_blogger">
+  <div class='content'>
+    
+    
+      <div class='text'>
+        
+          <h2>花落肩头，恍惚迷离</h2>
         
         
+          <p>七月七日晴</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">恍惚迷离</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
           
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2023">2023</a>
-            </div>
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
           
-          <li class="post-item" data-aos="fade-left">
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://flowerhai.github.io/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1559743577"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+    
+  
+  
+  
+
+  <div class="layout_sticky">    
+    
+      
+<section class="widget side_toc">
+  
+  <header>
+    
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cs144-lab-checkpoint-0-networking-warmup"><span class="toc-text"> CS144 Lab Checkpoint 0: networking warmup</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#on-ecs"><span class="toc-text"> on ECS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#listening-and-connecting"><span class="toc-text"> Listening and connecting</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#writing-a-network-program-using-an-os-stream-socket"><span class="toc-text"> Writing a network program using an OS stream socket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#writing-webget"><span class="toc-text"> Writing webget</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#an-in-memory-reliable-byte-stream"><span class="toc-text"> An in-memory reliable byte stream</span></a></li></ol></li></ol></li></ol></li></ol> -->
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
+
+      
+  <section class="widget side_recent_post">
+    
+  <header>
+    
+      <a style="color: " href='/tags/'><i class="fas fa-book fa-fw" aria-hidden="true"></i><span class='name'>最新文章</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      
+      <!-- hash算法 -->
+      
+      <div class="aside-list">
+        
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2023/04/29/shuati/day15/" class="post-img " style="background-size: cover; 
+              <a href="/2023/05/06/cs144/cs144lab0/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-29</span>
+                
+                  <span class="post-date">05-06</span>
+                
               </div>
-              <a class="post-title" href="/2023/04/29/shuati/day15/">刷题day15</a>
+              <a class="post-title" href="/2023/05/06/cs144/cs144lab0/">CS144 Lab Checkpoint 0:networking warmup</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2023/04/29/muduo/muduo1/" class="post-img " style="background-size: cover; 
+              <a href="/2023/05/06/shuati/day20/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-29</span>
+                
+                  <span class="post-date">05-06</span>
+                
               </div>
-              <a class="post-title" href="/2023/04/29/muduo/muduo1/">基础知识复习</a>
+              <a class="post-title" href="/2023/05/06/shuati/day20/">刷题day20</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2023/04/29/smart-pointers/ptr/" class="post-img " style="background-size: cover; 
+              <a href="/2023/05/05/shuati/day19/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-29</span>
+                
+                  <span class="post-date">05-05</span>
+                
               </div>
-              <a class="post-title" href="/2023/04/29/smart-pointers/ptr/">智能指针简单设计</a>
+              <a class="post-title" href="/2023/05/05/shuati/day19/">刷题day19</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2023/04/29/shuati/day14/" class="post-img " style="background-size: cover; 
+              <a href="/2023/05/04/c/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-29</span>
+                
+                  <span class="post-date">05-04</span>
+                
               </div>
-              <a class="post-title" href="/2023/04/29/shuati/day14/">刷题day14</a>
+              <a class="post-title" href="/2023/05/04/c/">C++基础</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
+          <div class="aside-list-item">
             
+            
+            
+
             <div class="post-img-box">
-              <a href="/2023/04/27/some-tips/ve/" class="post-img " style="background-size: cover; 
+              <a href="/2023/05/04/shuati/day18/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-85c31120acff76826ab53ea8934ef4bb_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
-                <span class="post-date">04-27</span>
+                
+                  <span class="post-date">05-04</span>
+                
               </div>
-              <a class="post-title" href="/2023/04/27/some-tips/ve/">二维vector初始化</a>
+              <a class="post-title" href="/2023/05/04/shuati/day18/">day18</a>
             </div>
-          </li>
+          </div>
         
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/27/some-tips/con-pro/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-27</span>
-              </div>
-              <a class="post-title" href="/2023/04/27/some-tips/con-pro/">生产者消费者练习题</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/27/shuati/day13/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-27</span>
-              </div>
-              <a class="post-title" href="/2023/04/27/shuati/day13/">刷题day13</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/25/shuati/day12/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-25</span>
-              </div>
-              <a class="post-title" href="/2023/04/25/shuati/day12/">刷题day12</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/25/some-tips/danli/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-25</span>
-              </div>
-              <a class="post-title" href="/2023/04/25/some-tips/danli/">实现线程安全的懒汉单例模式</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2023/04/24/mianshi/mianshi/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-24</span>
-              </div>
-              <a class="post-title" href="/2023/04/24/mianshi/mianshi/">某厂面试(被薄纱)</a>
-            </div>
-          </li>
-        
-      </ul>
+      </div>
     </div>
   </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/">Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">2 / 5</div>
-    </div>
-    
-      <a href="/archives/page/3/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
 
+    
   </div>
+</aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://www.loliapi.com/acg/';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
