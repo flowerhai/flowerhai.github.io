@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>恍惚迷离</title>
+  <title>刷题day21 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -511,1202 +511,177 @@
 </header>
         <!-- 内容区域 -->
         
-  <!-- 首页轮播 -->
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-
-  <link href="/js/vue-typed-js/index.css" rel="stylesheet">
-
-
-
-
-
-
-<div class="swiper-length" style="display: none;">0</div>
-<div id="appSwiper"
-  class="swiper-no-swiping"
-  @mouseenter="stopAutoPlay()" 
-  @mouseleave="startAutoPlay()"
->
-  <swiper v-cloak ref="mySwiper" :options="swiperOptions" @slideChangeTransitionEnd="slideChangeTransitionEnd">
-    
-      <swiper-slide>
-        <div class="item swiper-lazy" data-background="https://www.loliapi.com/acg/" style="background-size: 300000px; 
-          background-position: left center;" style="position: relative;">
-          <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
-            <div class="flag">
-              
-              <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://www.loliapi.com/acg/" style="height: 100%; background-size: cover; 
-                background-position: center center;">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>   
-              </div>
-              <div class="flag-text">
-                <div class="flag-text-content">
-                  <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">恍惚迷离</div>
-                  
-                    <div class="ani animated default-excerpt" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
-                      <vue-typed-js :strings="defaultDesc" :loop="defaultDescTypedLoop" :type-speed="100" :back-speed="50">
-                        <h1 class="typing"></h1>
-                      </vue-typed-js>
-                    </div>
-                    
-                </div>
-                <div style="display: flex;" class="flag-text-btns">
-                  
-                    <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="https://space.bilibili.com/628594555?spm_id_from=333.934.0.0" class="read-more swiper-btn-color" style="display: inline-block; z-index:1;">哔哩</a></div>
-                  
-                  
-                    <div class="ani animated" style="margin-left: 10px;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="https://space.bilibili.com/628594555?spm_id_from=333.934.0.0" class="read-more swiper-btn-color2" style="display: inline-block; z-index:1;border: 1px solid white;">哔哩</a></div>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-      </swiper-slide>
-    
-  </swiper>
-  
-    <div id="scroll-down" @click="toPostContent()">
-      <a href="javascript:;">
-        <i class="fas fa-angle-down scroll-down-effects"></i>
-      </a>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        刷题day21
+      </span>
     </div>
-  
-  <canvas id="header_canvas"style="position:absolute;bottom:0;width:100%;pointer-events:none;"></canvas>
-  
-    <svg class="hans-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none"><defs><path id="hans-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="hans-parallax"><use xlink:href="#hans-wave" x="50" y="0" fill="rgba(224,233,239,.5)"></use><use xlink:href="#hans-wave" x="50" y="3" fill="rgba(224,233,239,.5)"></use><use xlink:href="#hans-wave" x="50" y="6" fill="rgba(224,233,239,.5)"></use></g></svg>
     
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2023-05-07 |
+        </span>
+      
+
+      
+
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
 
 
-<style>.hans-parallax>use{animation:hans-wave-move 12s linear infinite}.hans-parallax>use:nth-child(1){animation-delay:-2s}.hans-parallax>use:nth-child(2){animation-delay:-2s;animation-duration:5s}.hans-parallax>use:nth-child(3){animation-delay:-4s;animation-duration:3s}@keyframes hans-wave-move{0%{transform:translate(-90px,0)}100%{transform:translate(85px,0)}}</style>
-<style>
-  .hans-container {
-    position: absolute!important;
-    bottom: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 100;
-    pointer-events:none;
-  }
-</style>
 
 
-<script>
-  var autoplay = JSON.parse('false');
-  var delay = '5000';
-  var loop = JSON.parse('true') ? false : JSON.parse('true');
-  var effect = 'slide';
-  var swiperLength = parseInt(document.querySelector(".swiper-length").innerText);
-  var defaultDesc = '终是使谁弦断，花落肩头，恍惚迷离';
-  defaultDesc = defaultDesc.split(',');
-  var defaultDescTypedLoop = JSON.parse('true');
-  var vm = new Vue({
-    el: '#appSwiper',
-    data: {
-      defaultDesc: defaultDesc,
-      defaultDescTypedLoop,
-      swiperOptions: {
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true // 允许点击小圆点跳转
-        },
-        loop: loop ? true : false,
-        effect, // fade
-        autoplay: (autoplay && swiperLength > 1) ? {
-  　　　　delay,
-  　　　　disableOnInteraction: false // 手动切换之后继续自动轮播
-    　　} : false,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        lazy: {
-          loadPrevNext: true,
-        },
-        on:{
-          init: function() {
-            swiperAnimateCache(this); //隐藏动画元素 
-            swiperAnimate(this); //初始化完成开始动画
-          }, 
-          slideChangeTransitionEnd: function(){ 
-            swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-          } 
-        }
-        // Some Swiper option/callback...
-      }
-    },
-    computed: {
-      swiper() {
-        return this.$refs.mySwiper.$swiper
-      }
-    },
-    mounted() {
-      // console.log('Current Swiper instance object', this.swiper)
-      // this.swiper.slideTo(0, 1000, false)
-    },
-    methods: {
-      stopAutoPlay() {
-        (autoplay && swiperLength > 1) && this.swiper.autoplay.stop();
-      },
-      startAutoPlay() {
-        (autoplay && swiperLength > 1) && this.swiper.autoplay.start();
-      },
-      slideChangeTransitionEnd() {
-        console.log('1');
-      },
-      toPostContent() {
-        const fullHeight = $(window).height() - 60;
-        $('html,body').animate({scrollTop: fullHeight},500);
-      }
-    },
-    created() {}
-  })
+
+<div class="post-detail-content post-row" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>今天是贪心专题 KMP 暂且缓缓 调试 lab1 花了太久太久</p>
+<h3 id="贪心本质局部最优推出全局最优"><a class="markdownIt-Anchor" href="#贪心本质局部最优推出全局最优">#</a> 贪心本质：局部最优推出全局最优。</h3>
+<h4 id="455-分发饼干"><a class="markdownIt-Anchor" href="#455-分发饼干">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/assign-cookies/">455. 分发饼干</a></h4>
+<p>假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。</p>
+<p>对每个孩子  <code>i</code> ，都有一个胃口值  <code>g[i]</code> ，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干  <code>j</code> ，都有一个尺寸  <code>s[j]</code>  。如果  <code>s[j] &gt;= g[i]</code> ，我们可以将这个饼干  <code>j</code>  分配给孩子  <code>i</code>  ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: g = [1,2,3], s = [1,1]</span><br><span class="line">输出: 1</span><br><span class="line">解释: </span><br><span class="line">你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。</span><br><span class="line">虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。</span><br><span class="line">所以你应该输出1。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findContentChildren</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; g, vector&lt;<span class="type">int</span>&gt;&amp; s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">sort</span>(g.<span class="built_in">begin</span>(), g.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">sort</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> gl = <span class="number">0</span>, sl = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (gl &lt; g.<span class="built_in">size</span>() &amp;&amp; sl &lt; s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[sl] &gt;= g[gl]) &#123;</span><br><span class="line">                sl ++;</span><br><span class="line">                gl ++;</span><br><span class="line">                res ++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                sl ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="376-摆动序列"><a class="markdownIt-Anchor" href="#376-摆动序列">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/wiggle-subsequence/">376. 摆动序列</a></h4>
+<p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 ** 摆动序列 。** 第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。</p>
+<ul>
+<li>例如，  <code>[1, 7, 4, 9, 2, 5]</code>  是一个 <strong>摆动序列</strong> ，因为差值  <code>(6, -3, 5, -7, 3)</code>  是正负交替出现的。</li>
+<li>相反， <code>[1, 4, 7, 2, 5]</code>  和  <code>[1, 7, 4, 5, 5]</code>  不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。</li>
+</ul>
+<p><strong>子序列</strong> 可以通过从原始序列中删除一些（也可以不删除）元素来获得，剩下的元素保持其原始顺序。</p>
+<p>给你一个整数数组  <code>nums</code>  ，返回  <code>nums</code>  中作为 <strong>摆动序列</strong> 的 <strong>最长子序列的长度</strong> 。</p>
+<p>这题可以用 DP，当然今天是贪心专题，贪心做法就是去掉连续上升值中然后制造峰值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">wiggleMaxLength</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &lt;= <span class="number">1</span>) <span class="keyword">return</span> nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> curDiff = <span class="number">0</span>; <span class="comment">// 当前一对差值</span></span><br><span class="line">        <span class="type">int</span> preDiff = <span class="number">0</span>; <span class="comment">// 前一对差值</span></span><br><span class="line">        <span class="type">int</span> result = <span class="number">1</span>;  <span class="comment">// 记录峰值个数，序列默认序列最右边有一个峰值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            curDiff = nums[i + <span class="number">1</span>] - nums[i];</span><br><span class="line">            <span class="comment">// 出现峰值</span></span><br><span class="line">            <span class="keyword">if</span> ((preDiff &lt;= <span class="number">0</span> &amp;&amp; curDiff &gt; <span class="number">0</span>) || (preDiff &gt;= <span class="number">0</span> &amp;&amp; curDiff &lt; <span class="number">0</span>)) &#123;</span><br><span class="line">                result++;</span><br><span class="line">                preDiff = curDiff; <span class="comment">// 注意这里，只在摆动变化的时候更新prediff </span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.programmercarl.com/%E5%91%A8%E6%80%BB%E7%BB%93/20201126%E8%B4%AA%E5%BF%83%E5%91%A8%E6%9C%AB%E6%80%BB%E7%BB%93.html#%E5%91%A8">https://www.programmercarl.com/ 周总结 / 20201126 贪心周末总结.html# 周</a></p>
+<h3 id="贪心本质局部最优推出全局最优-2"><a class="markdownIt-Anchor" href="#贪心本质局部最优推出全局最优-2">#</a> 贪心本质：局部最优推出全局最优。</h3>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/lc/" class="">
+              lc
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>恍惚迷离</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2023/05/07/day21/" target="_blank" title="刷题day21">https://flowerhai.github.io/2023/05/07/day21/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+    </div>
+    <a href="/2023/05/07/cs144/cs144lab1/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">CS144Lab 1:stitching substrings into a byte stream</div>
+      </div>
+      <!-- <div class="content">
+        # Lab 1: stitching substrings into a byte stream
+# Putting s
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
 </script>
 
-  <script src="/js/bubble/homeBubble.js"></script>
-
 <style>
-#appSwiper {
-  position: relative;
-  user-select: none;
-  overflow: hidden;
-  font-family: Titillium Web,'PingFang SC','Hiragino Sans GB','Microsoft JhengHei','Microsoft YaHei',sans-serif;
-}
-.default-excerpt {
-  font-size: 1.6em;
-  margin-top: 1em;
-  color: #eee;
-}
-.bottom-one-btn {
-  margin-top: 15px;
-}
-.swiper-container {
-  overflow: hidden;
-  z-index: 0;
-}
-.swiper-slide {
-  height: 350px;
-  position: relative;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  padding: 10px 10px;
-  transition: background 0.2s;
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-.swiper-slide .item {
-  width: 100%;
-  height: 100%;
-}
-.flag {
-  position: relative;
-  width: 70%;
-  margin: 0 auto;
-  color: #ffffff;
-  height: 100%;
-  background: #000;
-}
-.flag img {
-  min-height: 100%;
-}
-.flag-text {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  width: 80%;
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 9999;
-}
-.flag-text .title {
-  font-size: 1.8em;
-}
-.flag-text .title a {
-  color: #fff;
-  transition: color 0.3s;
-}
-.flag-text .title a:hover {
-  color: rgba(66, 185, 133, 0.8);
-}
-.flag-text .excerpt {
-  color: #eee;
-  width: 70%;
-  line-height: 30px;
-  height: 150px;
-  margin-top: 2%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-  overflow: hidden;
-}
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  background-color: #42b983;
-}
-.img-mask {
-  opacity:0.6; filter: alpha(opacity=60);
-}
-.flag-text .read-more {
-  margin-bottom: 30px;
-  padding: 5px 15px;
-  color: #ffffff;
-  border-radius: 20px;
-}
-#scroll-down {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2.5em;
-  color: #fff;
-  cursor: pointer;
-  z-index: 2;
-}
-#scroll-down a {
-  color: #fff;
-}
-@-webkit-keyframes rightan
-  {
-  
-  0%
-  {
-    transform: translateY(0);
-    opacity: 0.5;
+  .social-share {
+    margin: 20px 0;
   }
-  50% {
-    transform: translateY(-30px);
-    opacity: 1;
-  }
-  100%
-  {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-}
-.scroll-down-effects {
-  animation: rightan 1.5s infinite;
-}
-/* 当头部导航设置为背景透明的时候 */
-.swiper-slide {
-  height: 400px;
-}
-.flag-text {
-  top: 80px;
-}
-
-@media (min-width: 992px) {
-  .swiper-button-prev {
-    margin-left: 15%;
-    transform: translateX(-180%);
-  }
-  .swiper-button-next {
-    margin-right: 15%;
-    transform: translateX(180%);
-  }
-  .flag-text .title {
-    width: 80%;
-    line-height: 35px;
-    max-height: 70px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-  }
-}
-@media screen and (max-width: 1200px) { 
-  .flag {
-    width: 80%;
-  }
-  .swiper-button-prev {
-    margin-left: 10%;
-    transform: translateX(-180%);
-  }
-  .swiper-button-next {
-    margin-right: 10%;
-    transform: translateX(180%);
-  }
-}
-@media (max-width: 992px) {
-  .flag {
-    width: 100%;
-  }
-  .flag-text .title {
-    font-size: 1.5em;
-    margin-top: 50px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-  }
-  .flag-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 100%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-  }
-  .flag-text .excerpt {
-    width: 100%;
-    line-height: 25px;
-    height: 125px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow: hidden;
-  }
-  .flag-text .read-more {
-    margin-bottom: 80px;
-  }
-}
-@media (max-width: 992px) and (min-width: 551px) {
-  .flag-text .excerpt {
-    width: 70%;
-  }
-}
-@media (max-width: 551px) {
-  .swiper-slide {
-    height: 250px;
-  }
-  .flag-text .title {
-    line-height: 30px;
-    max-height: 60px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    margin-top: 20px;
-  }
-  .flag-text .excerpt {
-    font-size: 1em;
-    line-height: 20px;
-    height: 80px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-  }
-  .flag-text .excerpt { 
-    margin-top: 10px;
-  }
-  .flag-text .read-more {
-    margin-top: 10px;
-    margin-bottom: 50px;
-  }
-  .swiper-button-prev,
-  .swiper-button-next {
-    transform: scale(0.5);
-  }
-  .swiper-button-prev {
-    left: 0;
-  }
-  .swiper-button-next {
-    right: 0;
-  }
-}
-/* 当头部导航设置为背景透明的时候 */
-  @media (max-width: 992px) {
-    .flag-text {
-      top: 60px;
-      height: 80%;
-    }
-  }
-  @media (max-width: 551px) {
-    .swiper-slide {
-      height: 310px;
-    }
-  }
-
-/* 文字或者按钮居中显示 */
-
-  .flag-text {
-    left: 10%;
-  }
-  .flag-text .flag-text-content {
-    width: 100%;
-    text-align: center;
-  }
-  .flag-text .title {
-    width: 100%;
-    text-align: center;
-  }
-  .flag-text .excerpt { 
-    width: 100%;
-    text-align: center;
-  }
-  .bottom-one-btn {
-    display: flex;
-    justify-content: center;
-  }
-  .default-excerpt {
-    display: flex;
-    justify-content: center;
-    font-size: 1.6em;
-  }
-  .flag-text-btns {
-    justify-content: center;
-  }
-  @media (min-width: 992px) {
-    .flag-text .excerpt {
-      line-height: 30px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 5;
-      overflow: hidden;
-    }
-  }
-  @media (max-width: 992px) {
-    .flag-text {
-      margin-left: 0;
-      transform: translateX(0);
-    }
-  }
-
-
-
-
-/* 全屏显示 */
-
-  .flag {
-    width: 100%;
-  }
-  .swiper-slide {
-    height: 100vh;
-  }
-  .flag-text {
-    top: 50%;
-    left: 15%;
-    transform: translateY(-50%);
-    width: 70%;
-    height: auto;
-  }
-  .flag-text .title {
-    font-size: 2.8em;
-    line-height: 1.5em;
-    max-height: none;
-  }
-  .flag-text .excerpt {
-    font-size: 1.25em;
-    height: 150px;
-  }
-  .flag-text .read-more {
-    margin-top: 10px;
-  }
-  .swiper-button-prev,
-  .swiper-button-next {
-    margin-top: -60px!important;
-  }
-  .swiper-btn-color,
-  .swiper-btn-color2 {
-    background-color: transparent;
-    border: 1px solid #fff;
-  }
-  .swiper-btn-color:hover,
-  .swiper-btn-color2:hover {
-    background-color: rgba(66, 185, 133, 0.8);
-    border: 1px solid rgba(66, 185, 133, 0.8)!important;
-  }
-  .flag-text-btns {
-    justify-content: center;
-  }
-  .swiper-button-prev {
-    margin-left: 10px;
-    transform: translateX(0);
-    border-radius: 50%;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-  }
-  .swiper-button-next {
-    margin-right: 10px;
-    transform: translateX(0);
-    border-radius: 50%;
-    padding: 0;
-    width: 50px;
-    height: 50px;
-  }
-  .swiper-button-next:after, .swiper-button-prev:after {
-    font-size: 1.2em;
-  }
-  @media (min-width: 992px) {
-    .flag-text .excerpt {
-      line-height: 35px;
-      height: 175px;
-    }
-    .default-excerpt {
-      min-height: 150px;
-    }
-    .typed-element {
-      align-items: unset;
-    }
-  }
-  @media (max-width: 992px) {
-    .flag-text {
-      margin-left: 0;
-      height: 60%;
-      top: 55%;
-    }
-    .flag-text .title {
-      font-size: 2.4em;
-      margin-top: 0;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-    }
-    .flag-text .excerpt {
-      line-height: 35px;
-      height: 185px;
-    }
-    .flag-text .read-more {
-      margin-top: 20px;
-    }
-  }
-  @media (max-width: 551px) {
-    .flag-text {
-      height: 60%;
-    }
-    .flag-text .title {
-      font-size: 2.2em;
-    }
-    .flag-text .excerpt {
-      line-height: 30px;
-    }
-    .flag-text .read-more {
-      margin-top: 50px;
-      padding: 10px 30px;
-    }
-    .swiper-button-prev {
-      margin-left: 0;
-    }
-    .swiper-button-next {
-      margin-right: 0;
-    }
-    .default-excerpt {
-      margin-top: 1em;
-    }
-  }
-
-
-/* video */
-.swiper-video {
-  width: 100%;
-  height: 100%;
-}
-.swiper-video video {
-  pointer-events: none;
-}
-.swiper-video-maskBox{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #000;
-  opacity: 0.2;
-  z-index: 1;
-}
-@media (min-width: 992px) {
-  
-    .swiper-video {
-      display: none;
-    }
-    .swiper-default-bgImg {
-      display: block;  
-    }
-  
-}
-@media (max-width: 992px) {
-  .swiper-video {
-    display: none;
-  }
-  .swiper-default-bgImg {
-    display: block;  
-  }
-}
-/* video-end */
 </style>
 
 
-<div id="l_main">
-  <div class="l_content">
-    <!-- 自定义的内容 -->
     
-    <!-- 首页座右铭 -->
     
-    <!-- 首页公告 -->
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
     
-    <!-- 首页文章置顶 -->
+      <div id="gitment-container"></div>
+
     
-
-
-
-    <div class="bg-floor" id="home-bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-    <!-- 每一篇文章卡片 -->
-    <!-- hash算法 -->
-
-<section class="posts">
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-19</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/19/shuati/acw1/">树状数组</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" rel="tag">树状数组</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/19/shuati/acw1/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            
-楼兰图腾
-
-在完成了分配任务之后，西部 314314 来到了楼兰古城的西部。
-相传很久以前这片土地上 (比楼兰古城还早) 生活着两个部落，一个部落崇拜尖刀 ( V )，一个部落崇拜铁锹 ( ∧ )，他们分别用  V  和  ∧  的形状来
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/19/shuati/acw1/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/19/shuati/acw1/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-19</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/19/shuati/day7/">刷题day7</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lc/" rel="tag">lc</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/19/shuati/day7/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 15. 三数之和
-难度中等 5885 收藏分享切换为英文接收动态反馈
-给你一个整数数组  nums  ，判断是否存在三元组  [nums[i], nums[j], nums[k]]  满足  i != j 、 i != k  且  j 
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/19/shuati/day7/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/19/shuati/day7/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/18/shuati/day6/">刷题day6</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lc/" rel="tag">lc</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/18/shuati/day6/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 75. 颜色分类
-给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
-我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。
-必须在不使用库内
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/18/shuati/day6/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/18/shuati/day6/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/18/thread-pool/thread-pool2/">线程池代码(整合版)</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" rel="tag">线程池实现</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/18/thread-pool/thread-pool2/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            关于线程池的设计，很多都和内存池差不多，在此贴上总体代码。
-后续再挨个分析细节以及编写过程中的 Bug 调试
-12345678910111213141516171819202122232425262728293031323334353637
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/18/thread-pool/thread-pool2/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/18/thread-pool/thread-pool2/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-61f99f8dcf899f54cad2a1aa28b21e44_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-18</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/18/thread-pool/thread-pool1/">线程池总体设计及相关概念</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug/" rel="tag">bug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" rel="tag">线程池实现</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/18/thread-pool/thread-pool1/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 线程池
-# 线程池
-池也算是比较常用的降低时间开销的手段了吧，
-在此总结一下写过的线程池，把每一步捋顺了，再稍微复习下多线程相关的知识。
-# 关于本线程池项目描述：
-
-基于可变参模板编程和引用折叠原理，实现线程池 submitTask 
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/18/thread-pool/thread-pool1/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/18/thread-pool/thread-pool1/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/17/mysql-pool/yace/">数据库连接池压测</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/" rel="tag">数据库连接池实现</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/17/mysql-pool/yace/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 压测：
-
-50393us 数据库连接池 100
-424062us 普通连接 100
-
-可以看出使用线程池后效果拔群！
-
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/17/mysql-pool/yace/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/17/mysql-pool/yace/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/17/mysql-pool/mysql-mysql-poo2/">MySQL数据库连接池实现</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/" rel="tag">数据库连接池实现</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/17/mysql-pool/mysql-mysql-poo2/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 数据库连接池
-# 数据库连接池：
-# 小 tips：
-关于外部获取连接池中的空闲连接，在此可以使用智能指针来完成内存管理，能够方便许多。
-12345678910111213141516171819202122232425262728cl
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/17/mysql-pool/mysql-mysql-poo2/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/17/mysql-pool/mysql-mysql-poo2/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" class="lazyload placeholder" data-srcset="https://pica.zhimg.com/80/v2-573ac3e25de03fad9c32add5a05e5cfc_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/17/shuati/acw/">并查集</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag">并查集</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/17/shuati/acw/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            
-格子游戏
-
-Alice 和 Bob 玩了一个古老的游戏：首先画一个 n×n�×� 的点阵（下图 n=3�=3 ）。
-接着，他们两个轮流在相邻的点之间画上红边和蓝边：
-
-直到围成一个封闭的圈（面积不必为 11）为止，“封圈” 的那个人就是赢
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/17/shuati/acw/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/17/shuati/acw/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/17/shuati/day5/">刷题day5</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lc/" rel="tag">lc</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/17/shuati/day5/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 124. 二叉树中的最大路径和
-二叉树中的 路径 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。同一个节点在一条路径序列中 至多出现一次 。该路径 至少包含一个 节点，且不一定经过根节点。
-路径和 是路径中各节点值的总和。
-
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/17/shuati/day5/">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/17/shuati/day5/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/v2-a5267dfbf175991d4b3a69b41f3f678a_b.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2023-04-15</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/2023/04/15/shuati/day4/">刷题day4</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lc/" rel="tag">lc</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/2023/04/15/shuati/day4/" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            # 322. 零钱兑换
-给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
-计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
-你可以认为每种硬
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/2023/04/15/shuati/day4/">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/2023/04/15/shuati/day4/" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-        </a>
-      </div>
-    </article>
-  
-</section>
-    <!-- 翻页 -->
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/page/3/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">Prev</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">4 / 6</div>
-    </div>
-    
-      <a href="/page/5/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
-      
   </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
 
   </div>
 
+  <!-- 目录 -->
   <aside id='l_side'>
   
     
@@ -1780,27 +755,29 @@ Alice 和 Bob 玩了一个古老的游戏：首先画一个 n×n�×� 的点�
   <div class="layout_sticky">    
     
       
-        
+<section class="widget side_toc">
   
-      
-      
-        
-<section class="widget side_tagcloud">
-    
   <header>
     
-      <a style="color: " href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+      <i style="color: " class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name' style="color: ">本文目录</span>
     
   </header>
 
 
-    <div class='content'>
-    <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/CS144/" style="font-size: 16.5px; color: #888">CS144</a> <a href="/tags/LRU%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/" style="font-size: 14px; color: #999">LRU算法实现</a> <a href="/tags/NCU%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/" style="font-size: 14px; color: #999">NCU校园网自动登录</a> <a href="/tags/TCP/" style="font-size: 16.5px; color: #888">TCP</a> <a href="/tags/UNIX/" style="font-size: 14px; color: #999">UNIX</a> <a href="/tags/bug/" style="font-size: 19px; color: #777">bug</a> <a href="/tags/lc/" style="font-size: 24px; color: #555">lc</a> <a href="/tags/muduo%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #999">muduo设计</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 14px; color: #999">位运算</a> <a href="/tags/%E5%B0%8Ftips/" style="font-size: 14px; color: #999">小tips</a> <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 14px; color: #999">并查集</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/" style="font-size: 14px; color: #999">快速幂</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0/" style="font-size: 21.5px; color: #666">数据库连接池实现</a> <a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" style="font-size: 14px; color: #999">智能指针</a> <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" style="font-size: 14px; color: #999">树状数组</a> <a href="/tags/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85/" style="font-size: 14px; color: #999">生产者消费者</a> <a href="/tags/%E7%A7%8B%E6%8B%9B%E5%AD%A6%E4%B9%A0%E5%99%A8/" style="font-size: 14px; color: #999">秋招学习器</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%87%92%E6%B1%89%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">线程安全的懒汉单例模式</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" style="font-size: 21.5px; color: #666">线程池实现</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 14px; color: #999">设计模式</a> <a href="/tags/%E9%80%97%E4%BD%A0%E7%8E%A9/" style="font-size: 14px; color: #999">逗你玩~</a> <a href="/tags/%E9%9D%92%E5%B9%B4%E5%A4%A7%E5%AD%A6%E4%B9%A0%E6%89%93%E5%8D%A1py/" style="font-size: 14px; color: #999">青年大学习打卡py</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
+  <div class='content'>
+    <div class="toc-main">
+      <div class="toc-content">
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83%E6%9C%AC%E8%B4%A8%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E6%8E%A8%E5%87%BA%E5%85%A8%E5%B1%80%E6%9C%80%E4%BC%98"><span class="toc-text"> 贪心本质：局部最优推出全局最优。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#455-%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2"><span class="toc-text"> 455. 分发饼干</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#376-%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97"><span class="toc-text"> 376. 摆动序列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83%E6%9C%AC%E8%B4%A8%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E6%8E%A8%E5%87%BA%E5%85%A8%E5%B1%80%E6%9C%80%E4%BC%98-2"><span class="toc-text"> 贪心本质：局部最优推出全局最优。</span></a></li></ol> -->
+        <div class="toc"></div>
+      </div>
     </div>
+  </div>
 </section>
+<!-- 手机端目录按钮 -->
+<div id="toc-mobile-btn">
+  <i class="fas fa-list-ul" aria-hidden="true"></i>
+</div>
 
-  
-      
       
   <section class="widget side_recent_post">
     
@@ -1926,139 +903,163 @@ Alice 和 Bob 玩了一个古老的游戏：首先画一个 n×n�×� 的点�
     </div>
   </section>
 
-      
-  <section class="widget side_archives">
-    
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">May 2023</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">43</span></a></li></ul></div>
-  </section>
-
-      <section class="widget side_webinfo">
-  
-  <header>
-    
-      <i style="color: " class="fas fa-chart-line fa-fw" aria-hidden="true"></i><span class='name' style="color: ">站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>52 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count" publish_date="03/24/2020 21:34:09"></div>
-        </div>
-        <script>
-          var BirthDay = new Date(new Date('2023/04/12'));
-          var today = new Date();
-          var timeold = (today.getTime() - BirthDay.getTime());
-          var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000));
-          document.getElementById('webinfo-runtime-count').innerHTML = daysold + ' 天';
-        </script>
-      
-
-
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站访客数：</div>
-          
-          <div><span id="busuanzi_value_site_uv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 人</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>本站总访问量：</div>
-          
-          <div><span id="busuanzi_value_site_pv"><i class="fas fa-fan fa-spin fa-fw" aria-hidden="true"></i></span> 次</div>
-          
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          
-            <div id="last-update" style="display: none;">Sun May 07 2023 21:00:19 GMT+0800 (Ulaanbaatar Standard Time)</div>
-            <div id="last-update-show">2023-05-07 日</div>
-          
-        </div>
-        
-        <script>
-          function timeago(dateTimeStamp) {
-              var minute = 1000 * 60; //把分，时，天，周，半个月，一个月用毫秒表示
-              var hour = minute * 60;
-              var day = hour * 24;
-              var week = day * 7;
-              var month = day * 30;
-              var now = new Date().getTime(); //获取当前时间毫秒
-              var diffValue = now - dateTimeStamp; //时间差
-              if (diffValue < 0) {
-                  return;
-              }
-              var minC = diffValue / minute; //计算时间差的分，时，天，周，月
-              var hourC = diffValue / hour;
-              var dayC = diffValue / day;
-              var weekC = diffValue / week;
-              var monthC = diffValue / month;
-              if (monthC >= 1 && monthC <= 3) {
-                  result = " " + parseInt(monthC) + " 月前"
-              } else if (weekC >= 1 && weekC <= 3) {
-                  result = " " + parseInt(weekC) + " 周前"
-              } else if (dayC >= 1 && dayC <= 6) {
-                  result = " " + parseInt(dayC) + " 天前"
-              } else if (hourC >= 1 && hourC <= 23) {
-                  result = " " + parseInt(hourC) + " 小时前"
-              } else if (minC >= 1 && minC <= 59) {
-                  result = " " + parseInt(minC) + " 分钟前"
-              } else if (diffValue >= 0 && diffValue <= minute) {
-                  result = "刚刚"
-              } else {
-                  var datetime = new Date();
-                  datetime.setTime(dateTimeStamp);
-                  var Nyear = datetime.getFullYear();
-                  var Nmonth = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-                  var Ndate = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-                  var Nhour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
-                  var Nminute = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-                  var Nsecond = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-                  result = Nyear + "-" + Nmonth + "-" + Ndate
-              }
-              return result;
-          }
-          var lastUpDate = document.getElementById('last-update').innerHTML;
-          try {
-            document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
-          } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2023-05-07 日';
-          }
-        </script>
-        
-      
-    </div>
-  </div>
-</section>
-      
     
   </div>
 </aside>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
 </div>
-<!-- 花瓣和雪花飘落 -->
-<!-- 雪花和花瓣特效 -->
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://www.loliapi.com/acg/';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
 
 
 
-<!-- 灯笼 -->
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://unpkg.com/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
 
 
       </main>
