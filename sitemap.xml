@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://flowerhai.github.io/2023/05/07/day21/</loc>
+    <loc>https://flowerhai.github.io/2023/05/07/c-basic/new-malloc/</loc>
+    
+    <lastmod>2023-05-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/2023/05/07/shuati/day21/</loc>
     
     <lastmod>2023-05-07</lastmod>
     
@@ -677,6 +686,13 @@
   
   <url>
     <loc>https://flowerhai.github.io/tags/TCP/</loc>
+    <lastmod>2023-05-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://flowerhai.github.io/tags/C-%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2023-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
