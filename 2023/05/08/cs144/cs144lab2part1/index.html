@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>秋招学习器基础功能 | 恍惚迷离</title>
+  <title>Lab 2:the TCP receiver part1 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-e22aaad20d20634f506f57fff0fcbc17_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        秋招学习器基础功能
+        Lab 2:the TCP receiver part1
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-12 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-08 |
         </span>
       
 
@@ -562,35 +562,69 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="day1"><a class="markdownIt-Anchor" href="#day1">#</a> day1</h2>
-<p>今天实现如下功能：</p>
+        <h1 id="lab-2-the-tcp-receiver-part1"><a class="markdownIt-Anchor" href="#lab-2-the-tcp-receiver-part1">#</a> Lab 2: the TCP receiver part1</h1>
+<p>在 Lab2，我们将实现一个 TCPReceiver，用以接收传入的 TCP segment 并将其转换成用户可读的数据流。</p>
+<p>TCPReceiver 除了将读入的数据写入至 ByteStream 中以外，它还需要<strong>告诉发送者两个属性</strong>：</p>
+<ul>
+<li>第一个未组装的字节索引，称为<strong>确认号 ackno</strong>，它是接收者需要的第一个字节的索引。</li>
+<li><strong>第一个未组装的字节索引</strong>和<strong>第一个不可接受的字节索引</strong>之间的距离，称为 <strong>窗口长度 window size</strong>。</li>
+</ul>
+<p>ackno 和 window size 共同描述了接收者当前的<strong>接收窗口</strong>。接收窗口是 发送者允许发送数据的一个范围，通常 TCP 接收方使用接收窗口来进行<strong>流量控制</strong>，限制发送方发送数据。</p>
+<p>总的来说，我们将要实现的 TCPReceiver 需要做以下几件事情：</p>
+<ul>
+<li>接收 TCP segment</li>
+<li>重新组装字节流（包括 EOF）</li>
+<li>确定应该发回给发送者的信号，以进行数据确认和流量控制</li>
+</ul>
+<h2 id="索引转换"><a class="markdownIt-Anchor" href="#索引转换">#</a> 索引转换</h2>
+<p>TCP 报文中用来描述 ** 当前数据首字节的索引（序列号 seqno）** 是 32 位类型的，这意味着在处理上增加了一些需要考虑的东西：</p>
+<p>在传输的 TCP 报文头部中，由于空间限制，字节序列号只能用 32 位的索引来表示。但是 32 位可能无法完全一一对应一串字节流，所以需要我们在接收端人为将索引转换为 64 位以保证不会溢出。</p>
 <ul>
 <li>
-<p>mainwindow 添加菜单栏</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QMenuBar *bar = <span class="built_in">menuBar</span>();<span class="comment">//创建菜单栏</span></span><br><span class="line"><span class="comment">//中间各种操作</span></span><br><span class="line"><span class="built_in">setMenuBar</span>(bar);</span><br></pre></td></tr></table></figure>
+<p>由于 32 位类型最大能表达的值是 4GB，存在上溢的可能。因此当 32 位的 seqno 上溢后，下一个字节的 seqno 就重新从 0 开始。</p>
 </li>
 <li>
-<p>点击相应菜单栏中的每个按钮可以跳转到另外一个页面</p>
-<p>使用 connect</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处需要在类中如下</span></span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">openNewWindow</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//实现如下</span></span><br><span class="line">QAction *action1 = <span class="keyword">new</span> <span class="built_in">QAction</span>(<span class="string">&quot;八股&quot;</span>, <span class="keyword">this</span>);</span><br><span class="line">bar-&gt;<span class="built_in">addAction</span>(action1);</span><br><span class="line"><span class="built_in">connect</span>(action1, <span class="built_in">SIGNAL</span>(<span class="built_in">triggered</span>()), <span class="keyword">this</span>,<span class="built_in">SLOT</span>(<span class="built_in">openNewWindow</span>()));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MainWindow::openNewWindow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QWidget *newWindow = <span class="keyword">new</span> QWidget;</span><br><span class="line">    newWindow-&gt;<span class="built_in">setWindowTitle</span>(<span class="string">&quot;New Window&quot;</span>);</span><br><span class="line">    <span class="function">QPixmap <span class="title">bkgnd</span><span class="params">(<span class="string">&quot;:/new/prefix1/10.png&quot;</span>)</span></span>;</span><br><span class="line">    bkgnd = bkgnd.<span class="built_in">scaled</span>(<span class="keyword">this</span>-&gt;<span class="built_in">size</span>(), Qt::IgnoreAspectRatio);</span><br><span class="line">    QPalette palette;</span><br><span class="line">    palette.<span class="built_in">setBrush</span>(QPalette::Background, bkgnd);</span><br><span class="line">    newWindow-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">    newWindow-&gt;<span class="built_in">show</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>处于安全性考虑，以及避免与之前的 TCP 报文混淆，TCP 需要让每个 seqno 都不可被猜测到，并且降低重复的可能性。因此 TCP seqno 不会从 0 开始，而是从一个 32 位随机数起步（称为<strong>初始序列号 ISN</strong>）。</p>
+<p>而 ISN 是表示 SYN 包（用以表示 TCP 流的开始）的序列号。</p>
 </li>
 <li>
-<p>背景图</p>
-<p>此处需要首先在工程中添加 resource 文件，再向其中添加图片，否则就算路径正确也会读取不出来图片</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QPixmap <span class="title">bkgnd</span><span class="params">(<span class="string">&quot;:/new/prefix1/6.png&quot;</span>)</span></span>;</span><br><span class="line">bkgnd = bkgnd.<span class="built_in">scaled</span>(<span class="keyword">this</span>-&gt;<span class="built_in">size</span>(), Qt::IgnoreAspectRatio);</span><br><span class="line">QPalette palette;</span><br><span class="line">palette.<span class="built_in">setBrush</span>(QPalette::Background, bkgnd);</span><br><span class="line"><span class="keyword">this</span>-&gt;<span class="built_in">setPalette</span>(palette);</span><br></pre></td></tr></table></figure>
+<p>TCP 流的<strong>逻辑开始数据包</strong>和<strong>逻辑结束数据包</strong>各占用一个 seqno。除了确保<strong>接收到所有字节的数据</strong>以外，TCP 还需要确保接收到<strong>流的开头和结尾</strong>。 因此，在 TCP 中，SYN（流开始）和 FIN（流结束）控制标志将会被分别分配一个序列号（SYN 标志占用的序列号就是 ISN）。</p>
+<p>流中的每个数据字节也占用一个序列号。</p>
+<p>但需要注意的是，SYN 和 FIN 不是流本身的一部分，也不是传输的字节数据。它们只是代表字节流本身的开始和结束。</p>
 </li>
 </ul>
-<p>明日计划：</p>
-<p>实现打开的页面中能够读取 txt，写入 txt, 以及答案匹配，实现基础问答形式。</p>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>字节索引类型一多就容易乱。当前总共有三种索引：</p>
+<ul>
+<li>序列号 seqno。<strong>从 ISN 起步</strong>，包含 SYN 和 FIN，<strong>32 位循环</strong>计数</li>
+<li>绝对序列号 absolute seqno。<strong>从 0 起步</strong>，包含 SYN 和 FIN，<strong>64 位非循环</strong>计数</li>
+<li>流索引 stream index。<strong>从 0 起步</strong>，<strong>排除 SYN 和 FIN</strong>，<strong>64 位非循环</strong>计数。</li>
+</ul>
+<p>这是一个简单浅显的例子，用于区分开三种索引的区别：</p>
+<p><img src="https://kiprey.github.io/2021/11/cs144-lab2/image-20211107105751818.png" class="lazyload placeholder" data-srcset="https://kiprey.github.io/2021/11/cs144-lab2/image-20211107105751818.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="image-20211107105751818"></p>
+<p>序列号和<strong>绝对</strong>序列号之间相互转换稍微有点麻烦，因为序列号是<strong>循环计数</strong>的。在该实验中，CS144 使用自定义类型 WrappingInt32 表示序列号，并编写了它与绝对序列号之间的转换。</p>
+<p>这个实现稍微有点麻烦，而且实现的时候也最好避免各类循环，减少使用条件判断的次数，以提高执行效率。</p>
+<h4 id="wrap"><a class="markdownIt-Anchor" href="#wrap">#</a> wrap</h4>
+<p>该函数时将 64 位转化为 64 位，还是比较容易</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">WrappingInt32 <span class="title">wrap</span><span class="params">(<span class="type">uint64_t</span> n, WrappingInt32 isn)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// DUMMY_CODE(n, isn); </span></span><br><span class="line">    <span class="comment">// return WrappingInt32&#123;0&#125;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">WrappingInt32</span>(isn.<span class="built_in">raw_value</span>() + <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(n));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="unwrap"><a class="markdownIt-Anchor" href="#unwrap">#</a> unwrap</h4>
+<p>该函数将 32 位转化为 64 位，需要动点脑子</p>
+<p>因为 64 位变成 32 位肯定会有些数字代表的并不是一个，可能是多个 64 位的数据，所以这个时候就需要 checkpoint 来告诉我们是哪个</p>
+<p>离得近就是！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">uint64_t</span> <span class="title">unwrap</span><span class="params">(WrappingInt32 n, WrappingInt32 isn, <span class="type">uint64_t</span> checkpoint)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// DUMMY_CODE(n, isn, checkpoint);</span></span><br><span class="line">    <span class="comment">// return &#123;&#125;;</span></span><br><span class="line">    <span class="type">uint64_t</span> offset = <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(n.<span class="built_in">raw_value</span>()-isn.<span class="built_in">raw_value</span>());</span><br><span class="line">    <span class="type">uint64_t</span> mod = checkpoint&gt;&gt;<span class="number">32</span>;</span><br><span class="line">    <span class="type">uint64_t</span> ii  = <span class="number">1</span>;</span><br><span class="line">    <span class="type">uint64_t</span> add = ii&lt;&lt;<span class="number">32</span>;</span><br><span class="line">    <span class="type">uint64_t</span> add_1 = offset + add*mod;</span><br><span class="line">    <span class="type">uint64_t</span> add_2 = offset + add*(mod+<span class="number">1</span>);</span><br><span class="line">    <span class="type">uint64_t</span> add_3 = offset + add*(mod<span class="number">-1</span>);</span><br><span class="line">    <span class="type">uint64_t</span> r_1 = add_1 &gt; checkpoint ? add_1 - checkpoint : checkpoint - add_1;</span><br><span class="line">    <span class="type">uint64_t</span> r_2 = add_2 &gt; checkpoint ? add_2 - checkpoint : checkpoint - add_2;</span><br><span class="line">    <span class="type">uint64_t</span> r_3 = add_3 &gt; checkpoint ? add_3 - checkpoint : checkpoint - add_3;</span><br><span class="line">    r_3 ++;</span><br><span class="line">    r_3 --;</span><br><span class="line">    <span class="keyword">if</span> (mod == <span class="number">0</span>) r_3 = INT64_MAX;</span><br><span class="line">    <span class="type">uint64_t</span> min_off = <span class="built_in">min</span>(<span class="built_in">min</span>(r_1, r_2), r_3);</span><br><span class="line">    <span class="keyword">if</span> (min_off == r_1) <span class="keyword">return</span> add_1;</span><br><span class="line">    <span class="keyword">if</span> (min_off == r_2) <span class="keyword">return</span> add_2;</span><br><span class="line">    <span class="keyword">else</span>  <span class="keyword">return</span> add_3;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试通过</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Test project /root/lianxi/CS144/sponge/build</span><br><span class="line">    Start 1: t_wrapping_ints_cmp</span><br><span class="line">1/3 Test #1: t_wrapping_ints_cmp ..............   Passed    0.01 sec</span><br><span class="line">    Start 2: t_wrapping_ints_unwrap</span><br><span class="line">2/3 Test #2: t_wrapping_ints_unwrap ...........   Passed    0.00 sec</span><br><span class="line">    Start 3: t_wrapping_ints_wrap</span><br><span class="line">3/3 Test #3: t_wrapping_ints_wrap .............   Passed    0.00 sec</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">100% </span><span class="language-bash">tests passed, 0 tests failed out of 3</span></span><br><span class="line"></span><br><span class="line">Total Test time (real) =   0.02 sec</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/%E7%A7%8B%E6%8B%9B%E5%AD%A6%E4%B9%A0%E5%99%A8/" class="">
-              秋招学习器
+            <a href="/tags/CS144/" class="">
+              CS144
+            </a>
+          
+            <a href="/tags/TCP/" class="">
+              TCP
             </a>
           
         </div>
@@ -604,7 +638,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/12/autum-study/dayi/" target="_blank" title="秋招学习器基础功能">https://flowerhai.github.io/2023/04/12/autum-study/dayi/</a>
+    <a href="/2023/05/08/cs144/cs144lab2part1/" target="_blank" title="Lab 2:the TCP receiver part1">https://flowerhai.github.io/2023/05/08/cs144/cs144lab2part1/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -622,40 +656,24 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/12/shuati/lc/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">刷题day1</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 238. 除自身以外数组的乘积
-给你一个整数数组 nums，返回 数组 answer ，其中 answer [i] 
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/11/hello-world/" class="post-nav-link">
+    <a href="/2023/05/08/cs144/css144/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Hello World</div>
+        <div class="title-text">CSS144- 太可恶了!</div>
       </div>
       <!-- <div class="content">
-        Welcome to Hexo! This is your very first post. Check documen
+        强烈声讨
+CS144lab2cmake 文件
+库文件写错了，一直只会给出 not found
+搞得我还以为自己没安装成功
       </div> -->
     </a>
   </div>
@@ -787,7 +805,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#day1"><span class="toc-text"> day1</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lab-2-the-tcp-receiver-part1"><span class="toc-text"> Lab 2: the TCP receiver part1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%BD%AC%E6%8D%A2"><span class="toc-text"> 索引转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#wrap"><span class="toc-text"> wrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#unwrap"><span class="toc-text"> unwrap</span></a></li></ol></li></ol></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
