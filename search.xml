@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>CSS144- 太可恶了!</title>
+      <link href="/2023/05/08/cs144/css144/"/>
+      <url>/2023/05/08/cs144/css144/</url>
+      
+        <content type="html"><![CDATA[<p>强烈声讨</p><p>CS144lab2cmake 文件</p><p>库文件写错了，一直只会给出 not found</p><p>搞得我还以为自己没安装成功</p><p>头痛一上午</p><p>寻找了各种方法</p><p>mmp</p><p>最后忍不了了直接查看 cmake 文件</p><p>好啊</p><p>原来是你在那个地方一直给了一个 not found</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> CSS144 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>new-malloc-free-delete</title>
       <link href="/2023/05/07/c-basic/new-malloc/"/>
       <url>/2023/05/07/c-basic/new-malloc/</url>
