@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>刷题day3 | 恍惚迷离</title>
+  <title>刷题记录-第23天 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        刷题day3
+        刷题记录-第23天
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-14 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-09 |
         </span>
       
 
@@ -562,16 +562,87 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h4 id="94-二叉树的中序遍历"><a class="markdownIt-Anchor" href="#94-二叉树的中序遍历">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></h4>
-<p>给定一个二叉树的根节点  <code>root</code>  ，返回 <em>它的 <strong>中序</strong> 遍历</em> 。</p>
-<p>没什么好说的，开干！</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; res;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">middle_sort</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> ;</span><br><span class="line">        <span class="built_in">middle_sort</span>(root-&gt;left);</span><br><span class="line">        res.<span class="built_in">push_back</span>(root-&gt;val);</span><br><span class="line">        <span class="built_in">middle_sort</span>(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">middle_sort</span>(root);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="114-二叉树展开为链表"><a class="markdownIt-Anchor" href="#114-二叉树展开为链表">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/">114. 二叉树展开为链表</a></h4>
-<p>给你二叉树的根结点 root ，请你将它展开为一个单链表：</p>
-<p>展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。<br>
-展开后的单链表应该与二叉树 先序遍历 顺序相同。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> ;</span><br><span class="line">        TreeNode* l = root-&gt;left;</span><br><span class="line">        <span class="keyword">if</span> (l) &#123;</span><br><span class="line">            <span class="keyword">while</span> (l-&gt;right) l = l-&gt;right;</span><br><span class="line">            l-&gt;right = root-&gt;right;</span><br><span class="line">            root-&gt;right = root-&gt;left;</span><br><span class="line">            root-&gt;left = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">flatten</span>(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这个题啊，先将左子树拿到右边，再对右边递归即可。</p>
+        <h3 id="池塘计数"><a class="markdownIt-Anchor" href="#池塘计数">#</a> 池塘计数</h3>
+<p>农夫约翰有一片 N∗M ∗  的矩形土地。</p>
+<p>最近，由于降雨的原因，部分土地被水淹没了。</p>
+<p>现在用一个字符矩阵来表示他的土地。</p>
+<p>每个单元格内，如果包含雨水，则用”W” 表示，如果不含雨水，则用”.” 表示。</p>
+<p>现在，约翰想知道他的土地中形成了多少片池塘。</p>
+<p>每组相连的积水单元格集合可以看作是一片池塘。</p>
+<p>每个单元格视为与其上、下、左、右、左上、右上、左下、右下八个邻近单元格相连。</p>
+<p>请你输出共有多少片池塘，即矩阵中共有多少片相连的”W” 块。</p>
+<h4 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式">#</a> 输入格式</h4>
+<p>第一行包含两个整数 N  和 M 。</p>
+<p>接下来 N  行，每行包含 M  个字符，字符为”W” 或”.”，用以表示矩形土地的积水状况，字符之间没有空格。</p>
+<h4 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式">#</a> 输出格式</h4>
+<p>输出一个整数，表示池塘数目。</p>
+<h4 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围">#</a> 数据范围</h4>
+<p>1≤N,M≤10001≤ , ≤1000</p>
+<h4 id="输入样例"><a class="markdownIt-Anchor" href="#输入样例">#</a> 输入样例：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 12</span><br><span class="line">W........WW.</span><br><span class="line">.WWW.....WWW</span><br><span class="line">....WW...WW.</span><br><span class="line">.........WW.</span><br><span class="line">.........W..</span><br><span class="line">..W......W..</span><br><span class="line">.W.W.....WW.</span><br><span class="line">W.W.W.....W.</span><br><span class="line">.W.W......W.</span><br><span class="line">..W.......W.</span><br></pre></td></tr></table></figure>
+<h4 id="输出样例"><a class="markdownIt-Anchor" href="#输出样例">#</a> 输出样例：</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>经典连通块问题喽</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"><span class="type">int</span> f[N][N];</span><br><span class="line"><span class="type">int</span> n, m, res;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    f[x][y] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//上、下、左、右、左上、右上、左下、右下</span></span><br><span class="line">    <span class="keyword">if</span> (x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x<span class="number">-1</span>][y] == <span class="number">1</span>) <span class="built_in">dfs</span>(x<span class="number">-1</span>, y);</span><br><span class="line">    <span class="keyword">if</span> (x+<span class="number">1</span>&lt;n &amp;&amp; f[x+<span class="number">1</span>][y] == <span class="number">1</span>) <span class="built_in">dfs</span>(x+<span class="number">1</span>, y);</span><br><span class="line">    <span class="keyword">if</span> (y<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x][y<span class="number">-1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x, y<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (y+<span class="number">1</span>&lt;m &amp;&amp; f[x][y+<span class="number">1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x, y+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; y<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x<span class="number">-1</span>][y<span class="number">-1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x<span class="number">-1</span>, y<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; y+<span class="number">1</span>&lt;m &amp;&amp; f[x<span class="number">-1</span>][y+<span class="number">1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x<span class="number">-1</span>, y+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x+<span class="number">1</span>&lt;n &amp;&amp; y<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x+<span class="number">1</span>][y<span class="number">-1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x+<span class="number">1</span>, y<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x+<span class="number">1</span>&lt;n &amp;&amp; y+<span class="number">1</span>&lt;m &amp;&amp; f[x+<span class="number">1</span>][y+<span class="number">1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x+<span class="number">1</span>, y+<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">            <span class="type">char</span> a;</span><br><span class="line">            cin&gt;&gt;a;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="string">&#x27;W&#x27;</span>) f[i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="string">&#x27;.&#x27;</span>) f[i][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (f[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                res ++;</span><br><span class="line">                <span class="built_in">dfs</span>(i, j);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="热浪"><a class="markdownIt-Anchor" href="#热浪">#</a> 热浪</h3>
+<p>德克萨斯纯朴的民众们这个夏天正在遭受巨大的热浪！！！</p>
+<p>他们的德克萨斯长角牛吃起来不错，可是它们并不是很擅长生产富含奶油的乳制品。</p>
+<p>农夫 John 此时身先士卒地承担起向德克萨斯运送大量的营养冰凉的牛奶的重任，以减轻德克萨斯人忍受酷暑的痛苦。</p>
+<p>John 已经研究过可以把牛奶从威斯康星运送到德克萨斯州的路线。</p>
+<p>这些路线包括起始点和终点一共有 T  个城镇，为了方便标号为 11 到 T 。</p>
+<p>除了起点和终点外的每个城镇都由 <strong>双向道路</strong> 连向至少两个其它的城镇。</p>
+<p>每条道路有一个通过费用（包括油费，过路费等等）。</p>
+<p>给定一个地图，包含 C  条直接连接 22 个城镇的道路。</p>
+<p>每条道路由道路的起点 Rs  ，终点 Re   和花费 Ci   组成。</p>
+<p>求从起始的城镇 Ts   到终点的城镇 Te   最小的总费用。</p>
+<h4 id="输入格式-2"><a class="markdownIt-Anchor" href="#输入格式-2">#</a> 输入格式</h4>
+<p>第一行: 44 个由空格隔开的整数: T,C,Ts,Te , ,  ,  ;</p>
+<p>第 22 到第 C+1 +1 行：第 i+1 +1 行描述第 i  条道路，包含 33 个由空格隔开的整数: Rs,Re,Ci  ,  ,  。</p>
+<h4 id="输出格式-2"><a class="markdownIt-Anchor" href="#输出格式-2">#</a> 输出格式</h4>
+<p>一个单独的整数表示从 Ts   到 Te   的最小总费用。</p>
+<p>数据保证至少存在一条道路。</p>
+<h4 id="数据范围-2"><a class="markdownIt-Anchor" href="#数据范围-2">#</a> 数据范围</h4>
+<p>1≤T≤25001≤ ≤2500,<br>
+1≤C≤62001≤ ≤6200,<br>
+1≤Ts,Te,Rs,Re≤T1≤  ,  ,  ,  ≤ ,<br>
+1≤Ci≤10001≤  ≤1000</p>
+<h4 id="输入样例-2"><a class="markdownIt-Anchor" href="#输入样例-2">#</a> 输入样例：</h4>
+<p>dijkstra 算法板子题算是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n,c, nbeg, nend;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2510</span>;</span><br><span class="line"><span class="type">int</span> g[N][N];</span><br><span class="line"><span class="type">int</span> dist[N];</span><br><span class="line"><span class="type">bool</span> st[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dijkstra</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dist);</span><br><span class="line">    <span class="built_in">memset</span>(st, <span class="number">0</span>, <span class="keyword">sizeof</span> st);</span><br><span class="line">    dist[nbeg] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> t = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (!st[j] &amp;&amp; (t == <span class="number">-1</span> || dist[t] &gt; dist[j]))</span><br><span class="line">                t = j;</span><br><span class="line">        st[t] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++ )</span><br><span class="line">            dist[j] = <span class="built_in">min</span>(dist[j], dist[t] + g[t][j]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(g, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> g);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;c&gt;&gt;nbeg&gt;&gt;nend;</span><br><span class="line">    <span class="keyword">while</span> (c --) &#123;</span><br><span class="line">        <span class="type">int</span> k, p, l;</span><br><span class="line">        cin&gt;&gt;k&gt;&gt;p&gt;&gt;l;</span><br><span class="line">        g[k][p] = g[p][k] = <span class="built_in">min</span>(g[k][p], l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dijkstra</span>();</span><br><span class="line">    cout&lt;&lt;dist[nend];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Dijkstra 的整体思路比较清晰<br>
+即进行 n（n 为 n 的个数）次迭代去确定每个点到起点的最小值 最后输出的终点的即为我们要找的最短路的距离</p>
+<p>所以按照这个思路除了存储图外我们还需要存储两个量</p>
+<p>dist [n] // 用于存储每个点到起点的最短距离<br>
+ st [n]   // 用于在更新最短距离时 判断当前的点的最短距离是否确定 是否需要更新</p>
+<p>每次迭代的过程中我们都先找到当前未确定的最短距离的点中距离最短的点<br>
+（至于为什么是这样那么这就涉及到 Dijkstra 算法的具体数学证明了 有兴趣的同学可以百度一下）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> t=<span class="number">-1</span>;       <span class="comment">//将t设置为-1 因为Dijkstra算法适用于不存在负权边的图</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!st[j]&amp;&amp;(t==<span class="number">-1</span>||dist[t]&gt;dist[j])    <span class="comment">//该步骤即寻找还未确定最短路的点中路径最短的点</span></span><br><span class="line">        t=j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述操作当前我们的 t 代表就是剩余未确定最短路的点中 路径最短的点<br>
+而与此同时该点的最短路径也已经确定我们将该点标记</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st[t]=true;</span><br></pre></td></tr></table></figure>
+<p>然后用这个去更新其余未确定点的最短距离</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">    dist[j]=<span class="built_in">min</span>(dist[j],dist[t]+g[t][j]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里可能有同学要问j如果从1开始的话 会不会影响之前已经确定的点的最小距离</span></span><br><span class="line"><span class="comment">//但其实是不会 因为按照我们的Dijkstra算法的操作顺序 先确定最短距离的点的距离已经比后确定的要小 所以不会影响</span></span><br><span class="line"><span class="comment">//当然你也可以在循环判断条件里加上if(!st[i])</span></span><br><span class="line"><span class="comment">//这里j从1开始只是为了代码的简洁</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>进行 n 次迭代后最后就可以确定每个点的最短距离</p>
+<h4 id="面试题-0101-判定字符是否唯一"><a class="markdownIt-Anchor" href="#面试题-0101-判定字符是否唯一">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/is-unique-lcci/">面试题 01.01. 判定字符是否唯一</a></h4>
+<p>实现一个算法，确定一个字符串  <code>s</code>  的所有字符是否全都不同。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;leetcode&quot;</span><br><span class="line">输出: false </span><br></pre></td></tr></table></figure>
+<p>题目说了全是小写字母</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isUnique</span><span class="params">(string astr)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> a[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; astr.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[astr[i]-<span class="string">&#x27;a&#x27;</span>] &gt; <span class="number">0</span> )<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            a[astr[i]-<span class="string">&#x27;a&#x27;</span>] ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="198-打家劫舍"><a class="markdownIt-Anchor" href="#198-打家劫舍">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/house-robber/">198. 打家劫舍</a></h4>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，<strong>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警</strong>。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 <strong>不触动警报装置的情况下</strong> ，一夜之内能够偷窃到的最高金额。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,3,1]</span><br><span class="line">输出：4</span><br><span class="line">解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</span><br><span class="line">     偷窃到的最高金额 = 1 + 3 = 4 。</span><br></pre></td></tr></table></figure>
+<p>典</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">rob</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> f[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        f[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        f[<span class="number">1</span>] = <span class="built_in">max</span>(f[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">        res = <span class="built_in">max</span>(res, <span class="built_in">max</span>(f[<span class="number">0</span>], f[<span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            f[i] = <span class="built_in">max</span>(f[i], <span class="built_in">max</span>(nums[i]+f[i<span class="number">-2</span>],f[i<span class="number">-1</span>]));</span><br><span class="line">            res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="面试题-0202-返回倒数第-k-个节点"><a class="markdownIt-Anchor" href="#面试题-0202-返回倒数第-k-个节点">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-node-from-end-of-list-lcci/">面试题 02.02. 返回倒数第 k 个节点</a></h4>
+<p>实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。</p>
+<p>** 注意：** 本题相对原题稍作改动</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： 1-&gt;2-&gt;3-&gt;4-&gt;5 和 k = 2</span><br><span class="line">输出： 4</span><br></pre></td></tr></table></figure>
+<p>双指针喽</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">kthToLast</span><span class="params">(ListNode* head, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> fast = <span class="number">0</span>;</span><br><span class="line">        ListNode* h = head;</span><br><span class="line">        <span class="keyword">while</span> (h!=<span class="literal">nullptr</span>) &#123;</span><br><span class="line">            fast ++;</span><br><span class="line">            h = h-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (fast == k) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (head != <span class="literal">nullptr</span> &amp;&amp; h != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">            h = h-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (h == <span class="literal">nullptr</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head-&gt;val;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
@@ -593,7 +664,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/14/shuati/day3/" target="_blank" title="刷题day3">https://flowerhai.github.io/2023/04/14/shuati/day3/</a>
+    <a href="/2023/05/09/day23/" target="_blank" title="刷题记录-第23天">https://flowerhai.github.io/2023/05/09/day23/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -611,43 +682,23 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/14/some-tips/unix-fifo/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">unix_fifo</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 管道和 FIFO
-从图 4-3 到 4-4。如果子进程没有执行 close (fd [1])，会发生什么？
-
-
-当父
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/13/some-tips/qndxx/" class="post-nav-link">
+    <a href="/2023/05/08/shuati/day22/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">qndxx</div>
+        <div class="title-text">刷题day22</div>
       </div>
       <!-- <div class="content">
-        123456789101112131415161718192021222324252627282930313233343
+        # 134. 加油站
+在一条环路上有  n  个加油站，其中第  i  个加油站有汽油  gas[i]  升。
+你有一辆
       </div> -->
     </a>
   </div>
@@ -779,7 +830,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text"> 94. 二叉树的中序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#114-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8"><span class="toc-text"> 114. 二叉树展开为链表</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%A0%E5%A1%98%E8%AE%A1%E6%95%B0"><span class="toc-text"> 池塘计数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输出样例：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E6%B5%AA"><span class="toc-text"> 热浪</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-2"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-2"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4-2"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B-2"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98-0101-%E5%88%A4%E5%AE%9A%E5%AD%97%E7%AC%A6%E6%98%AF%E5%90%A6%E5%94%AF%E4%B8%80"><span class="toc-text"> 面试题 01.01. 判定字符是否唯一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D"><span class="toc-text"> 198. 打家劫舍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98-0202-%E8%BF%94%E5%9B%9E%E5%80%92%E6%95%B0%E7%AC%AC-k-%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text"> 面试题 02.02. 返回倒数第 k 个节点</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
