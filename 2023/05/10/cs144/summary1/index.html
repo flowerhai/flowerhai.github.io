@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>刷题day13 | 恍惚迷离</title>
+  <title>CS144-summary1 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        刷题day13
+        CS144-summary1
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-27 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-10 |
         </span>
       
 
@@ -562,112 +562,37 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h4 id="剑指-offer-20-表示数值的字符串"><a class="markdownIt-Anchor" href="#剑指-offer-20-表示数值的字符串">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/">剑指 Offer 20. 表示数值的字符串</a></h4>
-<p>请实现一个函数用来判断字符串是否表示<strong>数值</strong>（包括整数和小数）。</p>
-<p><strong>数值</strong>（按顺序）可以分成以下几个部分：</p>
+        <h1 id="cs144lab0-1-2-summary"><a class="markdownIt-Anchor" href="#cs144lab0-1-2-summary">#</a> CS144lab0-1-2 summary</h1>
+<p>在 lab0 中，首先实现了一个 get_url 函数，这个函数就是像指定地址发起 http 连接然后做出响应，注意一下 Htpp 报文响应格式就可以了。</p>
+<p>随后我们又完成了 ByteStream 的实现。</p>
+<p>这个 byteStream 主要就是实现 TCP 协议中的最基础的字节流，用来存储需要传输的字节。</p>
+<p>在 lab1 中，实现 StreamReassembler。</p>
+<p>这个主要是 TCP 协议中的数据流控制器，用来将传给 TCP 的数据确保有序写入 byteStream 中。</p>
+<p>在 lab2 中，我们实现 TCPReceiver，用以接收传入的 TCP segment 并将其转换成用户可读的数据流。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-89e93bf7a8349bad81a09f494e03e418_720w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-89e93bf7a8349bad81a09f494e03e418_720w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></p>
 <ol>
-<li>若干空格</li>
-<li>一个 <strong>小数</strong> 或者 <strong>整数</strong></li>
-<li>（可选）一个  <code>'e'</code>  或  <code>'E'</code>  ，后面跟着一个 <strong>整数</strong></li>
-<li>若干空格</li>
+<li>内核态下 UDP 数据包中的 payload 被解析为 TCPSegment (TCP 报文) 后，交给用户态下的 TCPConnection，即调用 segment_received 方法；</li>
+<li>TCPConnection 收到报文后，将报文交给 TCPReceiver，即调用 TCPReceiver.segment_received 方法，并将报文中的 ackno (确认号) 与 window_size (窗口大小) 交给 TCPSender，即调用 ack_received 方法；</li>
+<li>TCPReceiver 处理 TCP 报文，并将报文中的 payload 推入 StreamReassembler 中，并重组后交给应用程序，随后尝试发送报文；</li>
+<li>TCPConnection 调用 TCPSender.fill_window 方法尝试得到待发送报文 (可能得不到，视具体情况而定)，若有报文，则设置报文 payload 以及其它字段，如 SYN、ackno (从 receiver 获取)、window_size 等，设置完毕后包装为 TCP 报文，将报文交给 UDP；</li>
+<li>UDP 将其打包为数据报，并发送给远端。</li>
 </ol>
-<p><strong>小数</strong>（按顺序）可以分成以下几个部分：</p>
-<ol>
-<li>（可选）一个符号字符（ <code>'+'</code>  或  <code>'-'</code> ）</li>
-<li>下述格式之一：
-<ol>
-<li>至少一位数字，后面跟着一个点  <code>'.'</code></li>
-<li>至少一位数字，后面跟着一个点  <code>'.'</code>  ，后面再跟着至少一位数字</li>
-<li>一个点  <code>'.'</code>  ，后面跟着至少一位数字</li>
-</ol>
-</li>
-</ol>
-<p><strong>整数</strong>（按顺序）可以分成以下几个部分：</p>
-<ol>
-<li>（可选）一个符号字符（ <code>'+'</code>  或  <code>'-'</code> ）</li>
-<li>至少一位数字</li>
-</ol>
-<p>部分<strong>数值</strong>列举如下：</p>
-<ul>
-<li><code>[&quot;+100&quot;, &quot;5e2&quot;, &quot;-123&quot;, &quot;3.1416&quot;, &quot;-1E-16&quot;, &quot;0123&quot;]</code></li>
-</ul>
-<p>部分<strong>非数值</strong>列举如下：</p>
-<ul>
-<li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
-</ul>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;0&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-<p>吐血，本来还想着是否有什么算法可以求解，解决直接来一个有限状态机，算了这种题，再次碰见类似的估计还是想不出来</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">State</span> &#123;</span><br><span class="line">        STATE_INITIAL,</span><br><span class="line">        STATE_INT_SIGN,</span><br><span class="line">        STATE_INTEGER,</span><br><span class="line">        STATE_POINT,</span><br><span class="line">        STATE_POINT_WITHOUT_INT,</span><br><span class="line">        STATE_FRACTION,</span><br><span class="line">        STATE_EXP,</span><br><span class="line">        STATE_EXP_SIGN,</span><br><span class="line">        STATE_EXP_NUMBER,</span><br><span class="line">        STATE_END</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">CharType</span> &#123;</span><br><span class="line">        CHAR_NUMBER,</span><br><span class="line">        CHAR_EXP,</span><br><span class="line">        CHAR_POINT,</span><br><span class="line">        CHAR_SIGN,</span><br><span class="line">        CHAR_SPACE,</span><br><span class="line">        CHAR_ILLEGAL</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">CharType <span class="title">toCharType</span><span class="params">(<span class="type">char</span> ch)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CHAR_NUMBER;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;e&#x27;</span> || ch == <span class="string">&#x27;E&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CHAR_EXP;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CHAR_POINT;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;+&#x27;</span> || ch == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CHAR_SIGN;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27; &#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CHAR_SPACE;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> CHAR_ILLEGAL;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isNumber</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;State, unordered_map&lt;CharType, State&gt;&gt; transfer&#123;</span><br><span class="line">            &#123;</span><br><span class="line">                STATE_INITIAL, &#123;</span><br><span class="line">                    &#123;CHAR_SPACE, STATE_INITIAL&#125;,</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_INTEGER&#125;,</span><br><span class="line">                    &#123;CHAR_POINT, STATE_POINT_WITHOUT_INT&#125;,</span><br><span class="line">                    &#123;CHAR_SIGN, STATE_INT_SIGN&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_INT_SIGN, &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_INTEGER&#125;,</span><br><span class="line">                    &#123;CHAR_POINT, STATE_POINT_WITHOUT_INT&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_INTEGER, &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_INTEGER&#125;,</span><br><span class="line">                    &#123;CHAR_EXP, STATE_EXP&#125;,</span><br><span class="line">                    &#123;CHAR_POINT, STATE_POINT&#125;,</span><br><span class="line">                    &#123;CHAR_SPACE, STATE_END&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_POINT, &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_FRACTION&#125;,</span><br><span class="line">                    &#123;CHAR_EXP, STATE_EXP&#125;,</span><br><span class="line">                    &#123;CHAR_SPACE, STATE_END&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_POINT_WITHOUT_INT, &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_FRACTION&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_FRACTION,</span><br><span class="line">                &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_FRACTION&#125;,</span><br><span class="line">                    &#123;CHAR_EXP, STATE_EXP&#125;,</span><br><span class="line">                    &#123;CHAR_SPACE, STATE_END&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_EXP,</span><br><span class="line">                &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_EXP_NUMBER&#125;,</span><br><span class="line">                    &#123;CHAR_SIGN, STATE_EXP_SIGN&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_EXP_SIGN, &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_EXP_NUMBER&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_EXP_NUMBER, &#123;</span><br><span class="line">                    &#123;CHAR_NUMBER, STATE_EXP_NUMBER&#125;,</span><br><span class="line">                    &#123;CHAR_SPACE, STATE_END&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                STATE_END, &#123;</span><br><span class="line">                    &#123;CHAR_SPACE, STATE_END&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> len = s.<span class="built_in">length</span>();</span><br><span class="line">        State st = STATE_INITIAL;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            CharType typ = <span class="built_in">toCharType</span>(s[i]);</span><br><span class="line">            <span class="keyword">if</span> (transfer[st].<span class="built_in">find</span>(typ) == transfer[st].<span class="built_in">end</span>()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                st = transfer[st][typ];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> st == STATE_INTEGER || st == STATE_POINT || st == STATE_FRACTION || st == STATE_EXP_NUMBER || st == STATE_END;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-17-打印从1到最大的n位数"><a class="markdownIt-Anchor" href="#剑指-offer-17-打印从1到最大的n位数">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/">剑指 Offer 17. 打印从 1 到最大的 n 位数</a></h4>
-<p>输入数字  <code>n</code> ，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 1</span><br><span class="line">输出: [1,2,3,4,5,6,7,8,9]</span><br></pre></td></tr></table></figure>
-<p>很简单的一道题</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">printNumbers</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; res;</span><br><span class="line">        <span class="type">int</span> r = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (n --) &#123;</span><br><span class="line">            r *= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; r; i ++) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-14-i-剪绳子"><a class="markdownIt-Anchor" href="#剑指-offer-14-i-剪绳子">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jian-sheng-zi-lcof/">剑指 Offer 14- I. 剪绳子</a></h4>
-<p>给你一根长度为  <code>n</code>  的绳子，请把绳子剪成整数长度的  <code>m</code>  段（m、n 都是整数，n&gt;1 并且 m&gt;1），每段绳子的长度记为  <code>k[0],k[1]...k[m-1]</code>  。请问  <code>k[0]*k[1]*...*k[m-1]</code>  可能的最大乘积是多少？例如，当绳子的长度是 8 时，我们把它剪成长度分别为 2、3、3 的三段，此时得到的最大乘积是 18。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 2</span><br><span class="line">输出: 1</span><br><span class="line">解释: 2 = 1 + 1, 1 × 1 = 1</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: 36</span><br><span class="line">解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>2 &lt;= n &lt;= 58</code></li>
-</ul>
-<p>此题动态规划</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cuttingRope</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//dp[3] = 2;</span></span><br><span class="line">        <span class="type">int</span> res = <span class="built_in">max</span>(<span class="number">0</span>, dp[<span class="number">2</span>]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">2</span>; j &lt;= i; j ++) &#123;</span><br><span class="line">                dp[i] = <span class="built_in">max</span>(dp[i], <span class="built_in">max</span>(j*(i-j), j*dp[i-j]));</span><br><span class="line">            &#125;</span><br><span class="line">            res = <span class="built_in">max</span>(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-40-最小的k个数"><a class="markdownIt-Anchor" href="#剑指-offer-40-最小的k个数">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/zui-xiao-de-kge-shu-lcof/">剑指 Offer 40. 最小的 k 个数</a></h4>
-<p>输入整数数组  <code>arr</code>  ，找出其中最小的  <code>k</code>  个数。例如，输入 4、5、1、6、2、7、3、8 这 8 个数字，则最小的 4 个数字是 1、2、3、4。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [3,2,1], k = 2</span><br><span class="line">输出：[1,2] 或者 [2,1]</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [0,1,2,1], k = 1</span><br><span class="line">输出：[0]</span><br></pre></td></tr></table></figure>
-<p>排序…</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getLeastNumbers</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i ++) res.<span class="built_in">emplace_back</span>(arr[i]);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-55-ii-平衡二叉树"><a class="markdownIt-Anchor" href="#剑指-offer-55-ii-平衡二叉树">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/">剑指 Offer 55 - II. 平衡二叉树</a></h4>
-<p>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过 1，那么它就是一棵平衡二叉树。</p>
-<p><strong>示例 1:</strong></p>
-<p>给定二叉树  <code>[3,9,20,null,null,15,7]</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>返回  <code>true</code>  。</p>
-<p>对每个节点都判断一下是否满足，随后看一下子节点是否满足</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">height</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">height</span>(root-&gt;left), <span class="built_in">height</span>(root-&gt;right))+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isBalanced</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>  &#123;</span><br><span class="line">            <span class="built_in">return</span> ((<span class="built_in">height</span>(root-&gt;left)-<span class="built_in">height</span>(root-&gt;right))*(<span class="built_in">height</span>(root-&gt;left)-<span class="built_in">height</span>(root-&gt;right)) &lt;= <span class="number">1</span>) &amp;&amp; <span class="built_in">isBalanced</span>(root-&gt;left) &amp;&amp; <span class="built_in">isBalanced</span>(root-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-27-二叉树的镜像"><a class="markdownIt-Anchor" href="#剑指-offer-27-二叉树的镜像">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/">剑指 Offer 27. 二叉树的镜像</a></h4>
-<p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。</p>
-<p>例如输入：</p>
-<p><code>   4  /  \ 2   7 / \  / \1  3 6  9</code> <br>
- 镜像输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4  /  \ 7   2 / \  / \9  6 3  1</span><br></pre></td></tr></table></figure>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,2,7,1,3,6,9]</span><br><span class="line">输出：[4,7,2,9,6,3,1]</span><br></pre></td></tr></table></figure>
-<p>没什么好说的，直接翻转就完事了</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">mirror</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span>;</span><br><span class="line">        TreeNode* left = root-&gt;left;</span><br><span class="line">        root-&gt;left = root-&gt;right;</span><br><span class="line">        root-&gt;right = left;</span><br><span class="line">        <span class="built_in">mirror</span>(root-&gt;left);</span><br><span class="line">        <span class="built_in">mirror</span>(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">mirrorTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="built_in">mirror</span>(root);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-68-i-二叉搜索树的最近公共祖先"><a class="markdownIt-Anchor" href="#剑指-offer-68-i-二叉搜索树的最近公共祖先">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/">剑指 Offer 68 - I. 二叉搜索树的最近公共祖先</a></h4>
-<p>给定一个二叉搜索树，找到该树中两个指定节点的最近公共祖先。</p>
-<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
-<p>例如，给定如下二叉搜索树: root = [6,2,8,0,4,7,9,null,null,3,5]</p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png" class="lazyload placeholder" data-srcset="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8</span><br><span class="line">输出: 6 </span><br><span class="line">解释: 节点 2 和节点 8 的最近公共祖先是 6。</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        TreeNode* ancestor = root;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p-&gt;val &lt; ancestor-&gt;val &amp;&amp; q-&gt;val &lt; ancestor-&gt;val) &#123;</span><br><span class="line">                ancestor = ancestor-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p-&gt;val &gt; ancestor-&gt;val &amp;&amp; q-&gt;val &gt; ancestor-&gt;val) &#123;</span><br><span class="line">                ancestor = ancestor-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ancestor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="剑指-offer-ii-089-房屋偷盗"><a class="markdownIt-Anchor" href="#剑指-offer-ii-089-房屋偷盗">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/Gu0c2T/">剑指 Offer II 089. 房屋偷盗</a></h4>
-<p>一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响小偷偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，<strong>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警</strong>。</p>
-<p>给定一个代表每个房屋存放金额的非负整数数组  <code>nums</code>  ，请计算 <strong>不触动警报装置的情况下</strong> ，一夜之内能够偷窃到的最高金额。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3,1]</span><br><span class="line">输出：4</span><br><span class="line">解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</span><br><span class="line">     偷窃到的最高金额 = 1 + 3 = 4 。</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,7,9,3,1]</span><br><span class="line">输出：12</span><br><span class="line">解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。</span><br><span class="line">     偷窃到的最高金额 = 2 + 9 + 1 = 12 。</span><br></pre></td></tr></table></figure>
-<p>动态规划</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">rob</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">res</span><span class="params">(nums.size()+<span class="number">1</span>)</span></span>;</span><br><span class="line">        res[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        res[<span class="number">1</span>] = <span class="built_in">max</span>(nums[<span class="number">1</span>], nums[<span class="number">0</span>]);</span><br><span class="line">        <span class="type">int</span> r = <span class="built_in">max</span>(<span class="number">0</span>, res[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            res[i] = <span class="built_in">max</span>(res[i<span class="number">-1</span>], res[i<span class="number">-2</span>]+nums[i]);</span><br><span class="line">            r = <span class="built_in">max</span>(r, res[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>lab2 中只要注意这个图问题不大。</p>
+<p><img src="https://pic4.zhimg.com/v2-88925e1793d5a992d079630ebcb908e3_r.jpg" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/v2-88925e1793d5a992d079630ebcb908e3_r.jpg" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="img"></p>
+<p>在 TCP header 中 seqno 与 ackno 都是 32 位整数，但是 isn 是发送者随机生成的数字，那么可能会产生一个问题：如果随机生成的 isn 十分接近 2^32-1 怎么办？</p>
+<p>这代表，TCP 数据流很快就会溢出 seqno。为了解决这个问题，sponge 实现了两个序号，一个是正常的 TCP header seqno，32 位，使用 WrappingInt32 表示，初始化为随机数，另一个是绝对 seqno 序号，使用 uint64_t 表示，初始化为 0。用绝对序号来表示数据流上字节的数量，最大数量为 2^64-1，这几乎是不可能达成的目标。</p>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/lc/" class="">
-              lc
+            <a href="/tags/CS144/" class="">
+              CS144
+            </a>
+          
+            <a href="/tags/TCP/" class="">
+              TCP
             </a>
           
         </div>
@@ -681,7 +606,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/27/shuati/day13/" target="_blank" title="刷题day13">https://flowerhai.github.io/2023/04/27/shuati/day13/</a>
+    <a href="/2023/05/10/cs144/summary1/" target="_blank" title="CS144-summary1">https://flowerhai.github.io/2023/05/10/cs144/summary1/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -699,42 +624,24 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" class="lazyload placeholder" data-srcset="https://pic4.zhimg.com/80/v2-e434e3a2888fb4efb1844845b8791d1f_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/27/some-tips/con-pro/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">生产者消费者练习题</div>
-      </div>
-      
-      <!-- <div class="content">
-        # 生产者消费者练习题
-线程 A 每隔 10~200ms 按顺序生成 1-100 的数字，放入队列中
-三个线程 B,C,
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-9c50d3af0bc62a0e8b6e89e24c769317_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/25/shuati/day12/" class="post-nav-link">
+    <a href="/2023/05/09/day23/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">刷题day12</div>
+        <div class="title-text">刷题记录-第23天</div>
       </div>
       <!-- <div class="content">
-        # 剑指 Offer 57. 和为 s 的两个数字
-输入一个递增排序的数组和一个数字 s，在数组中查找两个数，使得它们的
+        # 池塘计数
+农夫约翰有一片 N∗M ∗  的矩形土地。
+最近，由于降雨的原因，部分土地被水淹没了。
+现在用一个字符矩阵
       </div> -->
     </a>
   </div>
@@ -866,7 +773,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-20-%E8%A1%A8%E7%A4%BA%E6%95%B0%E5%80%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text"> 剑指 Offer 20. 表示数值的字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-17-%E6%89%93%E5%8D%B0%E4%BB%8E1%E5%88%B0%E6%9C%80%E5%A4%A7%E7%9A%84n%E4%BD%8D%E6%95%B0"><span class="toc-text"> 剑指 Offer 17. 打印从 1 到最大的 n 位数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-14-i-%E5%89%AA%E7%BB%B3%E5%AD%90"><span class="toc-text"> 剑指 Offer 14- I. 剪绳子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-40-%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0"><span class="toc-text"> 剑指 Offer 40. 最小的 k 个数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-55-ii-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text"> 剑指 Offer 55 - II. 平衡二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-27-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text"> 剑指 Offer 27. 二叉树的镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-68-i-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="toc-text"> 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%91%E6%8C%87-offer-ii-089-%E6%88%BF%E5%B1%8B%E5%81%B7%E7%9B%97"><span class="toc-text"> 剑指 Offer II 089. 房屋偷盗</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#cs144lab0-1-2-summary"><span class="toc-text"> CS144lab0-1-2 summary</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
