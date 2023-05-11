@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>调试中的小bug | 恍惚迷离</title>
+  <title>MIT6.S081Lab:Xv6 and Unix utilities | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://pic2.zhimg.com/80/v2-29e78b52051ce542adf6d786d61fbd19_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        调试中的小bug
+        MIT6.S081Lab:Xv6 and Unix utilities
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-04-13 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-11 |
         </span>
       
 
@@ -562,32 +562,20 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h4 id="在自定义widget的时候出现如下错误field-w-has-incomplete-type"><a class="markdownIt-Anchor" href="#在自定义widget的时候出现如下错误field-w-has-incomplete-type">#</a> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Widget</span> : <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Widget</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~<span class="built_in">Widget</span>();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Widget w;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">wwrite</span><span class="params">(QString s, QWidget *widget)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">savestabuyEditinfo</span><span class="params">(QLineEdit *lineEditPass, QString tex)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里是因为头文件对类或者结构体进行了前向声明，后面使用了该类定义了对象，导致编译报错。</p>
-<p>原因在于前向声明类或者结构体，此时编译器还不知道定义，无法知道类内部成员，所以无法构造实例对象，因此前向声明的类或者结构体只能用来定义指针或者引用。</p>
-<h4 id="cannot-call-member-function-without-object-处理"><a class="markdownIt-Anchor" href="#cannot-call-member-function-without-object-处理">#</a> cannot call member function ‘ ‘ without object 处理</h4>
-<p>应该先初始化一个类哦这个</p>
-<p><strong>莫名其妙的注释掉的函数也会出现提示我未初始化，这个时候需要将整个项目重构</strong></p>
-<h4 id="no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><a class="markdownIt-Anchor" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in">#</a> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</h4>
-<p>奇怪，明明以及在 Widget 里 public slots 声明了，却仍然有问题</p>
-<h4 id="qiodevicewrite-qfile-dqtprojectaguaguimage"><a class="markdownIt-Anchor" href="#qiodevicewrite-qfile-dqtprojectaguaguimage">#</a> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</h4>
-<h4 id="es-device-not-open"><a class="markdownIt-Anchor" href="#es-device-not-open">#</a> es&quot;): device not open</h4>
-<p>服了，qt 读取 txt 并不用和 image 一样，还得加到工程看里</p>
-<p>信号槽的问题，一直检测不到</p>
-<p>文件读写的问题，一直写不上</p>
-<p>吐了吐了</p>
+        <h1 id="mit6s081lab-xv6-and-unix-utilities"><a class="markdownIt-Anchor" href="#mit6s081lab-xv6-and-unix-utilities">#</a> MIT6.S081Lab: Xv6 and Unix utilities</h1>
+<p>先来开个头</p>
+<p>首先是 linux 开发环境搭建，我仍旧用的是阿里云 ECS Ubuntu  22.04 64 位</p>
+<p>然后就是安装一些必备的包喽</p>
+<p>将 git 到本地后进入文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make qemu</span><br></pre></td></tr></table></figure>
+<p>成功后出现如下</p>
+<p>ls 一下成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel -m 128M -smp 3 -nographic -drive file=fs.img,if=none,format=raw,id=x0 -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0</span><br><span class="line"></span><br><span class="line">xv6 kernel is booting</span><br><span class="line"></span><br><span class="line">hart 2 starting</span><br><span class="line">hart 1 starting</span><br><span class="line">init: starting sh</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">.              1 1 1024</span><br><span class="line">..             1 1 1024</span><br><span class="line">README         2 2 2226</span><br><span class="line">xargstest.sh   2 3 93</span><br><span class="line">cat            2 4 24192</span><br><span class="line">echo           2 5 23016</span><br><span class="line">forktest       2 6 13240</span><br><span class="line">grep           2 7 27496</span><br><span class="line">init           2 8 23752</span><br><span class="line">kill           2 9 22960</span><br><span class="line">ln             2 10 22800</span><br><span class="line">ls             2 11 26384</span><br><span class="line">mkdir          2 12 23096</span><br><span class="line">rm             2 13 23080</span><br><span class="line">sh             2 14 41912</span><br><span class="line">stressfs       2 15 23952</span><br><span class="line">usertests      2 16 157000</span><br><span class="line">grind          2 17 38128</span><br><span class="line">wc             2 18 25280</span><br><span class="line">zombie         2 19 22344</span><br><span class="line">console        3 20 0</span><br><span class="line"><span class="meta prompt_">$ </span></span><br></pre></td></tr></table></figure>
+<p>先开个头吧，最近好累，字节青训营也开始了。</p>
+<p>那边 CS144 的实验也并没有完全彻彻底底搞明白，下周开始做这个，预计这个六月份之前全部做完。</p>
 
       </div>
       <div class="post-tags-categories">
-        
-        <div class="tags">
-          
-            <a href="/tags/bug/" class="">
-              bug
-            </a>
-          
-        </div>
         
       </div>
       
@@ -598,7 +586,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/04/13/problem/problem/" target="_blank" title="调试中的小bug">https://flowerhai.github.io/2023/04/13/problem/problem/</a>
+    <a href="/2023/05/11/s081/lab0/" target="_blank" title="MIT6.S081Lab:Xv6 and Unix utilities">https://flowerhai.github.io/2023/05/11/s081/lab0/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -616,42 +604,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" class="lazyload placeholder" data-srcset="https://pic1.zhimg.com/80/v2-03a22891ccba9bccf6424dfd7cbf4be7_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/04/13/shuati/day2/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">刷题day2</div>
-      </div>
-      
-      <!-- <div class="content">
-        # day2
-# 236. 二叉树的最近公共祖先
-12345678910111213141516class Soluti
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-7cfc909ebe8d83683909846edd6b5232_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/04/12/shuati/lc/" class="post-nav-link">
+    <a href="/2023/05/11/cs144/cs144lab4/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">刷题day1</div>
+        <div class="title-text">CS144Lab 4:the summit (TCP in full)</div>
       </div>
       <!-- <div class="content">
-        # 238. 除自身以外数组的乘积
-给你一个整数数组 nums，返回 数组 answer ，其中 answer [i] 
+        # CS144Lab 4: the summit (TCP in full)
+这节 lab 主要是将前面三小节的拼起来，
       </div> -->
     </a>
   </div>
@@ -783,7 +751,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%87%AA%E5%AE%9A%E4%B9%89widget%E7%9A%84%E6%97%B6%E5%80%99%E5%87%BA%E7%8E%B0%E5%A6%82%E4%B8%8B%E9%94%99%E8%AF%AFfield-w-has-incomplete-type"><span class="toc-text"> 在自定义 Widget 的时候出现如下错误 field w has incomplete type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cannot-call-member-function-without-object-%E5%A4%84%E7%90%86"><span class="toc-text"> cannot call member function ‘ ‘ without object 处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#no-such-slot-widgetsavestabuyeditinfolineedit-text-in"><span class="toc-text"> No such slot Widget::savestabuyEditinfo(lineEdit, text) in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#qiodevicewrite-qfile-dqtprojectaguaguimage"><span class="toc-text"> QIODevice::write (QFile, &quot;D:qtprojectaguaguimage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#es-device-not-open"><span class="toc-text"> es&quot;): device not open</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mit6s081lab-xv6-and-unix-utilities"><span class="toc-text"> MIT6.S081Lab: Xv6 and Unix utilities</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>

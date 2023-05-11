@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>MIT6.S081Lab:Xv6 and Unix utilities</title>
+      <link href="/2023/05/11/s081/lab0/"/>
+      <url>/2023/05/11/s081/lab0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="mit6s081lab-xv6-and-unix-utilities"><a class="markdownIt-Anchor" href="#mit6s081lab-xv6-and-unix-utilities">#</a> MIT6.S081Lab: Xv6 and Unix utilities</h1><p>先来开个头</p><p>首先是 linux 开发环境搭建，我仍旧用的是阿里云 ECS Ubuntu  22.04 64 位</p><p>然后就是安装一些必备的包喽</p><p>将 git 到本地后进入文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make qemu</span><br></pre></td></tr></table></figure><p>成功后出现如下</p><p>ls 一下成功</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel -m 128M -smp 3 -nographic -drive file=fs.img,if=none,format=raw,id=x0 -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0</span><br><span class="line"></span><br><span class="line">xv6 kernel is booting</span><br><span class="line"></span><br><span class="line">hart 2 starting</span><br><span class="line">hart 1 starting</span><br><span class="line">init: starting sh</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span></span></span><br><span class="line">.              1 1 1024</span><br><span class="line">..             1 1 1024</span><br><span class="line">README         2 2 2226</span><br><span class="line">xargstest.sh   2 3 93</span><br><span class="line">cat            2 4 24192</span><br><span class="line">echo           2 5 23016</span><br><span class="line">forktest       2 6 13240</span><br><span class="line">grep           2 7 27496</span><br><span class="line">init           2 8 23752</span><br><span class="line">kill           2 9 22960</span><br><span class="line">ln             2 10 22800</span><br><span class="line">ls             2 11 26384</span><br><span class="line">mkdir          2 12 23096</span><br><span class="line">rm             2 13 23080</span><br><span class="line">sh             2 14 41912</span><br><span class="line">stressfs       2 15 23952</span><br><span class="line">usertests      2 16 157000</span><br><span class="line">grind          2 17 38128</span><br><span class="line">wc             2 18 25280</span><br><span class="line">zombie         2 19 22344</span><br><span class="line">console        3 20 0</span><br><span class="line"><span class="meta prompt_">$ </span></span><br></pre></td></tr></table></figure><p>先开个头吧，最近好累，字节青训营也开始了。</p><p>那边 CS144 的实验也并没有完全彻彻底底搞明白，下周开始做这个，预计这个六月份之前全部做完。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CS144Lab 4:the summit (TCP in full)</title>
       <link href="/2023/05/11/cs144/cs144lab4/"/>
       <url>/2023/05/11/cs144/cs144lab4/</url>
