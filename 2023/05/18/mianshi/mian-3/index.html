@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>刷题记录-第23天 | 恍惚迷离</title>
+  <title>微信搜索 一面 | 恍惚迷离</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -524,21 +524,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp')">
+  background-position: center center;position: relative;background-image:url('https://pic3.zhimg.com/80/v2-5f7cb7e900b9dcf5354c3d4d2c5cc3c2_1440w.webp')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        刷题记录-第23天
+        微信搜索 一面
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2023-05-09 |
+          <i class="fas fa-calendar"></i> Published in：2023-05-18 |
         </span>
       
 
@@ -562,95 +562,56 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="池塘计数"><a class="markdownIt-Anchor" href="#池塘计数">#</a> 池塘计数</h3>
-<p>农夫约翰有一片 N∗M ∗  的矩形土地。</p>
-<p>最近，由于降雨的原因，部分土地被水淹没了。</p>
-<p>现在用一个字符矩阵来表示他的土地。</p>
-<p>每个单元格内，如果包含雨水，则用”W” 表示，如果不含雨水，则用”.” 表示。</p>
-<p>现在，约翰想知道他的土地中形成了多少片池塘。</p>
-<p>每组相连的积水单元格集合可以看作是一片池塘。</p>
-<p>每个单元格视为与其上、下、左、右、左上、右上、左下、右下八个邻近单元格相连。</p>
-<p>请你输出共有多少片池塘，即矩阵中共有多少片相连的”W” 块。</p>
-<h4 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式">#</a> 输入格式</h4>
-<p>第一行包含两个整数 N  和 M 。</p>
-<p>接下来 N  行，每行包含 M  个字符，字符为”W” 或”.”，用以表示矩形土地的积水状况，字符之间没有空格。</p>
-<h4 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式">#</a> 输出格式</h4>
-<p>输出一个整数，表示池塘数目。</p>
-<h4 id="数据范围"><a class="markdownIt-Anchor" href="#数据范围">#</a> 数据范围</h4>
-<p>1≤N,M≤10001≤ , ≤1000</p>
-<h4 id="输入样例"><a class="markdownIt-Anchor" href="#输入样例">#</a> 输入样例：</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 12</span><br><span class="line">W........WW.</span><br><span class="line">.WWW.....WWW</span><br><span class="line">....WW...WW.</span><br><span class="line">.........WW.</span><br><span class="line">.........W..</span><br><span class="line">..W......W..</span><br><span class="line">.W.W.....WW.</span><br><span class="line">W.W.W.....W.</span><br><span class="line">.W.W......W.</span><br><span class="line">..W.......W.</span><br></pre></td></tr></table></figure>
-<h4 id="输出样例"><a class="markdownIt-Anchor" href="#输出样例">#</a> 输出样例：</h4>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
-<p>经典连通块问题喽</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"><span class="type">int</span> f[N][N];</span><br><span class="line"><span class="type">int</span> n, m, res;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    f[x][y] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//上、下、左、右、左上、右上、左下、右下</span></span><br><span class="line">    <span class="keyword">if</span> (x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x<span class="number">-1</span>][y] == <span class="number">1</span>) <span class="built_in">dfs</span>(x<span class="number">-1</span>, y);</span><br><span class="line">    <span class="keyword">if</span> (x+<span class="number">1</span>&lt;n &amp;&amp; f[x+<span class="number">1</span>][y] == <span class="number">1</span>) <span class="built_in">dfs</span>(x+<span class="number">1</span>, y);</span><br><span class="line">    <span class="keyword">if</span> (y<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x][y<span class="number">-1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x, y<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (y+<span class="number">1</span>&lt;m &amp;&amp; f[x][y+<span class="number">1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x, y+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; y<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x<span class="number">-1</span>][y<span class="number">-1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x<span class="number">-1</span>, y<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; y+<span class="number">1</span>&lt;m &amp;&amp; f[x<span class="number">-1</span>][y+<span class="number">1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x<span class="number">-1</span>, y+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x+<span class="number">1</span>&lt;n &amp;&amp; y<span class="number">-1</span>&gt;=<span class="number">0</span> &amp;&amp; f[x+<span class="number">1</span>][y<span class="number">-1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x+<span class="number">1</span>, y<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span> (x+<span class="number">1</span>&lt;n &amp;&amp; y+<span class="number">1</span>&lt;m &amp;&amp; f[x+<span class="number">1</span>][y+<span class="number">1</span>] == <span class="number">1</span>) <span class="built_in">dfs</span>(x+<span class="number">1</span>, y+<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">            <span class="type">char</span> a;</span><br><span class="line">            cin&gt;&gt;a;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="string">&#x27;W&#x27;</span>) f[i][j] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="string">&#x27;.&#x27;</span>) f[i][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (f[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                res ++;</span><br><span class="line">                <span class="built_in">dfs</span>(i, j);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="热浪"><a class="markdownIt-Anchor" href="#热浪">#</a> 热浪</h3>
-<p>德克萨斯纯朴的民众们这个夏天正在遭受巨大的热浪！！！</p>
-<p>他们的德克萨斯长角牛吃起来不错，可是它们并不是很擅长生产富含奶油的乳制品。</p>
-<p>农夫 John 此时身先士卒地承担起向德克萨斯运送大量的营养冰凉的牛奶的重任，以减轻德克萨斯人忍受酷暑的痛苦。</p>
-<p>John 已经研究过可以把牛奶从威斯康星运送到德克萨斯州的路线。</p>
-<p>这些路线包括起始点和终点一共有 T  个城镇，为了方便标号为 11 到 T 。</p>
-<p>除了起点和终点外的每个城镇都由 <strong>双向道路</strong> 连向至少两个其它的城镇。</p>
-<p>每条道路有一个通过费用（包括油费，过路费等等）。</p>
-<p>给定一个地图，包含 C  条直接连接 22 个城镇的道路。</p>
-<p>每条道路由道路的起点 Rs  ，终点 Re   和花费 Ci   组成。</p>
-<p>求从起始的城镇 Ts   到终点的城镇 Te   最小的总费用。</p>
-<h4 id="输入格式-2"><a class="markdownIt-Anchor" href="#输入格式-2">#</a> 输入格式</h4>
-<p>第一行: 44 个由空格隔开的整数: T,C,Ts,Te , ,  ,  ;</p>
-<p>第 22 到第 C+1 +1 行：第 i+1 +1 行描述第 i  条道路，包含 33 个由空格隔开的整数: Rs,Re,Ci  ,  ,  。</p>
-<h4 id="输出格式-2"><a class="markdownIt-Anchor" href="#输出格式-2">#</a> 输出格式</h4>
-<p>一个单独的整数表示从 Ts   到 Te   的最小总费用。</p>
-<p>数据保证至少存在一条道路。</p>
-<h4 id="数据范围-2"><a class="markdownIt-Anchor" href="#数据范围-2">#</a> 数据范围</h4>
-<p>1≤T≤25001≤ ≤2500,<br>
-1≤C≤62001≤ ≤6200,<br>
-1≤Ts,Te,Rs,Re≤T1≤  ,  ,  ,  ≤ ,<br>
-1≤Ci≤10001≤  ≤1000</p>
-<h4 id="输入样例-2"><a class="markdownIt-Anchor" href="#输入样例-2">#</a> 输入样例：</h4>
-<p>dijkstra 算法板子题算是</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n,c, nbeg, nend;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2510</span>;</span><br><span class="line"><span class="type">int</span> g[N][N];</span><br><span class="line"><span class="type">int</span> dist[N];</span><br><span class="line"><span class="type">bool</span> st[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dijkstra</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dist);</span><br><span class="line">    <span class="built_in">memset</span>(st, <span class="number">0</span>, <span class="keyword">sizeof</span> st);</span><br><span class="line">    dist[nbeg] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> t = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++ )</span><br><span class="line">            <span class="keyword">if</span> (!st[j] &amp;&amp; (t == <span class="number">-1</span> || dist[t] &gt; dist[j]))</span><br><span class="line">                t = j;</span><br><span class="line">        st[t] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j ++ )</span><br><span class="line">            dist[j] = <span class="built_in">min</span>(dist[j], dist[t] + g[t][j]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(g, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> g);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;c&gt;&gt;nbeg&gt;&gt;nend;</span><br><span class="line">    <span class="keyword">while</span> (c --) &#123;</span><br><span class="line">        <span class="type">int</span> k, p, l;</span><br><span class="line">        cin&gt;&gt;k&gt;&gt;p&gt;&gt;l;</span><br><span class="line">        g[k][p] = g[p][k] = <span class="built_in">min</span>(g[k][p], l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dijkstra</span>();</span><br><span class="line">    cout&lt;&lt;dist[nend];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Dijkstra 的整体思路比较清晰<br>
-即进行 n（n 为 n 的个数）次迭代去确定每个点到起点的最小值 最后输出的终点的即为我们要找的最短路的距离</p>
-<p>所以按照这个思路除了存储图外我们还需要存储两个量</p>
-<p>dist [n] // 用于存储每个点到起点的最短距离<br>
- st [n]   // 用于在更新最短距离时 判断当前的点的最短距离是否确定 是否需要更新</p>
-<p>每次迭代的过程中我们都先找到当前未确定的最短距离的点中距离最短的点<br>
-（至于为什么是这样那么这就涉及到 Dijkstra 算法的具体数学证明了 有兴趣的同学可以百度一下）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> t=<span class="number">-1</span>;       <span class="comment">//将t设置为-1 因为Dijkstra算法适用于不存在负权边的图</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!st[j]&amp;&amp;(t==<span class="number">-1</span>||dist[t]&gt;dist[j])    <span class="comment">//该步骤即寻找还未确定最短路的点中路径最短的点</span></span><br><span class="line">        t=j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过上述操作当前我们的 t 代表就是剩余未确定最短路的点中 路径最短的点<br>
-而与此同时该点的最短路径也已经确定我们将该点标记</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st[t]=true;</span><br></pre></td></tr></table></figure>
-<p>然后用这个去更新其余未确定点的最短距离</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">    dist[j]=<span class="built_in">min</span>(dist[j],dist[t]+g[t][j]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里可能有同学要问j如果从1开始的话 会不会影响之前已经确定的点的最小距离</span></span><br><span class="line"><span class="comment">//但其实是不会 因为按照我们的Dijkstra算法的操作顺序 先确定最短距离的点的距离已经比后确定的要小 所以不会影响</span></span><br><span class="line"><span class="comment">//当然你也可以在循环判断条件里加上if(!st[i])</span></span><br><span class="line"><span class="comment">//这里j从1开始只是为了代码的简洁</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>进行 n 次迭代后最后就可以确定每个点的最短距离</p>
-<h4 id="面试题-0101-判定字符是否唯一"><a class="markdownIt-Anchor" href="#面试题-0101-判定字符是否唯一">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/is-unique-lcci/">面试题 01.01. 判定字符是否唯一</a></h4>
-<p>实现一个算法，确定一个字符串  <code>s</code>  的所有字符是否全都不同。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;leetcode&quot;</span><br><span class="line">输出: false </span><br></pre></td></tr></table></figure>
-<p>题目说了全是小写字母</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isUnique</span><span class="params">(string astr)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> a[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; astr.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[astr[i]-<span class="string">&#x27;a&#x27;</span>] &gt; <span class="number">0</span> )<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            a[astr[i]-<span class="string">&#x27;a&#x27;</span>] ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="198-打家劫舍"><a class="markdownIt-Anchor" href="#198-打家劫舍">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/house-robber/">198. 打家劫舍</a></h4>
-<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，<strong>如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警</strong>。</p>
-<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 <strong>不触动警报装置的情况下</strong> ，一夜之内能够偷窃到的最高金额。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,2,3,1]</span><br><span class="line">输出：4</span><br><span class="line">解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</span><br><span class="line">     偷窃到的最高金额 = 1 + 3 = 4 。</span><br></pre></td></tr></table></figure>
-<p>典</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">rob</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> f[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        f[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        f[<span class="number">1</span>] = <span class="built_in">max</span>(f[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">        res = <span class="built_in">max</span>(res, <span class="built_in">max</span>(f[<span class="number">0</span>], f[<span class="number">1</span>]));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            f[i] = <span class="built_in">max</span>(f[i], <span class="built_in">max</span>(nums[i]+f[i<span class="number">-2</span>],f[i<span class="number">-1</span>]));</span><br><span class="line">            res = <span class="built_in">max</span>(res, f[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="面试题-0202-返回倒数第-k-个节点"><a class="markdownIt-Anchor" href="#面试题-0202-返回倒数第-k-个节点">#</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-node-from-end-of-list-lcci/">面试题 02.02. 返回倒数第 k 个节点</a></h4>
-<p>实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。</p>
-<p>** 注意：** 本题相对原题稍作改动</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： 1-&gt;2-&gt;3-&gt;4-&gt;5 和 k = 2</span><br><span class="line">输出： 4</span><br></pre></td></tr></table></figure>
-<p>双指针喽</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">kthToLast</span><span class="params">(ListNode* head, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> fast = <span class="number">0</span>;</span><br><span class="line">        ListNode* h = head;</span><br><span class="line">        <span class="keyword">while</span> (h!=<span class="literal">nullptr</span>) &#123;</span><br><span class="line">            fast ++;</span><br><span class="line">            h = h-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (fast == k) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (head != <span class="literal">nullptr</span> &amp;&amp; h != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">            h = h-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (h == <span class="literal">nullptr</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head-&gt;val;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h2 id="微信搜索-一面"><a class="markdownIt-Anchor" href="#微信搜索-一面">#</a> 微信搜索 一面</h2>
+<h3 id="new和malloc区别"><a class="markdownIt-Anchor" href="#new和malloc区别">#</a> new 和 malloc 区别</h3>
+<p>new/delete 是 C++ 运算符，可以重载，且不需要知道所需分配的空间，可自动确定</p>
+<p>malloc/free 是 C 函数，且分配空间的时候需知道内存空间大小。</p>
+<h4 id="如果new的内存用free会发生什么问题"><a class="markdownIt-Anchor" href="#如果new的内存用free会发生什么问题">#</a> 如果 new 的内存用 free，会发生什么问题？</h4>
+<p>new () 函数实际过程中做了两步操作，第一步是分配内存空间，第二步是调用类的构造函数；delete () 也同样是两步，第一步是调用类的析构函数，第二步才是释放内存；而 malloc () 和 free () 仅仅是分配内存与释放内存操作；</p>
+<p>那么如果通过 new 分配的内存，再用 free 去释放，就会少一步调用析构函数的过程。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">private:</span><br><span class="line">    <span class="type">int</span> *i;</span><br><span class="line">public:</span><br><span class="line">    A() &#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;A gouzao&quot;</span>&lt;&lt;<span class="built_in">endl</span>;i = new <span class="type">int</span>(<span class="number">0</span>);&#125;</span><br><span class="line">    ~A() &#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;A xigou&quot;</span>&lt;&lt;<span class="built_in">endl</span>; delete i;&#125;</span><br><span class="line">    <span class="type">void</span> <span class="title function_">set</span><span class="params">(<span class="type">int</span> c = <span class="number">0</span>)</span>  &#123;*i = c;&#125;</span><br><span class="line">    <span class="type">int</span> *<span class="title function_">get</span><span class="params">()</span> &#123;<span class="keyword">return</span> i;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">auto</span> a = new A();</span><br><span class="line">    a-&gt;<span class="built_in">set</span>(<span class="number">2</span>);</span><br><span class="line">    <span class="type">int</span> *p = a-&gt;get();</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*p&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    delete(a);</span><br><span class="line">    <span class="comment">//free(a);</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;*p&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用 delete 输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A gouzao</span><br><span class="line">2</span><br><span class="line">A xigou</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>用 free 输出结果为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> *i;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">A</span>() &#123;cout&lt;&lt;<span class="string">&quot;A gouzao&quot;</span>&lt;&lt;endl;i = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">0</span>);&#125;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123;cout&lt;&lt;<span class="string">&quot;A xigou&quot;</span>&lt;&lt;endl; <span class="keyword">delete</span> i;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set</span><span class="params">(<span class="type">int</span> c = <span class="number">0</span>)</span>  </span>&#123;*i = c;&#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> *<span class="title">get</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> i;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> a = <span class="keyword">new</span> <span class="built_in">A</span>();</span><br><span class="line">    a-&gt;<span class="built_in">set</span>(<span class="number">2</span>);</span><br><span class="line">    <span class="type">int</span> *p = a-&gt;<span class="built_in">get</span>();</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//delete(a);</span></span><br><span class="line">    <span class="built_in">free</span>(a);</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="智能指针和裸指针访问速度"><a class="markdownIt-Anchor" href="#智能指针和裸指针访问速度">#</a> 智能指针和裸指针访问速度</h3>
+<p>智能指针和裸指针的访问速度在实际情况下通常是相同的。智能指针是一种高级抽象，它封装了裸指针，并提供了额外的功能，如自动内存管理和所有权转移。这些功能可能会导致轻微的性能开销，但在现代编译器和运行时环境下，这种开销通常是可以忽略不计的。</p>
+<p>智能指针的主要优势在于安全性和便利性，它们可以帮助防止常见的内存错误，如空指针引用、重复释放和内存泄漏。通过使用智能指针，可以更轻松地编写安全、可维护的代码，因为它们提供了自动的资源管理。</p>
+<p>然而，如果对性能要求非常高，或者在某些特殊情况下，使用裸指针可能更合适。裸指针直接访问内存，没有额外的开销，但也没有提供自动的内存管理或安全保证。在这种情况下，程序员需要自己负责确保内存的正确分配和释放，以及避免悬空指针和野指针等错误。</p>
+<p>总的来说，智能指针和裸指针的访问速度在实际情况下通常没有显著的差异。选择使用哪种指针类型应该基于代码的安全性、可维护性和可读性等因素，而不是基于微小的性能差异。</p>
+<h3 id="智能指针内部怎么实现的访问控制"><a class="markdownIt-Anchor" href="#智能指针内部怎么实现的访问控制">#</a> 智能指针内部怎么实现的访问控制</h3>
+<ol>
+<li>所有权管理：智能指针通常使用所有权概念来管理资源的生命周期。它们可以跟踪对象的所有权，并确保只有一个智能指针可以拥有资源。当智能指针超出范围时（例如，离开其作用域），它会自动释放资源。</li>
+<li>引用计数：一种常见的智能指针实现是引用计数指针。它们在内部维护一个计数器，跟踪指向资源的引用数量。每当创建新的智能指针指向资源时，计数器递增；当智能指针被销毁或不再引用资源时，计数器递减。当计数器变为零时，智能指针可以自动释放资源。</li>
+<li>生命周期跟踪：一些智能指针实现使用更复杂的生命周期跟踪机制。它们可以使用有向无环图（DAG）等数据结构来记录对象之间的依赖关系。这种方式可以检测和处理循环引用等情况，以避免内存泄漏。</li>
+</ol>
+<h3 id="linux排查性能"><a class="markdownIt-Anchor" href="#linux排查性能">#</a> linux 排查性能</h3>
+<ol>
+<li>CPU 使用率分析：使用工具如 top、htop 或 sar 来监视 CPU 使用率，识别是否存在 CPU 饱和的情况，以及确定哪些进程或线程消耗了大量的 CPU 资源。</li>
+<li>内存使用分析：通过 free、top 或 vmstat 等工具来检查系统的内存使用情况。关注系统的内存消耗、交换空间使用情况以及内存泄漏等问题。</li>
+<li>磁盘 I/O 分析：使用工具如 iostat、iotop 或 sar 来监测磁盘 I/O 活动。检查磁盘读写速度、I/O 等待时间以及是否存在磁盘瓶颈等问题。</li>
+<li>网络使用分析：使用工具如 iftop、nethogs 或 sar 来监视网络使用情况，检查网络带宽使用率、连接数以及潜在的网络瓶颈。</li>
+<li>进程和线程分析：使用工具如 ps、top 或 htop 来查看系统中运行的进程和线程。了解哪些进程或线程消耗了大量的资源，包括 CPU、内存和 I/O 等。</li>
+<li>资源限制和调整：检查系统中是否存在资源限制，如 ulimit 或 sysctl 参数设置，以及适时调整这些限制以满足应用程序的需求。</li>
+<li>日志分析：查看系统日志文件，如 /var/log/syslog 或应用程序的日志文件，以发现潜在的性能问题或错误信息。</li>
+<li>使用性能分析工具：Linux 提供了一些强大的性能分析工具，如 perf、strace 和 tcpdump 等。这些工具可以用于跟踪系统调用、函数调用、网络流量等，以深入分析和解决性能问题。</li>
+</ol>
+<h3 id="如何处理惊群效应"><a class="markdownIt-Anchor" href="#如何处理惊群效应">#</a> 如何处理惊群效应</h3>
+<ol>
+<li>互斥锁：使用互斥锁来确保只有一个进程或线程可以访问资源。当一个进程或线程获得锁并访问资源时，其他等待的进程或线程将被阻塞，直到锁被释放。这样可以避免多个进程或线程同时竞争资源，减少惊群效应的发生。</li>
+<li>信号量或条件变量：使用信号量或条件变量来实现资源的等待和唤醒机制。等待进程或线程会在资源不可用时等待，而唤醒进程或线程会在资源可用时通知其中一个进程或线程。这样可以避免同时唤醒所有等待的进程或线程，从而减少竞争和资源浪费。</li>
+<li>优雅等待：在等待资源时，进程或线程可以选择进行优雅等待，而不是无限制地快速重试。可以使用一些延迟机制，例如指数退避策略，让进程或线程在等待资源时逐渐增加等待时间，以减少竞争和资源浪费。</li>
+<li>预取或缓存：对于一些可预测的资源需求，可以使用预取或缓存机制来提前获取或缓存资源，以减少对共享资源的频繁竞争。这样可以减少等待资源的进程或线程的数量，从而降低惊群效应的发生。</li>
+<li>负载均衡：在分布式系统中，可以使用负载均衡策略将请求分散到多个服务实例上，以避免单一资源点成为瓶颈。这样可以减少资源争夺和惊群效应的发生。</li>
+</ol>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/lc/" class="">
-              lc
+            <a href="/tags/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="">
+              面试总结
             </a>
           
         </div>
@@ -664,7 +625,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2023/05/09/shuati/day23/" target="_blank" title="刷题记录-第23天">https://flowerhai.github.io/2023/05/09/shuati/day23/</a>
+    <a href="/2023/05/18/mianshi/mian-3/" target="_blank" title="微信搜索 一面">https://flowerhai.github.io/2023/05/18/mianshi/mian-3/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -682,42 +643,23 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" class="lazyload placeholder" data-srcset="https://pic2.zhimg.com/80/v2-63bbdb5b76b8d349ad35ff4281efbd37_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" alt="">
-    </div>
-    <a href="/2023/05/10/cs144/summary1/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">CS144-summary1</div>
-      </div>
-      
-      <!-- <div class="content">
-        # CS144lab0-1-2 summary
-在 lab0 中，首先实现了一个 get_url 函数，这个函数就是像指
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" class="lazyload placeholder" data-srcset="https://picx.zhimg.com/80/v2-b44931ea513e5f7b3b06f2703f79653c_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" class="lazyload placeholder" data-srcset="https://pic3.zhimg.com/80/v2-e5c15010b8ba4608a1974403a02a2da0_1440w.webp" srcset="https://pic1.zhimg.com/v2-cd38920285d125be80b3eb504052c550_b.webp" src="" alt="">
     </div>
-    <a href="/2023/05/08/shuati/day22/" class="post-nav-link">
+    <a href="/2023/05/18/mianshi/mian-2/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">刷题day22</div>
+        <div class="title-text">快手一面补充</div>
       </div>
       <!-- <div class="content">
-        # 134. 加油站
-在一条环路上有  n  个加油站，其中第  i  个加油站有汽油  gas[i]  升。
-你有一辆
+        # 快手一面补充
+# 内存对齐
+12345678910111213#include &lt;iostream&gt;#i
       </div> -->
     </a>
   </div>
@@ -849,7 +791,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%A0%E5%A1%98%E8%AE%A1%E6%95%B0"><span class="toc-text"> 池塘计数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text"> 输出样例：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E6%B5%AA"><span class="toc-text"> 热浪</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-2"><span class="toc-text"> 输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-2"><span class="toc-text"> 输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4-2"><span class="toc-text"> 数据范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B-2"><span class="toc-text"> 输入样例：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98-0101-%E5%88%A4%E5%AE%9A%E5%AD%97%E7%AC%A6%E6%98%AF%E5%90%A6%E5%94%AF%E4%B8%80"><span class="toc-text"> 面试题 01.01. 判定字符是否唯一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D"><span class="toc-text"> 198. 打家劫舍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98-0202-%E8%BF%94%E5%9B%9E%E5%80%92%E6%95%B0%E7%AC%AC-k-%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text"> 面试题 02.02. 返回倒数第 k 个节点</span></a></li></ol></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E6%90%9C%E7%B4%A2-%E4%B8%80%E9%9D%A2"><span class="toc-text"> 微信搜索 一面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#new%E5%92%8Cmalloc%E5%8C%BA%E5%88%AB"><span class="toc-text"> new 和 malloc 区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9Cnew%E7%9A%84%E5%86%85%E5%AD%98%E7%94%A8free%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-text"> 如果 new 的内存用 free，会发生什么问题？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E5%92%8C%E8%A3%B8%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6"><span class="toc-text"> 智能指针和裸指针访问速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E5%86%85%E9%83%A8%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text"> 智能指针内部怎么实现的访问控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux%E6%8E%92%E6%9F%A5%E6%80%A7%E8%83%BD"><span class="toc-text"> linux 排查性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%83%8A%E7%BE%A4%E6%95%88%E5%BA%94"><span class="toc-text"> 如何处理惊群效应</span></a></li></ol></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
