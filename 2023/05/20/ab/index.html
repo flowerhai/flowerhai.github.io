@@ -586,13 +586,14 @@ Ubuntu 22.04 server 64bit</p>
 <p>随后将某些注销去掉并改值</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Port 22 端口号，服务器和客户端相同即可</span><br><span class="line">ListenAddress 0.0.0.0   打开监听所有端口</span><br><span class="line">PermitRootLogin yes 允许远程客户进入根权限</span><br><span class="line">PublicAuthentication yes 打开密钥对认证模式</span><br><span class="line">AuthorizedKeysFile .ssh/yourname.pub 名称为yourname.pub的公钥放置处</span><br><span class="line">PasswordAuthentication yes 需要密码认证</span><br><span class="line">PermitEmptyPasswords yes 允许空密码</span><br></pre></td></tr></table></figure>
 <h4 id="随后输入"><a class="markdownIt-Anchor" href="#随后输入">#</a> 随后输入</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 <p>a</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">cp id_rsa.pub authorized_keys</span><br><span class="line">chmod 777 authorized_keys</span><br></pre></td></tr></table></figure>
 <p>执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys a@b:~/.ssh/</span><br></pre></td></tr></table></figure>
 <p>执行完后输入 b 的密码</p>
 <p>b</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">cp authorized_keys authorized_keys</span><br><span class="line">chmod 777 authorized_keys</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys b@a:~/.ssh/</span><br></pre></td></tr></table></figure>
 <p>如果 scp authorized_keys b@a:~/.ssh/ 这行不起作用，手动更换。</p>
