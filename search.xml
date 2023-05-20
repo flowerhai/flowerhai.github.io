@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>并行计算环境搭建</title>
+      <link href="/2023/05/20/ab/"/>
+      <url>/2023/05/20/ab/</url>
+      
+        <content type="html"><![CDATA[<h3 id="实验环境配置"><a class="markdownIt-Anchor" href="#实验环境配置">#</a> 实验环境配置</h3><p>阅读实验手册发现，并没有地方需要使用 openEuler 20.03 操作系统</p><p>如果硬用 openEuler 20.03 各种恶心人的问题。</p><p>不如直接选择 ububtun 系统，安装各种包更方便。<br>这是我的开发环境，别忘了购买公网 IP。<br>2vCPUs | 4GiB | h3.large.2<br>Ubuntu 22.04 server 64bit</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mpich</span><br></pre></td></tr></table></figure><p>输入即可。</p><p>随后执行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/xianyi/OpenBLAS/archive/v0.3.8.tar.gz</span><br><span class="line">tar -zxvf v0.3.8.tar.gz &amp;&amp; cd OpenBLAS-0.3.8</span><br><span class="line">make -j2</span><br><span class="line">sudo make PREFIX=/usr/local/openblas install</span><br><span class="line">sudo chmod -R 777 /usr/local/openblas/</span><br><span class="line">sudo ln -s /usr/local/openblas/lib/libopenblas.so /usr/lib/libopenblas.so</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">vim之后添加</span></span><br><span class="line">export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/openblas/include</span><br><span class="line">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/openblas/lib</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br><span class="line">make</span><br></pre></td></tr></table></figure><p>至此，开发环境搭建完毕，2-3min，如果是 openEuler, 此过程需要 n 小时，后续 copy 代码即可。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 并行计算 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>微信搜索 一面</title>
       <link href="/2023/05/18/mianshi/mian-3/"/>
       <url>/2023/05/18/mianshi/mian-3/</url>
