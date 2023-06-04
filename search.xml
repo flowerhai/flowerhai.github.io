@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>为什么收到三次重复ACK才会启动快重传？</title>
+      <link href="/2023/06/04/tt/"/>
+      <url>/2023/06/04/tt/</url>
+      
+        <content type="html"><![CDATA[<h3 id="为什么收到三次重复ack才会启动快重传"><a class="markdownIt-Anchor" href="#为什么收到三次重复ack才会启动快重传">#</a> 为什么收到三次重复 ACK 才会启动快重传？</h3><p>一般回答都是说因为两次冗余 ACK 报文是因为网络拥塞，而三次大概率是发生了丢包，但是这是为什么呢？</p><p>假设 A 发送的 TCPsegment 的序列号为</p><p>n-1, n, n+1, n+2</p><p>B 理想收到的为</p><p>n-1, n, n+1, n+2</p><p>A 收到一个 ACK (n) 的情况如下：</p><p>n-1, n, n +1, n+2</p><p>n-1, n, n+2, n+1</p><p>A 收到 2 个 ACK (n):</p><p>n-1, n+2, n, n+1</p><p>n-1, n+1, n, n+2</p><p>A 收到 3 个 ACK (n):</p><p>n-1, n+2, n+1, n</p><p>n-1, n+1, n+2, n</p><p>当发生丢包时一定会收到三个重复 ACK，理由如下</p><p>n-1,n+2,n+1</p><p>n-1,n+1,n+2</p><p>所以此时大概率会发生丢包，但是在实际情况下抓包发现，一般都是在更多次的时候才会启动快重传。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> TCP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>字节跳动 一面</title>
       <link href="/2023/05/22/mianshi/mian-4/"/>
       <url>/2023/05/22/mianshi/mian-4/</url>

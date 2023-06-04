@@ -6,7 +6,7 @@
   <link href="https://flowerhai.github.io/atom.xml" rel="self"/>
   
   <link href="https://flowerhai.github.io/"/>
-  <updated>2023-05-22T13:36:29.109Z</updated>
+  <updated>2023-06-04T09:37:32.726Z</updated>
   <id>https://flowerhai.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么收到三次重复ACK才会启动快重传？</title>
+    <link href="https://flowerhai.github.io/2023/06/04/tt/"/>
+    <id>https://flowerhai.github.io/2023/06/04/tt/</id>
+    <published>2023-06-04T09:37:13.000Z</published>
+    <updated>2023-06-04T09:37:32.726Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="为什么收到三次重复ack才会启动快重传"><a class="markdownIt-Anchor" href="#为什么收到三次重复ack才会启动快重传">#</a> 为什么收到三次重复 ACK 才会启动快重传？</h3><p>一般回答都是说因为两次冗余 ACK 报文是因为网络拥塞，而三次大概率是发生了丢包，但是这是为什么呢？</p><p>假设 A 发送的 TCPsegment 的序列号为</p><p>n-1, n, n+1, n+2</p><p>B 理想收到的为</p><p>n-1, n, n+1, n+2</p><p>A 收到一个 ACK (n) 的情况如下：</p><p>n-1, n, n +1, n+2</p><p>n-1, n, n+2, n+1</p><p>A 收到 2 个 ACK (n):</p><p>n-1, n+2, n, n+1</p><p>n-1, n+1, n, n+2</p><p>A 收到 3 个 ACK (n):</p><p>n-1, n+2, n+1, n</p><p>n-1, n+1, n+2, n</p><p>当发生丢包时一定会收到三个重复 ACK，理由如下</p><p>n-1,n+2,n+1</p><p>n-1,n+1,n+2</p><p>所以此时大概率会发生丢包，但是在实际情况下抓包发现，一般都是在更多次的时候才会启动快重传。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;为什么收到三次重复ack才会启动快重传&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#为什么收到三次重复ack才会启动快重传&quot;&gt;#&lt;/a&gt; 为什么收到三次重复 ACK 才会启动快重传？&lt;/h3&gt;
+&lt;p&gt;一般回答都是说因为两次冗余 ACK</summary>
+      
+    
+    
+    
+    
+    <category term="TCP" scheme="https://flowerhai.github.io/tags/TCP/"/>
+    
+  </entry>
   
   <entry>
     <title>字节跳动 一面</title>
@@ -469,29 +492,6 @@
     
     
     <category term="CS144" scheme="https://flowerhai.github.io/tags/CS144/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>new-malloc-free-delete</title>
-    <link href="https://flowerhai.github.io/2023/05/07/c-basic/new-malloc/"/>
-    <id>https://flowerhai.github.io/2023/05/07/c-basic/new-malloc/</id>
-    <published>2023-05-07T13:44:07.000Z</published>
-    <updated>2023-05-07T13:44:55.795Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="new-delete"><a class="markdownIt-Anchor" href="#new-delete">#</a> new delete</h3><h3 id="new-和malloc的区别"><a class="markdownIt-Anchor" href="#new-和malloc的区别">#</a> new 和 malloc 的区别</h3><p>new 不仅可以开辟内存还可以初始化</p><p>malloc 开辟内存失败，是通过返回值和 nullptr 做比较的；而 new 开辟内存失败，是通过抛出 bad_alloc 类型的异常来判断的。</p><h3 id="delete和free的区别"><a class="markdownIt-Anchor" href="#delete和free的区别">#</a> delete 和 free 的区别</h3><p>malloc 和 free，C 的库函数</p><p>new 和 delete 运算符</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="keyword">if</span> (p == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">*p =<span class="number">20</span>;</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> *p1 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">20</span>);</span><br><span class="line"><span class="keyword">delete</span> p1;</span><br></pre></td></tr></table></figure><p>关于 delete 数组的时候</p><p>需要 delete [] p</p><p>如果不加的话只删第一个 (<strong>why?</strong>)</p><p>数组是一片连续的内存，释放时候你传递的数组名，也仅是一个指针，。<br>C++ 规定，delete p 时，仅删除指针指向的第一块内存。<br>delete [] p 才能把指针指向的一片连续内存都删除，因为在底层有一个变量，保存着需要删除的对象的数目。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;new-delete&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#new-delete&quot;&gt;#&lt;/a&gt; new delete&lt;/h3&gt;
-&lt;h3 id=&quot;new-和malloc的区别&quot;&gt;&lt;a class=&quot;markdownIt-Ancho</summary>
-      
-    
-    
-    
-    
-    <category term="C++基础" scheme="https://flowerhai.github.io/tags/C-%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
